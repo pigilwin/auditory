@@ -1,0 +1,47 @@
+interface ButtonConfiguration {
+    id: string;
+    title: string;
+}
+
+interface NoteButtonConfiguration extends ButtonConfiguration {
+    note: string;
+}
+
+interface DrumButtonConfiguration extends ButtonConfiguration {
+    type: string;
+}
+
+const defaultClasses: string[] = [
+    'p-8',
+    'text-indigo-100',
+    'transition-colors',
+    'duration-150',
+    'bg-indigo-700',
+    'rounded-lg'
+];
+
+export const Button = (attributes: ButtonConfiguration) => {
+    return (
+        <button id={attributes.id} className={defaultClasses.join(' ')}>{attributes.title}</button>
+    );
+}
+
+export const NoteButton = (attributes: NoteButtonConfiguration) => {
+
+    const additionalClasses: string[] = defaultClasses;
+    additionalClasses.push('note-button-trigger');
+
+    return (
+        <button data-node={attributes.note} id={attributes.id} className={additionalClasses.join(' ')}>{attributes.title}</button>
+    );
+}
+
+export const DrumButton = (attributes: DrumButtonConfiguration) => {
+
+    const additionalClasses: string[] = defaultClasses;
+    additionalClasses.push('drum-button-trigger');
+
+    return (
+        <button id={attributes.id} className={additionalClasses.join(' ')}>{attributes.title}</button>
+    );
+}
