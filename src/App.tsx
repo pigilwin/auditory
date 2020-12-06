@@ -12,11 +12,11 @@ function App() {
     <BrowserRouter>
       <NavBar/>
       <Switch>
-        <Route path="/">
-          <Main/>
-        </Route>
         <Route path="/about">
           <AboutPanel/>
+        </Route>
+        <Route path="/">
+          <Main/>
         </Route>
       </Switch>
     </BrowserRouter>
