@@ -1,6 +1,6 @@
-import { ControlPanel } from "./controls/panel"
-import { DrumPanel } from "./drums/panel"
-import { NotesPanel } from "./notes/panel"
+import { ControlPanel } from "../controls/panel"
+import { DrumPanel } from "../drums/panel"
+import { NotesPanel } from "../notes/panel"
 
 export const Main = (): JSX.Element => {
     return (

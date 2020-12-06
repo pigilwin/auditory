@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { AboutPanel } from './about/about';
 import { NavBar } from './components/NavBar';
-import { Main } from './Main';
+import { Main } from './main/Main';
 
 function App() {
   return (
