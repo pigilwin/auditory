@@ -1,6 +1,6 @@
 import { DrumButton } from "../components/Buttons";
 import { Grid } from "../components/Grid";
-import { PanelTitle } from "../components/Panel";
+import { Panel, PanelTitle } from "../components/Panel";
 import { drums, DrumInterface } from "./drums";
 
 export const DrumPanel = (): JSX.Element => {
@@ -10,9 +10,9 @@ export const DrumPanel = (): JSX.Element => {
     });
 
     return (
-        <div id="drums-panel">
+        <Panel>
             <PanelTitle title="Drums"/>
             <Grid elements={buttons}/>
-        </div>
+        </Panel>
     );
 }

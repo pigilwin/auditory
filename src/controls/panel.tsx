@@ -1,9 +1,9 @@
-import { PanelTitle } from "../components/Panel";
+import { Panel, PanelTitle } from "../components/Panel";
 import { RangeInput, ToggleSwitch } from "../components/Inputs";
 
 export const ControlPanel = () => {
     return (
-        <div id="controls-panel">
+        <Panel>
             <PanelTitle title="Controls"/>
             <div className="grid grid-cols-1">
                 <RangeInput 
@@ -28,6 +28,6 @@ export const ControlPanel = () => {
                     value={false}
                 />
             </div>
-        </div>
+        </Panel>
     );
 }
