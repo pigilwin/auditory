@@ -2,6 +2,19 @@ import { Panel, PanelTitle } from "../components/Panel";
 import { RangeInput, ToggleSwitch } from "../components/Inputs";
 
 export const ControlPanel = () => {
+
+    const volumeChange = () => {
+
+    };
+
+    const panner = () => {
+
+    };
+
+    const looping = () => {
+
+    };
+
     return (
         <Panel>
             <PanelTitle title="Controls"/>
@@ -13,6 +26,7 @@ export const ControlPanel = () => {
                     value={1}
                     step={0.1}
                     title="Volume"
+                    onChange={volumeChange}
                 />
                 <RangeInput
                     id="panner"
@@ -21,11 +35,13 @@ export const ControlPanel = () => {
                     value={0}
                     step={1}
                     title="Left & Right"
+                    onChange={panner}
                 />
                 <ToggleSwitch
                     id="looping"
                     title="Looping"
                     value={false}
+                    onChange={looping}
                 />
             </div>
         </Panel>
