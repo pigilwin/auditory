@@ -1,6 +1,6 @@
-import { PanelTitle } from "./components/Panel";
+import {PanelTitle} from '../components/Panel';
 
-export const AboutPanel = () => {
+export const AboutPanel = (): JSX.Element => {
     return (
         <div className="px-4 overflow-hidden">
             <PanelTitle title="About"/>
