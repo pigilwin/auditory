@@ -1,6 +1,6 @@
 import { NoteButton } from "../components/Buttons";
 import { Grid } from "../components/Grid";
-import { PanelTitle } from "../components/Panel";
+import { Panel, PanelTitle } from "../components/Panel";
 import { notes, Note } from "./notes";
 
 export const NotesPanel = (): JSX.Element => {
@@ -10,9 +10,9 @@ export const NotesPanel = (): JSX.Element => {
     });
 
     return (
-        <div id="notes-panel">
+        <Panel>
             <PanelTitle title="Notes"/>
             <Grid elements={buttons}/>
-        </div>
+        </Panel>
     );
 }
