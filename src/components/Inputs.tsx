@@ -17,7 +17,7 @@ interface ToggleSwitchInterface extends InputInterface {
 export const RangeInput = (range: RangeInputInterface) => {
     return (
         <div className="range-slider p-4 flex flex-col">
-            <label className="text-xl mb-2" htmlFor={range.id}>${range.title}</label>
+            <label className="text-xl mb-2" htmlFor={range.id}>{range.title}</label>
             <input type="range" className="cursor-pointer" id={range.id} min={range.min} max={range.max} value={range.value} step={range.step}/>
         </div>
     );
