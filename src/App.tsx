@@ -3,9 +3,9 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { AboutPanel } from './about';
-import {NavBar} from './components/NavBar';
-import {Main} from './Main';
+import { AboutPanel } from './about/about';
+import { NavBar } from './components/NavBar';
+import { Main } from './Main';
 
 function App() {
   return (
