@@ -3,12 +3,12 @@ import { RangeInput, ToggleSwitch } from "../components/Inputs";
 
 export const ControlPanel = () => {
 
-    const volumeChange = () => {
-
+    const volumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event);
     };
 
-    const panner = () => {
-
+    const panner = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event);
     };
 
     const looping = () => {
