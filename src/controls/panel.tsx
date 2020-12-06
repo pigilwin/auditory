@@ -12,7 +12,7 @@ export const ControlPanel = () => {
                     max={1}
                     value={1}
                     step={0.1}
-                    title="volume"
+                    title="Volume"
                 />
                 <RangeInput
                     id="panner"
