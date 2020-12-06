@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export const NavBar = () => {
     return (
         <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -6,10 +8,10 @@ export const NavBar = () => {
                     <h1 className="text-3xl">Sounds</h1>
                 </div>
                 <div className="text-sm lg:flex-grow text-center lg:text-right">
-                    <NavButton id="home-button" title="Home"/>
-                    <NavButton id="load-button" title="Load"/>
-                    <NavButton id="settings-button" title="Settings"/>
-                    <NavButton id="about-button" title="About"/>
+                    <NavButton to="/" id="home-button" title="Home"/>
+                    <NavButton to="/load" id="load-button" title="Load"/>
+                    <NavButton to="/settings" id="settings-button" title="Settings"/>
+                    <NavButton to="/about" id="about-button" title="About"/>
                 </div>
             </div>
         </nav>
@@ -19,12 +21,13 @@ export const NavBar = () => {
 interface NavButtonProps {
     id: string;
     title: string;
+    to: string;
 }
 
-function NavButton({id, title}: NavButtonProps){
+function NavButton({id, title, to}: NavButtonProps){
     return (
-        <a id={id} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
+        <Link to={to} id={id} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
             {title}
-        </a>
+        </Link>
     );
 }
