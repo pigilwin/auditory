@@ -6,7 +6,7 @@ import { notes, Note } from "./notes";
 export const NotesPanel = (): JSX.Element => {
     
     const buttons: JSX.Element[] = notes.map((note: Note) => {
-        return (<NoteButton title={note.name} note={note.name} id={note.name}/>);
+        return (<NoteButton key={note.name} title={note.name} note={note.name} id={note.name}/>);
     });
 
     return (
