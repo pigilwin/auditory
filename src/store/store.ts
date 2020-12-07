@@ -1,12 +1,9 @@
-import { createStore } from '@reduxjs/toolkit';
-import { Track } from "../track/track";
+import { configureStore, Action, ThunkAction } from '@reduxjs/toolkit';
+import { rootReducer, RootState } from './rootReducer';
 
-const tracks = (state: Track[], action: StoreAction) => {
+export const store = configureStore({
+    reducer: rootReducer
+});
 
-};
-
-export const store = createStore(tracks, []);
-
-export interface StoreAction {
-    type: string;
-}
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
