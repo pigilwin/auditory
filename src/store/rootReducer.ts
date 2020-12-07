@@ -1,4 +1,3 @@
-import { format } from "path";
 import { combineReducers } from '@reduxjs/toolkit';
 
 export const rootReducer = combineReducers({});
