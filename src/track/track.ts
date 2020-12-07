@@ -2,6 +2,10 @@ export class Track {
     
 }
 
-export interface CreateTrack {
-    
+export interface SavedTrack {
+    id: string;
+    tracks: string[]
+    panner: number;
+    volume: number;
+    looping: boolean;
 }
