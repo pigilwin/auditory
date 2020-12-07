@@ -29,3 +29,9 @@ This app was created using:
 - Show how many channels the client can use
 - Show how many concurrent sounds the device can play
 - If the client only has one channel then remove the panner control
+
+## How the applications logic should flow
+
+1. On initial load the application will have an empty state and a open connection to the database
+2. Fire a event to lookup the stored tracks and load them into the state
+3. When preforming any action first the database then if successful create a new state from the previous containing the new data
