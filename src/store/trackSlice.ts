@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Track, CreateTrack } from '../track/track';
+import { Track } from '../track/track';
+import { CreateTrack } from '../track/events';
 import { AppThunk, AppDispatch } from './store';
 
 const initialState: Track[] = [];
