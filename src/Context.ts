@@ -1,12 +1,13 @@
+import { Audio } from "./audio/audio";
 import { Database } from "./database/database";
 
 export class Context {
     
     private static _instance: Context;
     
-    private constructor(public readonly database: Database, public readonly audio: AudioContext){}
+    private constructor(public readonly database: Database, public readonly audio: Audio){}
 
-    public static load(database: Database, audio: AudioContext) {
+    public static load(database: Database, audio: Audio) {
         Context._instance = new Context(database, audio);
     }
 
