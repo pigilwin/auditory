@@ -3,7 +3,15 @@ import { Track } from '../track/track';
 import { CreateTrack } from '../track/events';
 import { AppThunk, AppDispatch } from './store';
 
-const initialState: Track[] = [];
+export interface TrackState {
+    tracks: Track[];
+    currentTrackId: string;
+}
+
+const initialState: TrackState =  {
+    tracks: [],
+    currentTrackId: ''
+};
 
 const trackSlice = createSlice({
     name: 'track',
