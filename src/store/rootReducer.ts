@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import {reducer} from './trackSlice';
+import {reducer as trackReducer} from './trackSlice';
+import {reducer as welcomeReducer} from './welcomeSlice';
 
 export const rootReducer = combineReducers({
-    reducer
+    trackReducer,
+    welcomeReducer
 });
 export type RootState = ReturnType<typeof rootReducer>;
