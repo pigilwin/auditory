@@ -4,9 +4,13 @@ import { Panel, PanelTitle } from "../../components/Panel";
 import { notes, Note } from "./notes";
 
 export const NotesPanel = (): JSX.Element => {
+
+    const clickHandler = (): void => {
+
+    };
     
     const buttons: JSX.Element[] = notes.map((note: Note) => {
-        return (<NoteButton key={note.name} title={note.name} note={note.name} id={note.name}/>);
+        return (<NoteButton key={note.name} onClick={clickHandler} title={note.name} note={note.name} id={note.name}/>);
     });
 
     return (

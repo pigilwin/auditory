@@ -1,6 +1,9 @@
+import { MouseEventHandler } from "react";
+
 interface ButtonConfiguration {
     id: string;
     title: string;
+    onClick: MouseEventHandler<HTMLButtonElement>
 }
 
 interface NoteButtonConfiguration extends ButtonConfiguration {
@@ -22,7 +25,7 @@ const defaultClasses: string[] = [
 
 export const Button = (attributes: ButtonConfiguration) => {
     return (
-        <button id={attributes.id} className={defaultClasses.join(' ')}>{attributes.title}</button>
+        <button id={attributes.id} onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
     );
 }
 
@@ -32,7 +35,7 @@ export const NoteButton = (attributes: NoteButtonConfiguration) => {
     additionalClasses.push('note-button-trigger');
 
     return (
-        <button data-node={attributes.note} id={attributes.id} className={additionalClasses.join(' ')}>{attributes.title}</button>
+        <button data-node={attributes.note} onClick={attributes.onClick} id={attributes.id} className={additionalClasses.join(' ')}>{attributes.title}</button>
     );
 }
 
@@ -42,6 +45,6 @@ export const DrumButton = (attributes: DrumButtonConfiguration) => {
     additionalClasses.push('drum-button-trigger');
 
     return (
-        <button id={attributes.id} className={additionalClasses.join(' ')}>{attributes.title}</button>
+        <button id={attributes.id} onClick={attributes.onClick} className={additionalClasses.join(' ')}>{attributes.title}</button>
     );
 }

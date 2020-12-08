@@ -5,8 +5,12 @@ import { drums, DrumInterface } from "./drums";
 
 export const DrumPanel = (): JSX.Element => {
     
+    const clickHandler = (): void => {
+
+    };
+
     const buttons: JSX.Element[] = drums.map((drum: DrumInterface) => {
-        return (<DrumButton key={drum.name} id={drum.name} type={drum.type} title={drum.name}/>);
+        return (<DrumButton onClick={clickHandler} key={drum.name} id={drum.name} type={drum.type} title={drum.name}/>);
     });
 
     return (
