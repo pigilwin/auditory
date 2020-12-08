@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-export const NavBar = () => {
+export const NavBar = (): JSX.Element => {
     return (
         <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
@@ -24,7 +24,7 @@ interface NavButtonProps {
     to: string;
 }
 
-function NavButton({id, title, to}: NavButtonProps){
+const NavButton = ({id, title, to}: NavButtonProps): JSX.Element => {
     return (
         <Link to={to} id={id} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
             {title}

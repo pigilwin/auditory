@@ -16,7 +16,7 @@ interface ToggleSwitchInterface extends InputInterface {
     onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export const RangeInput = (range: RangeInputInterface) => {
+export const RangeInput = (range: RangeInputInterface): JSX.Element => {
     return (
         <div className="range-slider p-4 flex flex-col">
             <label className="text-xl mb-2" htmlFor={range.id}>{range.title}</label>
@@ -25,7 +25,7 @@ export const RangeInput = (range: RangeInputInterface) => {
     );
 }
 
-export function ToggleSwitch(toggle: ToggleSwitchInterface) {
+export function ToggleSwitch(toggle: ToggleSwitchInterface): JSX.Element {
     return (
         <div className="toggle-switch p-4 flex flex-col">
             <label htmlFor={toggle.id} className="flex items-center cursor-pointer">

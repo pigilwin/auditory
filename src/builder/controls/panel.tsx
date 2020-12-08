@@ -1,7 +1,7 @@
 import { Panel, PanelTitle } from "../../components/Panel";
 import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 
-export const ControlPanel = () => {
+export const ControlPanel = (): JSX.Element => {
 
     const volumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(event);

@@ -23,13 +23,13 @@ const defaultClasses: string[] = [
     'rounded-lg'
 ];
 
-export const Button = (attributes: ButtonConfiguration) => {
+export const Button = (attributes: ButtonConfiguration): JSX.Element => {
     return (
         <button id={attributes.id} onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
     );
 }
 
-export const NoteButton = (attributes: NoteButtonConfiguration) => {
+export const NoteButton = (attributes: NoteButtonConfiguration): JSX.Element => {
 
     const additionalClasses: string[] = defaultClasses;
     additionalClasses.push('note-button-trigger');
@@ -39,7 +39,7 @@ export const NoteButton = (attributes: NoteButtonConfiguration) => {
     );
 }
 
-export const DrumButton = (attributes: DrumButtonConfiguration) => {
+export const DrumButton = (attributes: DrumButtonConfiguration): JSX.Element => {
 
     const additionalClasses: string[] = defaultClasses;
     additionalClasses.push('drum-button-trigger');
