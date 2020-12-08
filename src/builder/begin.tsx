@@ -17,7 +17,7 @@ export const Begin = (): JSX.Element => {
 
     return (
         <div className="container mx-auto flex flex-col w-1/2">
-            <TextSingleLineInput id="track-name" title="Track Name" onKeyUp={saveTrackNameHandler}/>
+            <TextSingleLineInput error="" id="track-name" title="Track Name" onKeyUp={saveTrackNameHandler}/>
             <div className="flex flex-row">
                 <div className="w-1/2 text-center">
                     <Button id="create-new-track" title="Create New Track" onClick={createNewTrackClickHandler}/>

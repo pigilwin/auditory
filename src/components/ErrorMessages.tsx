@@ -2,7 +2,7 @@ interface TextErrorMessageInterface {
     message: string;
 }
 
-export const basicTextErrorMessage = (content: TextErrorMessageInterface): JSX.Element => {
+export const BasicTextErrorMessage = (content: TextErrorMessageInterface): JSX.Element => {
     
     if (content.message.length === 0) {
         return (<span></span>);

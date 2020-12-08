@@ -27,6 +27,7 @@ export const ControlPanel = (): JSX.Element => {
                     step={0.1}
                     title="Volume"
                     onChange={volumeChange}
+                    error=""
                 />
                 <RangeInput
                     id="panner"
@@ -36,12 +37,14 @@ export const ControlPanel = (): JSX.Element => {
                     step={1}
                     title="Left & Right"
                     onChange={panner}
+                    error=""
                 />
                 <ToggleSwitch
                     id="looping"
                     title="Looping"
                     value={false}
                     onChange={looping}
+                    error=""
                 />
             </div>
         </Panel>
