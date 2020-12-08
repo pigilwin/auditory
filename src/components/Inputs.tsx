@@ -48,10 +48,19 @@ export const ToggleSwitch = (toggle: ToggleSwitchInterface): JSX.Element => {
 }
 
 export const TextSingleLineInput = (single: TextSingleLineInputInterface): JSX.Element => {
+    
+    const classNames = (): string => {
+        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded"];
+        if (single.error.length > 0) {
+            classes.push('border-red-400', 'bg-red-200');
+        }
+        return classes.join(" ");
+    };
+    
     return (
         <div className="flex flex-col mb-4">
             <label className="mb-2 uppercase font-bold text-lg text-grey-darkest">{single.title}</label>
-            <input onKeyUp={single.onKeyUp} className="border py-2 px-3 text-grey-darkest" type="text" id={single.id}></input>
+            <input onKeyUp={single.onKeyUp} className={classNames()} type="text" id={single.id}></input>
             <BasicTextErrorMessage message={single.error}/>
         </div>
     );
