@@ -1,6 +1,5 @@
-import { Button } from "../components/Buttons"
+import { Button } from "../components/Buttons";
 import { TextSingleLineInput } from "../components/Inputs";
-import { PanelTitle } from "../components/Panel"
 
 export const Begin = (): JSX.Element => {
 
@@ -17,24 +16,14 @@ export const Begin = (): JSX.Element => {
     };
 
     return (
-        <div className="container mx-auto flex flex-wrap overflow-hidden">
-            <div className="w-1/2 flex flex-col">
-                <div className="w-full p-5">
-                    <PanelTitle title="Create New"/>
-                </div>
-                <div className="w-full p-5">
-                    <TextSingleLineInput id="track-name" title="Track Name" onKeyUp={saveTrackNameHandler}/>
-                </div>
-                <div className="w-full text-center p-5">
+        <div className="container mx-auto flex flex-col w-1/2">
+            <TextSingleLineInput id="track-name" title="Track Name" onKeyUp={saveTrackNameHandler}/>
+            <div className="flex flex-row">
+                <div className="w-1/2 text-center">
                     <Button id="create-new-track" title="Create New Track" onClick={createNewTrackClickHandler}/>
                 </div>
-            </div>
-            <div className="w-1/2 flex flex-col">
-                <div className="w-full p-5">
-                    <PanelTitle title="Load Existing"/>
-                </div>
-                <div className="w-full text-center">
-                    <Button id="load-tracks" title="Load Tracks" onClick={loadExistingTracksClickHandler}/>
+                <div className="w-1/2 text-center">
+                    <Button id="load-tracks" title="Or load existing tracks" onClick={loadExistingTracksClickHandler}/>
                 </div>
             </div>
         </div>
