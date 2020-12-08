@@ -8,7 +8,7 @@ const welcomeSlice = createSlice({
     initialState,
     reducers: {
         acceptWelcomeMessage(state, action: PayloadAction<boolean>) {
-            console.log(state, action);
+            return action.payload;
         }
     }
 });

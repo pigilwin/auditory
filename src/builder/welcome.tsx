@@ -1,18 +1,17 @@
+import { useDispatch } from "react-redux";
 import { Audio } from "../audio/audio";
 import { Button } from "../components/Buttons";
 import { Context } from "../Context";
+import { acceptWelcomeMessage } from "../store/welcomeSlice";
 
 export const Welcome = (): JSX.Element => {
 
     const audio: Audio = Context.get().audio;
     const numberOfChannels: number = audio.numberOfChannels;
+    const dispatch = useDispatch();
 
-    const yesClickHandler = (): void => {
-
-    };
-
-    const noClickHandler = (): void => {
-
+    const letsBeginClickHandler = (): void => {
+        dispatch(acceptWelcomeMessage(true));
     };
 
     return (
@@ -21,14 +20,8 @@ export const Welcome = (): JSX.Element => {
                 <h1 className="text-7xl text-center p-2">Welcome to Sounds</h1>
                 <h2 className="text-2xl text-center p-2">This application will allow you to create and store tracks</h2> 
                 <h2 className="text-2xl text-center p-2">Your device has {numberOfChannels} channels available</h2>
-                <h2 className="text-2xl text-center p-2">We have detected that this is your first time using this application?</h2>
-                <div className="flex">
-                    <div className="w-1/2 text-center">
-                        <Button onClick={yesClickHandler} title="Yes that is correct" id="yes"/>
-                    </div>
-                    <div className="w-1/2 text-center">
-                        <Button onClick={noClickHandler} title="No that is wrong" id="no"/>
-                    </div>
+                <div className="text-center">
+                    <Button onClick={letsBeginClickHandler} title="Lets Begin" id="letsBegin"/>
                 </div>
             </div>
         </div>
