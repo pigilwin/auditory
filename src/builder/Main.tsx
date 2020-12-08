@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { welcomeSelector } from "../store/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { DrumPanel } from "./drums/panel";
@@ -7,7 +7,6 @@ import { Welcome } from './welcome';
 
 export const Main = (): JSX.Element => {
 
-    const dispatch = useDispatch();
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
 
     if (hasUsedWelcomeMessage){
