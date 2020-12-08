@@ -10,7 +10,7 @@ export class Context {
         Context._instance = new Context(database, audio);
     }
 
-    public get instance(): Context {
+    public static get(): Context {
         if (Context._instance === undefined) {
             throw new Error('Context has not been created correctly');
         }
