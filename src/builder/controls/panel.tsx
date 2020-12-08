@@ -1,5 +1,5 @@
-import { Panel, PanelTitle } from "../components/Panel";
-import { RangeInput, ToggleSwitch } from "../components/Inputs";
+import { Panel, PanelTitle } from "../../components/Panel";
+import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 
 export const ControlPanel = () => {
 

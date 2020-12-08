@@ -8,7 +8,7 @@ import { AboutPanel } from './about/about';
 import { NavBar } from './components/NavBar';
 import { Context } from './Context';
 import { database } from './database/database';
-import { Main } from './main/Main';
+import { Main } from './builder/Main';
 
 function App() {
 

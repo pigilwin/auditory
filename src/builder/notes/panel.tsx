@@ -1,6 +1,6 @@
-import { NoteButton } from "../components/Buttons";
-import { Grid } from "../components/Grid";
-import { Panel, PanelTitle } from "../components/Panel";
+import { NoteButton } from "../../components/Buttons";
+import { Grid } from "../../components/Grid";
+import { Panel, PanelTitle } from "../../components/Panel";
 import { notes, Note } from "./notes";
 
 export const NotesPanel = (): JSX.Element => {

@@ -1,6 +1,6 @@
-import { DrumButton } from "../components/Buttons";
-import { Grid } from "../components/Grid";
-import { Panel, PanelTitle } from "../components/Panel";
+import { DrumButton } from "../../components/Buttons";
+import { Grid } from "../../components/Grid";
+import { Panel, PanelTitle } from "../../components/Panel";
 import { drums, DrumInterface } from "./drums";
 
 export const DrumPanel = (): JSX.Element => {
