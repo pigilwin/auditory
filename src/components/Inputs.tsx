@@ -16,6 +16,10 @@ interface ToggleSwitchInterface extends InputInterface {
     onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
+interface TextSingleLineInputInterface extends InputInterface {
+    onKeyUp: React.KeyboardEventHandler<HTMLInputElement>;
+}
+
 export const RangeInput = (range: RangeInputInterface): JSX.Element => {
     return (
         <div className="range-slider p-4 flex flex-col">
@@ -25,7 +29,7 @@ export const RangeInput = (range: RangeInputInterface): JSX.Element => {
     );
 }
 
-export function ToggleSwitch(toggle: ToggleSwitchInterface): JSX.Element {
+export const ToggleSwitch = (toggle: ToggleSwitchInterface): JSX.Element => {
     return (
         <div className="toggle-switch p-4 flex flex-col">
             <label htmlFor={toggle.id} className="flex items-center cursor-pointer">
@@ -36,6 +40,15 @@ export function ToggleSwitch(toggle: ToggleSwitchInterface): JSX.Element {
                 </div>
                 <div className="ml-3 text-gray-700 font-medium">{toggle.title}</div>
             </label>
+        </div>
+    );
+}
+
+export const TextSingleLineInput = (single: TextSingleLineInputInterface): JSX.Element => {
+    return (
+        <div className="flex flex-col mb-4">
+            <label className="mb-2 uppercase font-bold text-lg text-grey-darkest">{single.title}</label>
+            <input onKeyUp={single.onKeyUp} className="border py-2 px-3 text-grey-darkest" type="text" id={single.id}></input>
         </div>
     );
 }
