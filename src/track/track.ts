@@ -8,10 +8,6 @@ export interface SavedTrack {
     looping: boolean;
 }
 
-export const fetchTrackFromState = (tracks: SavedTrack[], id: string): SavedTrack | null => {
-    const value: SavedTrack | undefined = tracks.find(track => track.id === id);
-    if (value === undefined) {
-        return null;
-    }
-    return value;
-};
+export interface SavedTrackMap {
+    [id: string]: SavedTrack;
+}

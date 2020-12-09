@@ -7,8 +7,8 @@ import { NotesPanel } from "./notes/panel";
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
-import { fetchTrackFromState, SavedTrack } from "../track/track";
 import { PartsContainer } from './parts/container';
+import { SavedTrack } from "../track/track";
 
 export const Main = (): JSX.Element => {
 
@@ -31,7 +31,7 @@ export const Main = (): JSX.Element => {
         return (<Begin/>);
     }
 
-    const track: SavedTrack | null = fetchTrackFromState(trackState.tracks, trackState.currentTrackId);
+    const track: SavedTrack = trackState.tracks[trackState.currentTrackId];
 
     if (track === null) {
         return (<Begin/>);
@@ -44,7 +44,7 @@ export const Main = (): JSX.Element => {
             </div>
             <NotesPanel/>
             <DrumPanel/>
-            <ControlPanel/>
+            <ControlPanel id={trackState.currentTrackId} track={track}/>
             <PartsContainer/>
         </div>
     );

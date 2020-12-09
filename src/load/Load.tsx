@@ -9,6 +9,18 @@ import { SavedTrack } from "../track/track";
 export const LoadPanel = (): JSX.Element => {
 
     const trackState = useSelector(trackSelector);
+    const elements: JSX.Element[] = [];
+    for (const key in trackState.tracks) {
+        const track: SavedTrack = trackState.tracks[key];
+        elements.push(
+            <SavedTrackListItem 
+                key={track.id} 
+                id={track.id} 
+                name={track.name} 
+                date={track.date}
+            />
+        );
+    }
 
     return (
         <div className="container mx-auto flex flex-wrap overflow-hidden">
@@ -16,9 +28,7 @@ export const LoadPanel = (): JSX.Element => {
                 <Title title="Load Tracks"/>
             </div>
             <ul className="w-1/2 mx-auto justify-center">
-                {trackState.tracks.map((value: SavedTrack) => {
-                    return <SavedTrackListItem key={value.id} id={value.id} name={value.name} date={value.date}/>;
-                })}
+                {elements}
             </ul>
         </div>
     );

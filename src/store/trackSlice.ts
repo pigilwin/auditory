@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SavedTrack } from '../track/track';
+import { SavedTrack, SavedTrackMap } from '../track/track';
 import { RootState } from './rootReducer';
 
 export interface TrackState {
-    tracks: SavedTrack[];
+    tracks: SavedTrackMap;
     currentTrackId: string;
 }
 
 const initialState: TrackState =  {
-    tracks: [],
+    tracks: {},
     currentTrackId: ''
 };
 
@@ -29,7 +29,17 @@ const trackSlice = createSlice({
         create(state, action: PayloadAction<CreateTrack>) {
             const newState = state;
             newState.currentTrackId = action.payload.track.id;
-            newState.tracks.push(action.payload.track);
+            newState.tracks[action.payload.track.id] = action.payload.track;
+            return newState;
+        },
+        updateControl(state, action: PayloadAction<UpdateControl>) {
+            const newState = state;
+            const id: string = action.payload.id;
+            const track: SavedTrack = newState.tracks[id];
+            track.looping = action.payload.looping;
+            track.volume = action.payload.volume;
+            track.panner = action.payload.panner;
+            newState.tracks[id] = track;
             return newState;
         }
     }
@@ -40,9 +50,16 @@ interface CreateTrack {
 }
 
 interface LoadTracks {
-    tracks: SavedTrack[];
+    tracks: SavedTrackMap;
+}
+
+interface UpdateControl {
+    looping: boolean,
+    panner: number,
+    volume: number,
+    id: string
 }
 
 export const reducer = trackSlice.reducer;
-export const { create, load, loadTrack} = trackSlice.actions;
+export const { create, load, loadTrack, updateControl} = trackSlice.actions;
 export const trackSelector = (state: RootState) => state.trackReducer;

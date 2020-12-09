@@ -1,6 +1,6 @@
 import { DBSchema, IDBPDatabase, openDB } from 'idb';
 import { v4 } from 'uuid';
-import { SavedTrack } from '../track/track';
+import { SavedTrack, SavedTrackMap } from '../track/track';
 
 export const database = async (): Promise<Database> => {
     const database = await openDB<TrackDatabase>('tracks', 1, {
@@ -23,7 +23,7 @@ export class Database {
             date: (new Date()).toISOString(),
             parts: [],
             panner: 0,
-            volume: 1,
+            volume: 10,
             looping: false
         };
         await store.put(track, track.id);
@@ -32,12 +32,16 @@ export class Database {
         return track;
     }
 
-    public async read(): Promise<Array<SavedTrack>> {
+    public async read(): Promise<SavedTrackMap> {
         const transaction = this.db.transaction('tracks');
         const store = transaction.objectStore('tracks');
         const tracks: SavedTrack[] = await store.getAll();
+        const map: SavedTrackMap = {};
+        for (const track of tracks) {
+            map[track.id] = track;
+        }
         await transaction.done;
-        return tracks;
+        return map;
     }
 }
 
