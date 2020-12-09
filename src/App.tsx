@@ -7,8 +7,18 @@ import { AboutPanel } from './about/About';
 import { LoadPanel } from './load/Load';
 import { NavBar } from './components/NavBar';
 import { Main } from './builder/Main';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadTracks } from './store/trackEvent';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadTracks());
+  });
+
   return (
     <BrowserRouter>
       <NavBar/>

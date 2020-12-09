@@ -32,8 +32,12 @@ export class Database {
         return track;
     }
 
-    public read(): Array<SavedTrack> {
-        return [];
+    public async read(): Promise<Array<SavedTrack>> {
+        const transaction = this.db.transaction('tracks');
+        const store = transaction.objectStore('tracks');
+        const tracks: SavedTrack[] = await store.getAll();
+        await transaction.done;
+        return tracks;
     }
 }
 
