@@ -30,21 +30,13 @@ export const Button = (attributes: ButtonConfiguration): JSX.Element => {
 }
 
 export const NoteButton = (attributes: NoteButtonConfiguration): JSX.Element => {
-
-    const additionalClasses: string[] = Array.from(defaultClasses);
-    additionalClasses.push('note-button-trigger');
-
     return (
-        <button data-node={attributes.note} onClick={attributes.onClick} id={attributes.id} className={additionalClasses.join(' ')}>{attributes.title}</button>
+        <button data-node={attributes.note} onClick={attributes.onClick} id={attributes.id} className={defaultClasses.join(' ')}>{attributes.title}</button>
     );
 }
 
 export const DrumButton = (attributes: DrumButtonConfiguration): JSX.Element => {
-
-    const additionalClasses: string[] = Array.from(defaultClasses);
-    additionalClasses.push('drum-button-trigger');
-
     return (
-        <button id={attributes.id} onClick={attributes.onClick} className={additionalClasses.join(' ')}>{attributes.title}</button>
+        <button id={attributes.id} onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
     );
 }
