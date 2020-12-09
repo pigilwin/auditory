@@ -31,7 +31,7 @@ export const Button = (attributes: ButtonConfiguration): JSX.Element => {
 
 export const NoteButton = (attributes: NoteButtonConfiguration): JSX.Element => {
 
-    const additionalClasses: string[] = defaultClasses;
+    const additionalClasses: string[] = Array.from(defaultClasses);
     additionalClasses.push('note-button-trigger');
 
     return (
@@ -41,7 +41,7 @@ export const NoteButton = (attributes: NoteButtonConfiguration): JSX.Element => 
 
 export const DrumButton = (attributes: DrumButtonConfiguration): JSX.Element => {
 
-    const additionalClasses: string[] = defaultClasses;
+    const additionalClasses: string[] = Array.from(defaultClasses);
     additionalClasses.push('drum-button-trigger');
 
     return (
