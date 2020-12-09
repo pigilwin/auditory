@@ -26,8 +26,7 @@ export const Begin = (): JSX.Element => {
             event.preventDefault();
             return;
         }
-        console.log('called', state);
-        //dispatch(createTrack(state.trackName));
+        dispatch(createTrack(state.trackName));
     };
 
     const saveTrackNameHandler = (event: React.KeyboardEvent<HTMLInputElement>): void => {
