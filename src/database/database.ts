@@ -43,6 +43,13 @@ export class Database {
         await transaction.done;
         return map;
     }
+
+    public async updateTrack(track: SavedTrack): Promise<void> {
+        const transaction = this.db.transaction('tracks', 'readwrite');
+        const store = transaction.objectStore('tracks');
+        await store.put(track, track.id);
+        await transaction.done;
+    }
 }
 
 interface TrackDatabase extends DBSchema {

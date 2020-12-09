@@ -32,14 +32,9 @@ const trackSlice = createSlice({
             newState.tracks[action.payload.track.id] = action.payload.track;
             return newState;
         },
-        updateControl(state, action: PayloadAction<UpdateControl>) {
+        updateTrack(state, action: PayloadAction<UpdateTrack>) {
             const newState = state;
-            const id: string = action.payload.id;
-            const track: SavedTrack = newState.tracks[id];
-            track.looping = action.payload.looping;
-            track.volume = action.payload.volume;
-            track.panner = action.payload.panner;
-            newState.tracks[id] = track;
+            newState.tracks[action.payload.track.id] = action.payload.track;
             return newState;
         }
     }
@@ -53,13 +48,10 @@ interface LoadTracks {
     tracks: SavedTrackMap;
 }
 
-interface UpdateControl {
-    looping: boolean,
-    panner: number,
-    volume: number,
-    id: string
+interface UpdateTrack {
+    track: SavedTrack;
 }
 
 export const reducer = trackSlice.reducer;
-export const { create, load, loadTrack, updateControl} = trackSlice.actions;
+export const { create, load, loadTrack, updateTrack} = trackSlice.actions;
 export const trackSelector = (state: RootState) => state.trackReducer;

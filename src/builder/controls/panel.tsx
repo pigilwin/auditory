@@ -2,8 +2,8 @@ import { Panel, PanelTitle } from "../../components/Panel";
 import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { Button } from "../../components/Buttons";
 import { SavedTrack } from "../../track/track";
-import { updateControl } from "../../store/trackSlice";
 import { useDispatch } from "react-redux";
+import { updateTrackAsync } from "../../store/trackEvent";
 
 interface ControlPanelState {
     track: SavedTrack;
@@ -15,30 +15,21 @@ export const ControlPanel = (panelState: ControlPanelState): JSX.Element => {
     const dispatch = useDispatch();
 
     const volumeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatch(updateControl({
-            looping: panelState.track.looping,
-            panner: panelState.track.panner,
-            volume: event.currentTarget.valueAsNumber,
-            id: panelState.id
-        }));
+        const track = Object.assign({}, panelState.track);
+        track.volume = event.currentTarget.valueAsNumber;
+        dispatch(updateTrackAsync(track));
     };
 
     const panner = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatch(updateControl({
-            looping: panelState.track.looping,
-            volume: panelState.track.volume,
-            panner: event.currentTarget.valueAsNumber,
-            id: panelState.id
-        }));
+        const track = Object.assign({}, panelState.track);
+        track.panner = event.currentTarget.valueAsNumber;
+        dispatch(updateTrackAsync(track));
     };
 
     const looping = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatch(updateControl({
-            looping: event.currentTarget.checked,
-            volume: panelState.track.volume,
-            panner: panelState.track.panner,
-            id: panelState.id
-        }));
+        const track = Object.assign({}, panelState.track);
+        track.looping = event.currentTarget.checked;
+        dispatch(updateTrackAsync(track));
     };
 
     const startTrack = (): void => {

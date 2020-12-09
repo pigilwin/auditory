@@ -1,6 +1,7 @@
 import { Context } from '../Context';
+import { SavedTrack } from '../track/track';
 import { AppThunk, AppDispatch } from './store';
-import { create, load } from './trackSlice';
+import { create, load, updateTrack } from './trackSlice';
 
 export const createTrack = (name: string): AppThunk => async (dispatch: AppDispatch) => {
     const track = await Context.get().database.createTrack(name);
@@ -15,3 +16,10 @@ export const loadTracks = (): AppThunk => async (dispatch: AppDispatch) => {
         tracks: tracks
     }));
 };
+
+export const updateTrackAsync = (track: SavedTrack) => async (dispatch: AppDispatch) => {
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+}
