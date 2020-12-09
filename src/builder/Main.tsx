@@ -8,6 +8,7 @@ import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
 import { fetchTrackFromState, SavedTrack } from "../track/track";
+import { PartsContainer } from './parts/container';
 
 export const Main = (): JSX.Element => {
 
@@ -44,6 +45,7 @@ export const Main = (): JSX.Element => {
             <NotesPanel/>
             <DrumPanel/>
             <ControlPanel/>
+            <PartsContainer/>
         </div>
     );
 }
