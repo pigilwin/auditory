@@ -7,3 +7,11 @@ export interface SavedTrack {
     volume: number;
     looping: boolean;
 }
+
+export const fetchTrackFromState = (tracks: SavedTrack[], id: string): SavedTrack | null => {
+    const value: SavedTrack | undefined = tracks.find(track => track.id === id);
+    if (value === undefined) {
+        return null;
+    }
+    return value;
+};

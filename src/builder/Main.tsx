@@ -7,11 +7,12 @@ import { NotesPanel } from "./notes/panel";
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
+import { fetchTrackFromState, SavedTrack } from "../track/track";
 
 export const Main = (): JSX.Element => {
 
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
-    const track = useSelector(trackSelector);
+    const trackState = useSelector(trackSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -25,13 +26,21 @@ export const Main = (): JSX.Element => {
      * If the current track id is zero then now track is selected
      * Show the create new / load existing track buttons
      */
-    if (track.currentTrackId.length === 0) {
+    if (trackState.currentTrackId.length === 0) {
+        return (<Begin/>);
+    }
+
+    const track: SavedTrack | null = fetchTrackFromState(trackState.tracks, trackState.currentTrackId);
+
+    if (track === null) {
         return (<Begin/>);
     }
 
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
-            <Title title="Title goes here"/>
+            <div className="w-full">
+                <Title title={track.name}/>
+            </div>
             <NotesPanel/>
             <DrumPanel/>
             <ControlPanel/>

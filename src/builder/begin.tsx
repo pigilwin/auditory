@@ -38,7 +38,7 @@ export const Begin = (): JSX.Element => {
     };
 
     const loadExistingTracksClickHandler = (): void => {
-        history.push('/tracks');
+        history.push('/load');
     };
 
     return (
