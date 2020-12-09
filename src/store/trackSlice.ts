@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Track } from '../track/track';
-import { CreateTrack } from '../track/events';
-import { AppThunk, AppDispatch } from './store';
+import { SavedTrack } from '../track/track';
 import { RootState } from './rootReducer';
 
 export interface TrackState {
-    tracks: Track[];
+    tracks: SavedTrack[];
     currentTrackId: string;
 }
 
@@ -18,16 +16,19 @@ const trackSlice = createSlice({
     name: 'track',
     initialState,
     reducers: {
-        createTrack(state, action: PayloadAction<CreateTrack>) {
-
+        create(state, action: PayloadAction<CreateTrack>) {
+            const newState = state;
+            newState.currentTrackId = action.payload.track.id;
+            newState.tracks.push(action.payload.track);
+            return newState;
         }
     }
 });
 
+interface CreateTrack {
+    track: SavedTrack;
+}
+
 export const reducer = trackSlice.reducer;
-
+export const { create } = trackSlice.actions;
 export const trackSelector = (state: RootState) => state.trackReducer;
-
-export const createTrack = (): AppThunk => async (dispatch: AppDispatch) => {
-
-};
