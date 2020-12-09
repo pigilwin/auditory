@@ -4,8 +4,8 @@ import { welcomeSelector } from "../store/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { DrumPanel } from "./drums/panel";
 import { NotesPanel } from "./notes/panel";
-import { Welcome } from './welcome';
-import { Begin } from './begin';
+import { Welcome } from './Welcome';
+import { Begin } from './Begin';
 
 export const Main = (): JSX.Element => {
 
