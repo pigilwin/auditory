@@ -6,6 +6,7 @@ import { DrumPanel } from "./drums/panel";
 import { NotesPanel } from "./notes/panel";
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
+import { Title } from "./Title";
 
 export const Main = (): JSX.Element => {
 
@@ -30,6 +31,7 @@ export const Main = (): JSX.Element => {
 
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
+            <Title title="Title goes here"/>
             <NotesPanel/>
             <DrumPanel/>
             <ControlPanel/>
