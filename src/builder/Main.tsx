@@ -42,8 +42,8 @@ export const Main = (): JSX.Element => {
             <div className="w-full">
                 <Title title={track.name}/>
             </div>
-            <NotesPanel/>
-            <DrumPanel/>
+            <NotesPanel track={track}/>
+            <DrumPanel track={track}/>
             <ControlPanel id={trackState.currentTrackId} track={track}/>
             <PartsContainer/>
         </div>
