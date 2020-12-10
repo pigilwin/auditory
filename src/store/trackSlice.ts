@@ -36,6 +36,11 @@ const trackSlice = createSlice({
             const newState = state;
             newState.tracks[action.payload.track.id] = action.payload.track;
             return newState;
+        },
+        deleteTrack(state, action: PayloadAction<string>) {
+            const newState = state;
+            delete newState.tracks[action.payload];
+            return newState;
         }
     }
 });
@@ -53,5 +58,5 @@ interface UpdateTrack {
 }
 
 export const reducer = trackSlice.reducer;
-export const { create, load, loadTrack, updateTrack} = trackSlice.actions;
+export const { create, load, loadTrack, updateTrack, deleteTrack} = trackSlice.actions;
 export const trackSelector = (state: RootState) => state.trackReducer;

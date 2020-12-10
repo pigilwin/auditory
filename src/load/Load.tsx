@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Title } from "../builder/Title"
-import { Button } from "../components/Buttons";
+import { Button, DeleteButton } from "../components/Buttons";
+import { deleteTrackAsync } from "../store/trackEvent";
 import { loadTrack, trackSelector } from "../store/trackSlice";
 import { acceptWelcomeMessage } from "../store/welcomeSlice";
 import { SavedTrack } from "../track/track";
@@ -50,13 +51,20 @@ const SavedTrackListItem = (value: SavedTrackListItemInterface): JSX.Element => 
         history.push('/tracks');
     };
 
+    const deleteHandler = () => {
+        dispatch(deleteTrackAsync(value.id));
+    };
+
     return (
         <li className="p-4 w-full mx-auto flex flex-row shadow-md rounded-md bg-gray-300">
-            <div className="w-1/2 my-auto">
+            <div className="w-1/3 my-auto">
                 <h4 className="text-center text-2xl">{value.name}</h4>
             </div>
-            <div className="w-1/2 text-center">
-                <Button id={value.id} title="Load Track" onClick={clickHandler}/>
+            <div className="w-1/3 text-center">
+                <Button id={value.id + '-load'} title="Load Track" onClick={clickHandler}/>
+            </div>
+            <div className="w-1/3 text-center">
+                <DeleteButton id={value.id + '-delete'} title="Delete Track" onClick={deleteHandler}/>
             </div>
         </li>
     );

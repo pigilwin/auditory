@@ -50,6 +50,13 @@ export class Database {
         await store.put(track, track.id);
         await transaction.done;
     }
+
+    public async deleteTrack(id: string): Promise<void> {
+        const transaction = this.db.transaction('tracks', 'readwrite');
+        const store = transaction.objectStore('tracks');
+        store.delete(id);
+        await transaction.done;
+    }
 }
 
 interface TrackDatabase extends DBSchema {

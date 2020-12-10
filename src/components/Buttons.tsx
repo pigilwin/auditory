@@ -29,6 +29,16 @@ export const Button = (attributes: ButtonConfiguration): JSX.Element => {
     );
 }
 
+export const DeleteButton = (attributes: ButtonConfiguration): JSX.Element => {
+    const classes = Array.from(defaultClasses).filter(className => {
+        return className !== 'bg-indigo-700';
+    });
+    classes.push('bg-red-500');
+    return (
+        <button id={attributes.id} onClick={attributes.onClick} className={classes.join(' ')}>{attributes.title}</button>
+    );
+}
+
 export const NoteButton = (attributes: NoteButtonConfiguration): JSX.Element => {
     return (
         <button data-node={attributes.note} onClick={attributes.onClick} id={attributes.id} className={defaultClasses.join(' ')}>{attributes.title}</button>
