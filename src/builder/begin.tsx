@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Buttons";
 import { TextSingleLineInput } from "../components/Inputs";
-import { createTrack } from "../store/trackEvent";
+import { createTrackAsync } from "../store/trackEvent";
 import { useValidation } from "../validation/validation";
 
 export const Begin = (): JSX.Element => {
@@ -26,7 +26,7 @@ export const Begin = (): JSX.Element => {
             event.preventDefault();
             return;
         }
-        dispatch(createTrack(state.trackName));
+        dispatch(createTrackAsync(state.trackName));
     };
 
     const saveTrackNameHandler = (event: React.KeyboardEvent<HTMLInputElement>): void => {

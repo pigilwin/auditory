@@ -16,7 +16,7 @@ const trackSlice = createSlice({
     name: 'track',
     initialState,
     reducers: {
-        load(state, action: PayloadAction<LoadTracks>) {
+        loadTracks(state, action: PayloadAction<LoadTracks>) {
             const newState = state;
             newState.tracks = action.payload.tracks;
             return newState;
@@ -26,7 +26,7 @@ const trackSlice = createSlice({
             newState.currentTrackId = action.payload;
             return newState;
         },
-        create(state, action: PayloadAction<CreateTrack>) {
+        createTrack(state, action: PayloadAction<CreateTrack>) {
             const newState = state;
             newState.currentTrackId = action.payload.track.id;
             newState.tracks[action.payload.track.id] = action.payload.track;
@@ -58,5 +58,5 @@ interface UpdateTrack {
 }
 
 export const reducer = trackSlice.reducer;
-export const { create, load, loadTrack, updateTrack, deleteTrack} = trackSlice.actions;
+export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack} = trackSlice.actions;
 export const trackSelector = (state: RootState) => state.trackReducer;
