@@ -11,7 +11,7 @@ export const PartsContainer = ({track}: PartContainerInterface): JSX.Element => 
     });
 
     return (
-        <div className="w-full flex flex-row flex-wrap mt-4 p-2">
+        <div className="w-full flex flex-row overflow-auto mt-4 p-2">
             {parts}
         </div>
     );
