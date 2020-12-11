@@ -18,20 +18,31 @@ This app was created using:
 - Load tracks from file.
 - Export tracks as importable format.
 
-## What needs to be done?
+## What is a "track", understanding the data structure
 
-- When clicking a note/drum add that to the track view
-- Display the current track view at the bottom
-- Allow items to be deleted from the track
-- Read all existing tracks into the application from idb
-- When a track is changed write the change to idb
-- Set up the initial state of the application
-- Show how many channels the client can use
-- Show how many concurrent sounds the device can play
-- If the client only has one channel then remove the panner control
+A track is:
+
+- Unique Identifier
+- Name
+- Created Date
+- Group of layers
+- Control Configuration
+
+### What is a "layer"
+
+A layer is a list of notes to be played in a specific order
+Multiple layers can be used within one track to create overlapping sounds
 
 ## How the applications logic should flow
 
 1. On initial load the application will have an empty state and a open connection to the database
 2. Fire a event to lookup the stored tracks and load them into the state
 3. When preforming any action first the database then if successful create a new state from the previous containing the new data
+
+## What needs to be done?
+
+- If the client only has one channel then remove the panner control
+- Allow additional layers to be created
+- Instead of clicking on a note to add it to a layer, add drag and drop functionality to allow easier to use interface
+- When clicking on an existing note/drum within the layer, allow deletion and customisation
+- Allow dragging between layers
