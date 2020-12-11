@@ -21,10 +21,12 @@ export class Database {
             id: v4(),
             name: name,
             date: (new Date()).toISOString(),
-            parts: [],
-            panner: 0,
-            volume: 10,
-            looping: false
+            layers: {},
+            control: {
+                panner: 0,
+                volume: 10,
+                looping: false
+            }
         };
         await store.put(track, track.id);
         await transaction.done;

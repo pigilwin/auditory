@@ -18,11 +18,7 @@ export const DrumPanel = ({track}: DrumPanelInterface): JSX.Element => {
     const buttons: JSX.Element[] = drums.map((drum: DrumInterface) => {
 
         const clickHandler = (): void => {
-            const newTrack: SavedTrack = Object.assign({}, track);
-            const parts: string[] = Array.from(newTrack.parts);
-            parts.push(drum.name);
-            newTrack.parts = parts;
-            dispatch(updateTrackAsync(newTrack));
+            
         };
 
         return (<DrumButton onClick={clickHandler} key={drum.name} id={drum.name} type={drum.type} title={drum.name}/>);

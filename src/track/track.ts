@@ -1,13 +1,30 @@
+export interface SavedTrackMap {
+    [id: string]: SavedTrack;
+}
+
 export interface SavedTrack {
     id: string;
     name: string;
     date: string;
-    parts: string[]
+    layers: LayerMap;
+    control: Control;
+}
+
+interface Control {
     panner: number;
     volume: number;
     looping: boolean;
 }
 
-export interface SavedTrackMap {
-    [id: string]: SavedTrack;
+interface LayerMap {
+    [id: string]: Layer;
+}
+
+interface Layer {
+    [id: string]: LayerPart;
+}
+
+interface LayerPart {
+    note: string;
+    type: number;
 }

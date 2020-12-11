@@ -6,9 +6,7 @@ interface PartContainerInterface {
 
 export const PartsContainer = ({track}: PartContainerInterface): JSX.Element => {
     
-    const parts: JSX.Element[] = track.parts.map((part, index) => {
-        return <Part key={index} part={part}/>        
-    });
+    const parts: JSX.Element[] = [];
 
     return (
         <div className="w-full flex flex-row overflow-auto mt-4 p-2">

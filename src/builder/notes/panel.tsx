@@ -17,11 +17,7 @@ export const NotesPanel = ({track}: NotePanelInterface): JSX.Element => {
     const buttons: JSX.Element[] = notes.map((note: Note) => {
 
         const clickHandler = (): void => {
-            const newTrack: SavedTrack = Object.assign({}, track);
-            const parts: string[] = Array.from(newTrack.parts);
-            parts.push(note.name);
-            newTrack.parts = parts;
-            dispatch(updateTrackAsync(newTrack));
+            
         };
 
         return (<NoteButton key={note.name} onClick={clickHandler} title={note.name} note={note.name} id={note.name}/>);

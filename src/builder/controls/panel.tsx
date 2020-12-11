@@ -10,26 +10,32 @@ interface ControlPanelState {
     id: string;
 }
 
-export const ControlPanel = (panelState: ControlPanelState): JSX.Element => {
+export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
 
     const dispatch = useDispatch();
 
     const volumeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const track = Object.assign({}, panelState.track);
-        track.volume = event.currentTarget.valueAsNumber;
-        dispatch(updateTrackAsync(track));
+        const newTrack = Object.assign({}, track);
+        const control = Object.assign({}, track.control);
+        control.volume = event.currentTarget.valueAsNumber;
+        newTrack.control = control;
+        dispatch(updateTrackAsync(newTrack));
     };
 
     const panner = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const track = Object.assign({}, panelState.track);
-        track.panner = event.currentTarget.valueAsNumber;
-        dispatch(updateTrackAsync(track));
+        const newTrack = Object.assign({}, track);
+        const control = Object.assign({}, track.control);
+        control.panner = event.currentTarget.valueAsNumber;
+        newTrack.control = control;
+        dispatch(updateTrackAsync(newTrack));
     };
 
     const looping = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const track = Object.assign({}, panelState.track);
-        track.looping = event.currentTarget.checked;
-        dispatch(updateTrackAsync(track));
+        const newTrack = Object.assign({}, track);
+        const control = Object.assign({}, track.control);
+        control.looping = event.currentTarget.checked;
+        newTrack.control = control;
+        dispatch(updateTrackAsync(newTrack));
     };
 
     const startTrack = (): void => {
@@ -48,7 +54,7 @@ export const ControlPanel = (panelState: ControlPanelState): JSX.Element => {
                     id="volume"
                     min={0}
                     max={10}
-                    value={panelState.track.volume}
+                    value={track.control.volume}
                     step={1}
                     title="Volume"
                     onChange={volumeChange}
@@ -58,7 +64,7 @@ export const ControlPanel = (panelState: ControlPanelState): JSX.Element => {
                     id="panner"
                     min={-1}
                     max={1}
-                    value={panelState.track.panner}
+                    value={track.control.panner}
                     step={1}
                     title="Left & Right"
                     onChange={panner}
@@ -67,7 +73,7 @@ export const ControlPanel = (panelState: ControlPanelState): JSX.Element => {
                 <ToggleSwitch
                     id="looping"
                     title="Looping"
-                    value={panelState.track.looping}
+                    value={track.control.looping}
                     onChange={looping}
                     error=""
                 />
