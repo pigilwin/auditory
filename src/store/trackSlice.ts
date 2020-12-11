@@ -40,6 +40,15 @@ const trackSlice = createSlice({
         deleteTrack(state, action: PayloadAction<string>) {
             const newState = state;
             delete newState.tracks[action.payload];
+            
+            /**
+             * If the current user deletes the track they are currently 
+             * viewing then unassign the track that is being viewed 
+             */
+            if (action.payload === newState.currentTrackId) {
+                newState.currentTrackId = '';
+            }
+
             return newState;
         }
     }
