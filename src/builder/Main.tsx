@@ -7,7 +7,7 @@ import { NotesPanel } from "./notes/panel";
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
-import { PartsContainer } from './parts/container';
+import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../track/track";
 
 export const Main = (): JSX.Element => {
@@ -45,7 +45,7 @@ export const Main = (): JSX.Element => {
             <NotesPanel track={track}/>
             <DrumPanel track={track}/>
             <ControlPanel id={trackState.currentTrackId} track={track}/>
-            <PartsContainer track={track}/>
+            <LayerContainer track={track}/>
         </div>
     );
 }

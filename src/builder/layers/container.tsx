@@ -4,7 +4,7 @@ interface PartContainerInterface {
     track: SavedTrack;
 }
 
-export const PartsContainer = ({track}: PartContainerInterface): JSX.Element => {
+export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => {
     
     const parts: JSX.Element[] = [];
 
@@ -19,7 +19,7 @@ interface PartInterface {
     part: string;
 }
 
-const Part = ({part}: PartInterface): JSX.Element => {
+const Layer = ({part}: PartInterface): JSX.Element => {
     return (
         <div className="mx-2 rounded-lg mb-2 p-10 bg-yellow-300 text-center">
             <p className="font-extrabold text-2xl text-white">{part}</p>
