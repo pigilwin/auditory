@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { DrumButton } from "../../components/Buttons";
+import { Button } from "../../components/Buttons";
 import { Grid } from "../../components/Grid";
 import { Panel, PanelTitle } from "../../components/Panel";
 import { updateTrackAsync } from "../../store/trackEvent";
@@ -21,7 +21,7 @@ export const DrumPanel = ({track}: DrumPanelInterface): JSX.Element => {
             
         };
 
-        return (<DrumButton onClick={clickHandler} key={drum.name} id={drum.name} type={drum.type} title={drum.name}/>);
+        return (<Button onClick={clickHandler} key={drum.name} id={drum.name} title={drum.name}/>);
     });
 
     return (

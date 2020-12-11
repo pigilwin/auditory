@@ -6,14 +6,6 @@ interface ButtonConfiguration {
     onClick: MouseEventHandler<HTMLButtonElement>
 }
 
-interface NoteButtonConfiguration extends ButtonConfiguration {
-    note: string;
-}
-
-interface DrumButtonConfiguration extends ButtonConfiguration {
-    type: string;
-}
-
 const defaultClasses: string[] = [
     'p-8',
     'text-indigo-100',
@@ -36,17 +28,5 @@ export const DeleteButton = (attributes: ButtonConfiguration): JSX.Element => {
     classes.push('bg-red-500');
     return (
         <button id={attributes.id} onClick={attributes.onClick} className={classes.join(' ')}>{attributes.title}</button>
-    );
-}
-
-export const NoteButton = (attributes: NoteButtonConfiguration): JSX.Element => {
-    return (
-        <button data-node={attributes.note} onClick={attributes.onClick} id={attributes.id} className={defaultClasses.join(' ')}>{attributes.title}</button>
-    );
-}
-
-export const DrumButton = (attributes: DrumButtonConfiguration): JSX.Element => {
-    return (
-        <button id={attributes.id} onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
     );
 }

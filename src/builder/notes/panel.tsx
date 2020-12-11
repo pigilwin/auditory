@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { NoteButton } from "../../components/Buttons";
+import { Button } from "../../components/Buttons";
 import { Grid } from "../../components/Grid";
 import { Panel, PanelTitle } from "../../components/Panel";
 import { updateTrackAsync } from "../../store/trackEvent";
@@ -20,7 +20,7 @@ export const NotesPanel = ({track}: NotePanelInterface): JSX.Element => {
             
         };
 
-        return (<NoteButton key={note.name} onClick={clickHandler} title={note.name} note={note.name} id={note.name}/>);
+        return (<Button key={note.name} onClick={clickHandler} title={note.name} id={note.name}/>);
     });
 
     return (
