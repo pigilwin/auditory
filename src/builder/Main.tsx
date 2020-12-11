@@ -45,7 +45,7 @@ export const Main = (): JSX.Element => {
             <NotesPanel track={track}/>
             <DrumPanel track={track}/>
             <ControlPanel id={trackState.currentTrackId} track={track}/>
-            <PartsContainer/>
+            <PartsContainer track={track}/>
         </div>
     );
 }
