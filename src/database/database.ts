@@ -21,7 +21,9 @@ export class Database {
             id: v4(),
             name: name,
             date: (new Date()).toISOString(),
-            layers: {},
+            layers: {
+                [v4()]: {}
+            },
             control: {
                 panner: 0,
                 volume: 10,
