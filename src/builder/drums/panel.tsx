@@ -1,9 +1,7 @@
-import { useDispatch } from "react-redux";
-import { Button } from "../../components/Buttons";
 import { Grid } from "../../components/Grid";
 import { Panel, PanelTitle } from "../../components/Panel";
-import { updateTrackAsync } from "../../store/trackEvent";
-import { SavedTrack } from "../../track/track";
+import { LayerPart, SavedTrack, NOTE_TYPE } from "../../track/track";
+import { Part } from "../layers/part";
 import { drums, DrumInterface } from "./drums";
 
 interface DrumPanelInterface {
@@ -13,15 +11,12 @@ interface DrumPanelInterface {
 
 export const DrumPanel = ({track}: DrumPanelInterface): JSX.Element => {
 
-    const dispatch = useDispatch();
-
     const buttons: JSX.Element[] = drums.map((drum: DrumInterface) => {
-
-        const clickHandler = (): void => {
-            
+        const part: LayerPart = {
+            note: drum.name,
+            type: NOTE_TYPE.DRUM
         };
-
-        return (<Button onClick={clickHandler} key={drum.name} id={drum.name} title={drum.name}/>);
+        return (<Part onLayer={false} key={drum.name} part={part}/>);
     });
 
     return (

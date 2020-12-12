@@ -26,7 +26,7 @@ interface LayerRowInterface {
 const LayerRow = ({layer}: LayerRowInterface): JSX.Element => {
     const parts: JSX.Element[] = [];
     for (const key in layer) {
-        parts.push(<Part part={layer[key]}/>);
+        parts.push(<Part onLayer={true} part={layer[key]}/>);
     }
 
     return (

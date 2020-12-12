@@ -1,26 +1,22 @@
-import { useDispatch } from "react-redux";
-import { Button } from "../../components/Buttons";
 import { Grid } from "../../components/Grid";
 import { Panel, PanelTitle } from "../../components/Panel";
-import { updateTrackAsync } from "../../store/trackEvent";
-import { SavedTrack } from "../../track/track";
+import { LayerPart, SavedTrack, NOTE_TYPE } from "../../track/track";
 import { notes, Note } from "./notes";
+import { Part } from './../layers/part';
 
 interface NotePanelInterface {
     track: SavedTrack;
 }
 
 export const NotesPanel = ({track}: NotePanelInterface): JSX.Element => {
-
-    const dispatch = useDispatch();
     
     const buttons: JSX.Element[] = notes.map((note: Note) => {
 
-        const clickHandler = (): void => {
-            
+        const part: LayerPart = {
+            note: note.name,
+            type: NOTE_TYPE.DRUM
         };
-
-        return (<Button key={note.name} onClick={clickHandler} title={note.name} id={note.name}/>);
+        return (<Part onLayer={false} key={note.name} part={part}/>);
     });
 
     return (
