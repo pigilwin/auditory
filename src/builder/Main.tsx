@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { trackSelector } from "../store/trackSlice";
 import { welcomeSelector } from "../store/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
@@ -12,6 +12,7 @@ import { DragDropContext, DropResult, ResponderProvided } from "react-beautiful-
 
 export const Main = (): JSX.Element => {
 
+    const dispatch = useDispatch();
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
     const trackState = useSelector(trackSelector);
 
@@ -38,9 +39,17 @@ export const Main = (): JSX.Element => {
     }
 
     const handleDragDrop = (result: DropResult, provided: ResponderProvided) => {
-        console.log('called');
-        console.log(result);
-        console.log(provided);
+        const {destination, draggableId} = result;
+    
+        /**
+         * If the destination is null then the sound was not dropped
+         * on a layer so we will just return and move on
+         */
+        if (destination === undefined || destination === null) {
+            return;
+        }
+
+        const {droppableId} = destination;
     };
 
     return (
