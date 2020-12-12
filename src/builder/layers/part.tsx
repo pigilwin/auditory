@@ -8,10 +8,9 @@ interface LayerPartInterface {
 }
 
 const defaultClasses: string[] = [
-    "mx-2",
     "rounded",
     "mb-2",
-    "p-6",
+    "p-2",
     "text-center"
 ];
 

@@ -12,7 +12,7 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
     const layers: JSX.Element[] = [];
     let index = 0;
     for (const key in track.layers) {
-        return (<LayerRow id={key} index={index} layer={track.layers[key]}/>);
+        layers.push(<LayerRow key={key} id={key} index={index} layer={track.layers[key]}/>);
         index++;
     }
 
@@ -42,14 +42,14 @@ const LayerRow = ({layer, id, index}: LayerRowInterface): JSX.Element => {
     };
 
     return (
-        <div className="w-full flex flex-row overflow-auto mt-4 py-10 px-2">
-            <div className="w-1/6">
+        <div className="w-full flex flex-row overflow-auto mt-5">
+            <div className="w-2/12 text-center">
                 <Button title="Add" onClick={addLayer}/>
             </div>
-            <div className="border-2 border-red-500 w-5/6">
+            <div className="w-10/12">
                 <Droppable droppableId={id}>
                     {(provided, snapshot) => (
-                        <div ref={provided.innerRef} {...provided.droppableProps}>
+                        <div ref={provided.innerRef} {...provided.droppableProps} className="border-2 h-full">
                             {provided.placeholder}
                         </div>
                     )}
