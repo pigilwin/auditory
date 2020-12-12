@@ -1,4 +1,5 @@
-import { SavedTrack, Layer, LayerPart } from "../../track/track";
+import { SavedTrack, Layer } from "../../track/track";
+import { Part } from './part';
 
 interface PartContainerInterface {
     track: SavedTrack;
@@ -31,18 +32,6 @@ const LayerRow = ({layer}: LayerRowInterface): JSX.Element => {
     return (
         <div className="w-full flex flex-row overflow-auto mt-4 p-2">
             {parts}
-        </div>
-    );
-}
-
-interface LayerPartInterface {
-    part: LayerPart;
-}
-
-const Part = ({part}: LayerPartInterface): JSX.Element => {
-    return (
-        <div className="mx-2 rounded-lg mb-2 p-10 bg-yellow-300 text-center">
-            <p className="font-extrabold text-2xl text-white">{part.note}</p>
         </div>
     );
 }
