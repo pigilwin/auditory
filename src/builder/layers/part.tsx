@@ -25,11 +25,11 @@ export const Part = ({part, onLayer, index}: LayerPartInterface): JSX.Element =>
     }
 
     return (
-        <Draggable index={index} key={part.note} draggableId={part.note}>
+        <Draggable index={index} key={part.id} draggableId={part.id}>
             {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                 <div className={classes.join(" ")}>
-                    <p className="font-extrabold text-2xl text-white">{part.note}</p>
+                    <p className="font-extrabold text-2xl text-white">{part.sound}</p>
                 </div>
             </div>
         )}
