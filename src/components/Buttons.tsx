@@ -1,7 +1,6 @@
 import { MouseEventHandler } from "react";
 
 interface ButtonConfiguration {
-    id: string;
     title: string;
     onClick: MouseEventHandler<HTMLButtonElement>
 }
@@ -17,7 +16,7 @@ const defaultClasses: string[] = [
 
 export const Button = (attributes: ButtonConfiguration): JSX.Element => {
     return (
-        <button id={attributes.id} onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
+        <button onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
     );
 }
 
@@ -27,6 +26,6 @@ export const DeleteButton = (attributes: ButtonConfiguration): JSX.Element => {
     });
     classes.push('bg-red-500');
     return (
-        <button id={attributes.id} onClick={attributes.onClick} className={classes.join(' ')}>{attributes.title}</button>
+        <button onClick={attributes.onClick} className={classes.join(' ')}>{attributes.title}</button>
     );
 }

@@ -79,11 +79,11 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
                 />
             </div>
             <div className="grid grid-cols-2">
-                <div className="p-2">
-                    <Button id="start" title="Start" onClick={startTrack}/>
+                <div className="p-2 text-center">
+                    <Button title="Start" onClick={startTrack}/>
                 </div>
-                <div className="p-2">
-                    <Button id="stop" title="Stop" onClick={stopTrack}/>
+                <div className="p-2 text-center">
+                    <Button title="Stop" onClick={stopTrack}/>
                 </div>
             </div>
         </Panel>
