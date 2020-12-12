@@ -1,8 +1,10 @@
+import { Draggable } from "react-beautiful-dnd";
 import { LayerPart } from "../../track/track";
 
 interface LayerPartInterface {
     part: LayerPart;
     onLayer: boolean;
+    index: number;
 }
 
 const defaultClasses: string[] = [
@@ -13,7 +15,7 @@ const defaultClasses: string[] = [
     "text-center"
 ];
 
-export const Part = ({part, onLayer}: LayerPartInterface): JSX.Element => {
+export const Part = ({part, onLayer, index}: LayerPartInterface): JSX.Element => {
 
     const classes = Array.from(defaultClasses);
 
@@ -24,8 +26,14 @@ export const Part = ({part, onLayer}: LayerPartInterface): JSX.Element => {
     }
 
     return (
-        <div className={classes.join(" ")}>
-            <p className="font-extrabold text-2xl text-white">{part.note}</p>
-        </div>
+        <Draggable index={index} key={part.note} draggableId={part.note}>
+            {(provided, snapshot) => (
+            <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                <div className={classes.join(" ")}>
+                    <p className="font-extrabold text-2xl text-white">{part.note}</p>
+                </div>
+            </div>
+        )}
+        </Draggable>
     );
 }

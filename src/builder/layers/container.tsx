@@ -1,3 +1,4 @@
+import { Droppable } from "react-beautiful-dnd";
 import { SavedTrack, Layer } from "../../track/track";
 import { Part } from './part';
 
@@ -9,7 +10,7 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
     
     const layers: JSX.Element[] = [];
     for (const key in track.layers) {
-        return (<LayerRow layer={track.layers[key]}/>);
+        return (<LayerRow id={key} layer={track.layers[key]}/>);
     }
 
     return (
@@ -21,17 +22,26 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
 
 interface LayerRowInterface {
     layer: Layer;
+    id: string;
 }
 
-const LayerRow = ({layer}: LayerRowInterface): JSX.Element => {
+const LayerRow = ({layer, id}: LayerRowInterface): JSX.Element => {
     const parts: JSX.Element[] = [];
+    let index: number = 0;
     for (const key in layer) {
-        parts.push(<Part onLayer={true} part={layer[key]}/>);
+        parts.push(<Part onLayer={true} part={layer[key]} index={index}/>);
+        index++;
     }
 
     return (
-        <div className="w-full flex flex-row overflow-auto mt-4 p-2">
-            {parts}
+        <div className="w-full flex flex-row overflow-auto mt-4 p-2 border-red-500 border-2">
+            <Droppable droppableId={id}>
+                {(provided, snapshot) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                        {provided.placeholder}
+                    </div>
+                )}
+          </Droppable>
         </div>
     );
 }

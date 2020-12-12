@@ -9,6 +9,7 @@ import { Begin } from './Begin';
 import { Title } from "./Title";
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../track/track";
+import { DragDropContext } from "react-beautiful-dnd";
 
 export const Main = (): JSX.Element => {
 
@@ -37,15 +38,21 @@ export const Main = (): JSX.Element => {
         return (<Begin/>);
     }
 
+    const handleDragDrop = () => {
+        console.log('called');
+    };
+
     return (
-        <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
-            <div className="w-full">
-                <Title title={track.name}/>
+        <DragDropContext onDragEnd={handleDragDrop}>
+            <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
+                <div className="w-full">
+                    <Title title={track.name}/>
+                </div>
+                <NotesPanel track={track}/>
+                <DrumPanel track={track}/>
+                <ControlPanel id={trackState.currentTrackId} track={track}/>
+                <LayerContainer track={track}/>
             </div>
-            <NotesPanel track={track}/>
-            <DrumPanel track={track}/>
-            <ControlPanel id={trackState.currentTrackId} track={track}/>
-            <LayerContainer track={track}/>
-        </div>
+        </DragDropContext>
     );
 }
