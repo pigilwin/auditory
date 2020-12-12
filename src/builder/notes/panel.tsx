@@ -23,10 +23,11 @@ export const NotesPanel = ({track}: NotePanelInterface): JSX.Element => {
     return (
         <Panel>
             <PanelTitle title="Notes"/>
-            <Droppable droppableId="drum-droppable">
+            <Droppable isDropDisabled={true} droppableId="drum-droppable">
                 {(provided, snapshot) => (
                     <div ref={provided.innerRef}>
                         <Grid elements={buttons}/>
+                        {provided.placeholder}
                     </div>
                 )}
             </Droppable>

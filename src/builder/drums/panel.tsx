@@ -23,10 +23,11 @@ export const DrumPanel = ({track}: DrumPanelInterface): JSX.Element => {
     return (
         <Panel>
             <PanelTitle title="Drums"/>
-            <Droppable droppableId="drum-droppable">
+            <Droppable isDropDisabled={true} droppableId="drum-droppable">
                 {(provided, snapshot) => (
                     <div ref={provided.innerRef}>
                         <Grid elements={buttons}/>
+                        {provided.placeholder}
                     </div>
                 )}
             </Droppable>
