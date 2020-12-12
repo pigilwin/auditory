@@ -10,11 +10,6 @@ export interface SavedTrack {
     control: Control;
 }
 
-export enum NOTE_TYPE {
-    NOTE,
-    DRUM
-}
-
 interface Control {
     panner: number;
     volume: number;
@@ -31,5 +26,4 @@ export interface Layer {
 
 export interface LayerPart {
     note: string;
-    type: NOTE_TYPE;
 }

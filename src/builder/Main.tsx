@@ -2,8 +2,7 @@ import { useSelector } from "react-redux";
 import { trackSelector } from "../store/trackSlice";
 import { welcomeSelector } from "../store/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
-import { DrumPanel } from "./drums/panel";
-import { NotesPanel } from "./notes/panel";
+import { SoundsPanel } from "./sounds/panel";
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
@@ -48,8 +47,7 @@ export const Main = (): JSX.Element => {
                 <div className="w-full">
                     <Title title={track.name}/>
                 </div>
-                <NotesPanel track={track}/>
-                <DrumPanel track={track}/>
+                <SoundsPanel/>
                 <ControlPanel id={trackState.currentTrackId} track={track}/>
                 <LayerContainer track={track}/>
             </div>

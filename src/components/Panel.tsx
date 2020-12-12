@@ -1,6 +1,6 @@
 export const Panel = (props: React.PropsWithChildren<{}>): JSX.Element => {
     return (
-        <div className="w-1/3 px-4 overflow-hidden">
+        <div className="w-1/2 px-4 overflow-hidden">
             {props.children}
         </div>
     );

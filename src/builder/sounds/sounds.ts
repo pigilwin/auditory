@@ -1,9 +1,13 @@
-export interface Note {
+interface Note {
     name: string,
     frequency: number
 }
 
-export const notes: Note[] = [
+interface DrumInterface {
+  name: string;
+}
+
+const notes: Note[] = [
   { name: "A", frequency: 440.0 },
   { name: "A#", frequency: 466.16 },
   { name: "B", frequency: 493.88 },
@@ -17,3 +21,22 @@ export const notes: Note[] = [
   { name: "G", frequency: 392.0 },
   { name: "G#", frequency: 415.3 }
 ];
+
+const drums: DrumInterface[] = [
+  {name: 'Snare'},
+  {name: 'Kick'}
+];
+
+export const getSoundsForDisplay = (): string[] => {
+  const sounds: string[] = [];
+  
+  for (const note of notes) {
+    sounds.push(note.name);
+  }
+
+  for (const drum of drums) {
+    sounds.push(drum.name);
+  }
+
+  return sounds;
+};
