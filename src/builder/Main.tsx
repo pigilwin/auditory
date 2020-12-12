@@ -8,7 +8,7 @@ import { Begin } from './Begin';
 import { Title } from "./Title";
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../track/track";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult, ResponderProvided } from "react-beautiful-dnd";
 
 export const Main = (): JSX.Element => {
 
@@ -37,15 +37,17 @@ export const Main = (): JSX.Element => {
         return (<Begin/>);
     }
 
-    const handleDragDrop = () => {
+    const handleDragDrop = (result: DropResult, provided: ResponderProvided) => {
         console.log('called');
+        console.log(result);
+        console.log(provided);
     };
 
     return (
         <DragDropContext onDragEnd={handleDragDrop}>
             <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
                 <div className="w-full">
-                    <Title title={track.name}/>
+                    <Title title={"Track Name: " + track.name}/>
                 </div>
                 <SoundsPanel/>
                 <ControlPanel id={trackState.currentTrackId} track={track}/>
