@@ -11,7 +11,7 @@ const defaultClasses: string[] = [
     "mx-2",
     "rounded",
     "mb-2",
-    "p-10",
+    "p-6",
     "text-center"
 ];
 
