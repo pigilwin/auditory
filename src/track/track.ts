@@ -25,6 +25,5 @@ export interface Layer {
 }
 
 export interface LayerPart {
-    sound: string;
     id: string;
 }
