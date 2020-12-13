@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { trackSelector } from "../store/track/trackSlice";
-import { welcomeSelector } from "../store/welcomeSlice";
+import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
 import { Welcome } from './Welcome';

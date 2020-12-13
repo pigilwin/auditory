@@ -4,7 +4,7 @@ import { Title } from "../builder/Title"
 import { Button, DeleteButton } from "../components/Buttons";
 import { deleteTrackAsync } from "../store/track/trackEvent";
 import { loadTrack, trackSelector } from "../store/track/trackSlice";
-import { acceptWelcomeMessage } from "../store/welcomeSlice";
+import { acceptWelcomeMessage } from "../store/welcome/welcomeSlice";
 import { SavedTrack } from "../store/track/trackTypes";
 
 export const LoadPanel = (): JSX.Element => {

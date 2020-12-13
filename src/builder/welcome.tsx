@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Audio } from "../audio/audio";
 import { Button } from "../components/Buttons";
 import { Context } from "../lib/Context";
-import { acceptWelcomeMessage } from "../store/welcomeSlice";
+import { acceptWelcomeMessage } from "../store/welcome/welcomeSlice";
 
 export const Welcome = (): JSX.Element => {
 
