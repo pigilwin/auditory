@@ -43,6 +43,5 @@ Multiple layers can be used within one track to create overlapping sounds
 
 - If the client only has one channel then remove the panner control
 - Allow additional layers to be created
-- Instead of clicking on a note to add it to a layer, add drag and drop functionality to allow easier to use interface
 - When clicking on an existing note/drum within the layer, allow deletion and customisation
-- Allow dragging between layers
+- Allow dragging between layers or reordering within the current layer
