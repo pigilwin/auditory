@@ -1,8 +1,8 @@
 import { Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import { Button, DeleteButton } from "../../components/Buttons";
+import { DeleteButton } from "../../components/Buttons";
 import { buildPartId } from "../../lib/id";
-import { addLayerAsync, deleteLayerAsync } from "../../store/trackEvent";
+import { deleteLayerAsync } from "../../store/trackEvent";
 import { SavedTrack, Layer } from "../../track/track";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
 import { LayerPartComponent } from './part';

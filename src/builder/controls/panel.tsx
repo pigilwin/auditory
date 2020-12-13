@@ -3,7 +3,7 @@ import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { Button } from "../../components/Buttons";
 import { SavedTrack } from "../../track/track";
 import { useDispatch } from "react-redux";
-import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync } from "../../store/trackEvent";
+import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/trackEvent";
 
 interface ControlPanelState {
     track: SavedTrack;
@@ -24,6 +24,10 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
 
     const looping = (event: React.ChangeEvent<HTMLInputElement>): void => {
         dispatch(updateLoopingAsync(event.currentTarget.checked, track.id));
+    };
+
+    const addLayer = (): void => {
+        dispatch(addLayerAsync(track.id));
     };
 
     const startTrack = (): void => {
@@ -66,9 +70,12 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
                     error=""
                 />
             </div>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-3">
                 <div className="p-2 text-center">
                     <Button title="Start" onClick={startTrack}/>
+                </div>
+                <div className="p-2 text-center">
+                    <Button title="Add Layer" onClick={addLayer}/>
                 </div>
                 <div className="p-2 text-center">
                     <Button title="Stop" onClick={stopTrack}/>
