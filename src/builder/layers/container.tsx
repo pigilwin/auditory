@@ -1,6 +1,7 @@
 import { Droppable } from "react-beautiful-dnd";
 import { Button } from "../../components/Buttons";
 import { SavedTrack, Layer } from "../../track/track";
+import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
 import { Part } from './part';
 
 interface PartContainerInterface {
@@ -29,11 +30,14 @@ interface LayerRowInterface {
     index: number;
 }
 
-const LayerRow = ({layer, id, index}: LayerRowInterface): JSX.Element => {
+const LayerRow = ({layer, id}: LayerRowInterface): JSX.Element => {
+
+    const sounds: SoundForDisplay = getSoundsForDisplay();
+
     const parts: JSX.Element[] = [];
     let partIndex: number = 0;
     for (const key in layer) {
-        parts.push(<Part onLayer={true} part={layer[key]} index={partIndex}/>);
+        parts.push(<Part onLayer={true} id={key} sound={sounds[layer[key].id]} index={partIndex}/>);
         partIndex++;
     }
 

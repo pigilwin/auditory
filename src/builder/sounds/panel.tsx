@@ -1,7 +1,6 @@
 import { Droppable } from 'react-beautiful-dnd';
 import { Grid } from "../../components/Grid";
 import { Panel, PanelTitle } from "../../components/Panel";
-import { LayerPart } from "../../track/track";
 import { getSoundsForDisplay, SoundForDisplay } from "./sounds";
 import { Part } from '../layers/part';
 
@@ -29,11 +28,7 @@ const buildSoundButtons = (): JSX.Element[] => {
     const sounds: SoundForDisplay = getSoundsForDisplay();
     let index: number = 0;
     for (const key in sounds) {
-        const part: LayerPart = {
-            sound: sounds[key],
-            id: key
-        };
-        elements.push(<Part onLayer={false} key={key} part={part} index={index}/>);
+        elements.push(<Part onLayer={false} key={key} id={key} sound={sounds[key]} index={index}/>);
         index++;
     }
     return elements;
