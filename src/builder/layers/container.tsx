@@ -15,7 +15,7 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
     const layers: JSX.Element[] = [];
     let index = 0;
     for (const key in track.layers) {
-        layers.push(<LayerRow key={key} trackId={track.id} layerId={key} index={index} layer={track.layers[key]}/>);
+        layers.push(<LayerRow key={key} currentLayerCount={Object.keys(track.layers).length} trackId={track.id} layerId={key} index={index} layer={track.layers[key]}/>);
         index++;
     }
 
@@ -31,9 +31,10 @@ interface LayerRowInterface {
     layerId: string;
     index: number;
     trackId: string;
+    currentLayerCount: number;
 }
 
-const LayerRow = ({layer, layerId, trackId, index}: LayerRowInterface): JSX.Element => {
+const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowInterface): JSX.Element => {
     
     const dispatch = useDispatch();
     const sounds: SoundForDisplay = getSoundsForDisplay();
@@ -54,8 +55,12 @@ const LayerRow = ({layer, layerId, trackId, index}: LayerRowInterface): JSX.Elem
         dispatch(deleteLayerAsync(layerId, trackId));
     };
 
+    /**
+     * Always assign the layer to the delete button
+     */
     let button = <DeleteButton title="Delete" onClick={deleteLayer}/>;
-    if (index === 0) {
+
+    if (index === currentLayerCount - 1 || (index === 0 && currentLayerCount === 1)) {
         button = <Button title="Add" onClick={addLayer}/>;
     }
 
