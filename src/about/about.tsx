@@ -1,13 +1,11 @@
-import {PanelTitle} from '../components/Panel';
-
 export const AboutPanel = (): JSX.Element => {
     return (
         <div className="px-4 overflow-hidden">
-            <PanelTitle title="About"/>
-            <ul>
-                <li>Sounds is a sound generation and track building application built using the Web Audio Api.</li>
-                <li>Why did i build this? Good question.</li>
-                <li>This app allowed me to use the Web Audio Api and modern Javascript features to build a new application.</li>
+            <h1 className="text-6xl text-center">About</h1>
+            <ul className="mx-auto text-center">
+                <li className="text-2xl">Sounds is a sound generation and track building application built using the Web Audio Api.</li>
+                <li className="text-2xl">Why did i build this? Good question.</li>
+                <li className="text-2xl">This app allowed me to use the Web Audio Api and modern Javascript features to build a new application.</li>
             </ul>
         </div>
     );
