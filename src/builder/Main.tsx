@@ -40,6 +40,9 @@ export const Main = (): JSX.Element => {
     }
 
     const handleDragDrop = (result: DropResult, provided: ResponderProvided) => {
+
+        console.log(result);
+
         
         /**
          * DraggableId here is the sound being dragged

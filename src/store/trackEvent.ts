@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 import { Context } from '../lib/Context';
 import { deepCopy } from '../lib/deepClone';
 import { SavedTrack } from '../track/track';
@@ -63,6 +64,24 @@ export const addSoundAsync = (soundId: string, layerId: string, trackId: string)
     }));
 };
 
+
+export const addLayerAsync = (trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.layers[v4()] = [];
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+};
+
+export const deleteLayerAsync = (layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = deepCopy(fetchTrack(getState, trackId));
+    delete track.layers[layerId];
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+};
 
 const fetchTrack = (getStateHook: RootStateHook, trackId: string): SavedTrack => {
     const currentTracks = getStateHook().trackReducer.tracks;
