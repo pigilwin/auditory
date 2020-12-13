@@ -13,7 +13,7 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
     const layers: JSX.Element[] = [];
     let index = 0;
     for (const key in track.layers) {
-        layers.push(<LayerRow key={key} id={key} index={index} layer={track.layers[key]}/>);
+        layers.push(<LayerRow key={key} layerId={key} index={index} layer={track.layers[key]}/>);
         index++;
     }
 
@@ -26,18 +26,23 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
 
 interface LayerRowInterface {
     layer: Layer;
-    id: string;
+    layerId: string;
     index: number;
 }
 
-const LayerRow = ({layer, id}: LayerRowInterface): JSX.Element => {
+const LayerRow = ({layer, layerId}: LayerRowInterface): JSX.Element => {
 
     const sounds: SoundForDisplay = getSoundsForDisplay();
 
     const parts: JSX.Element[] = [];
     let partIndex: number = 0;
     for (const key in layer) {
-        parts.push(<Part onLayer={true} id={key} sound={sounds[layer[key].id]} index={partIndex}/>);
+        const part = layer[key];
+        parts.push(
+            <div className="w-1/2">
+                <Part key={key} onLayer={true} id={key} sound={sounds[part.id]} index={partIndex}/>
+            </div>
+        );
         partIndex++;
     }
 
@@ -51,10 +56,11 @@ const LayerRow = ({layer, id}: LayerRowInterface): JSX.Element => {
                 <Button title="Add" onClick={addLayer}/>
             </div>
             <div className="w-10/12">
-                <Droppable droppableId={id}>
+                <Droppable droppableId={layerId}>
                     {(provided, snapshot) => (
                         <div ref={provided.innerRef} {...provided.droppableProps} className="border-2 h-full">
                             {provided.placeholder}
+                            {parts}
                         </div>
                     )}
                 </Droppable>

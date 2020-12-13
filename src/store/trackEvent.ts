@@ -1,4 +1,3 @@
-import { v4 } from 'uuid';
 import { Context } from '../Context';
 import { SavedTrack } from '../track/track';
 import { RootStateHook } from './rootReducer';
@@ -62,9 +61,9 @@ export const addSoundAsync = (soundId: string, layerId: string, trackId: string)
     const track = fetchTrack(getState, trackId);
     const layers = Object.assign({}, track.layers);
     const layer = Object.assign({}, layers[layerId]);
-    layer[v4()] = {
-        id: soundId,
-    };
+    layer.push({
+        id: soundId
+    });
     layers[layerId] = layer;
     track.layers = layers;
     await Context.get().database.updateTrack(track);

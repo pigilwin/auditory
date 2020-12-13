@@ -22,7 +22,7 @@ export class Database {
             name: name,
             date: (new Date()).toISOString(),
             layers: {
-                [v4()]: {}
+                [v4()]: []
             },
             control: {
                 panner: 0,

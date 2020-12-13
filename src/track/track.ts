@@ -16,12 +16,9 @@ interface Control {
     looping: boolean;
 }
 
+export type Layer = LayerPart[];
 interface LayerMap {
     [id: string]: Layer;
-}
-
-export interface Layer {
-    [id: string]: LayerPart;
 }
 
 export interface LayerPart {
