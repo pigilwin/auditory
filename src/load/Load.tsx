@@ -3,16 +3,16 @@ import { useHistory } from "react-router-dom";
 import { Title } from "../builder/Title"
 import { Button, DeleteButton } from "../components/Buttons";
 import { deleteTrackAsync } from "../store/track/trackEvent";
-import { loadTrack, trackSelector } from "../store/track/trackSlice";
+import { loadTrack, tracksSelector } from "../store/track/trackSlice";
 import { acceptWelcomeMessage } from "../store/welcome/welcomeSlice";
 import { SavedTrack } from "../store/track/trackTypes";
 
 export const LoadPanel = (): JSX.Element => {
 
-    const trackState = useSelector(trackSelector);
+    const tracks = useSelector(tracksSelector);
     const elements: JSX.Element[] = [];
-    for (const key in trackState.tracks) {
-        const track: SavedTrack = trackState.tracks[key];
+    for (const key in tracks) {
+        const track: SavedTrack = tracks[key];
         elements.push(
             <SavedTrackListItem 
                 key={track.id} 

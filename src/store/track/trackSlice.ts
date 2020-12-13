@@ -70,4 +70,14 @@ interface UpdateTrack {
 
 export const reducer = trackSlice.reducer;
 export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack} = trackSlice.actions;
-export const trackSelector = (state: RootState) => state.trackReducer;
+
+export const isPlayingSelector = (state: RootState): boolean => state.trackReducer.playing;
+export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;
+export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;
+export const trackNameSelector = (state: RootState): string[] =>  {
+    const names: string[] = [];
+    Object.keys(state.trackReducer.tracks).forEach(key => {
+        names.push(state.trackReducer.tracks[key].name);
+    });
+    return names;
+}

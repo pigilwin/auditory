@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { trackSelector } from "../store/track/trackSlice";
+import { tracksSelector, currentTrackIdSelector } from "../store/track/trackSlice";
 import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
@@ -16,7 +16,8 @@ export const Main = (): JSX.Element => {
 
     const dispatch = useDispatch();
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
-    const trackState = useSelector(trackSelector);
+    const tracks = useSelector(tracksSelector);
+    const currentTrackId = useSelector(currentTrackIdSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -30,11 +31,11 @@ export const Main = (): JSX.Element => {
      * If the current track id is zero then now track is selected
      * Show the create new / load existing track buttons
      */
-    if (trackState.currentTrackId.length === 0) {
+    if (currentTrackId.length === 0) {
         return (<Begin/>);
     }
 
-    const track: SavedTrack = trackState.tracks[trackState.currentTrackId];
+    const track: SavedTrack = tracks[currentTrackId];
 
     if (track === null) {
         return (<Begin/>);
@@ -97,7 +98,7 @@ export const Main = (): JSX.Element => {
                     <Title title={"Track Name: " + track.name}/>
                 </div>
                 <SoundsPanel/>
-                <ControlPanel id={trackState.currentTrackId} track={track}/>
+                <ControlPanel id={currentTrackId} track={track}/>
                 <LayerContainer track={track}/>
             </div>
         </DragDropContext>

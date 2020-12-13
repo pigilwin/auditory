@@ -1,12 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Buttons";
 import { TextSingleLineInput } from "../components/Inputs";
 import { createTrackAsync } from "../store/track/trackEvent";
 import { useValidation } from "../lib/validation";
+import { trackNameSelector } from "../store/track/trackSlice";
 
 export const Begin = (): JSX.Element => {
-
+    const trackNames = useSelector(trackNameSelector);
     const history = useHistory();
     const dispatch = useDispatch();
     const [state, setFormState, validate, errors] = useValidation({
@@ -16,6 +17,11 @@ export const Begin = (): JSX.Element => {
                 if (value.length === 0) {
                     return 'A value must be supplied';
                 }
+
+                if (trackNames.includes(value)) {
+                    return 'This track name already exists';
+                }
+
                 return null;
             }
         }
