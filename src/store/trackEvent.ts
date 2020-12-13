@@ -1,5 +1,6 @@
 import { Context } from '../Context';
 import { SavedTrack } from '../track/track';
+import { RootStateHook } from './rootReducer';
 import { AppThunk, AppDispatch } from './store';
 import { createTrack, deleteTrack, loadTracks, updateTrack } from './trackSlice';
 
@@ -17,14 +18,45 @@ export const loadTracksAsync = (): AppThunk => async (dispatch: AppDispatch) => 
     }));
 };
 
-export const updateTrackAsync = (track: SavedTrack) => async (dispatch: AppDispatch) => {
+export const updateVolumeAsync = (volume: number, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = fetchTrack(getState, trackId);
+    const control = Object.assign({}, track.control);
+    control.volume = volume;
+    track.control = control;
     await Context.get().database.updateTrack(track);
     dispatch(updateTrack({
         track: track
     }));
 };
 
-export const deleteTrackAsync = (id: string) => async (dispatch: AppDispatch) => {
+export const updatePannerAsync = (panner: number, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = fetchTrack(getState, trackId);
+    const control = Object.assign({}, track.control);
+    control.panner = panner;
+    track.control = control;
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+};
+
+export const updateLoopingAsync = (looping: boolean, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = fetchTrack(getState, trackId);
+    const control = Object.assign({}, track.control);
+    control.looping = looping;
+    track.control = control;
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+};
+
+export const deleteTrackAsync = (id: string): AppThunk => async (dispatch: AppDispatch) => {
     await Context.get().database.deleteTrack(id);
     dispatch(deleteTrack(id));
 };
+
+const fetchTrack = (getStateHook: RootStateHook, trackId: string): SavedTrack => {
+    const currentTracks = getStateHook().trackReducer.tracks;
+    return Object.assign({}, currentTracks[trackId]);
+}

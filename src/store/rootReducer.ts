@@ -8,3 +8,4 @@ export const rootReducer = combineReducers({
     welcomeReducer
 });
 export type RootState = ReturnType<typeof rootReducer>;
+export type RootStateHook = () => RootState;

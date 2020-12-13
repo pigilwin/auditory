@@ -3,7 +3,7 @@ import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { Button } from "../../components/Buttons";
 import { SavedTrack } from "../../track/track";
 import { useDispatch } from "react-redux";
-import { updateTrackAsync } from "../../store/trackEvent";
+import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync } from "../../store/trackEvent";
 
 interface ControlPanelState {
     track: SavedTrack;
@@ -15,11 +15,7 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
     const dispatch = useDispatch();
 
     const volumeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const newTrack = Object.assign({}, track);
-        const control = Object.assign({}, track.control);
-        control.volume = event.currentTarget.valueAsNumber;
-        newTrack.control = control;
-        dispatch(updateTrackAsync(newTrack));
+        dispatch(updateVolumeAsync(event.currentTarget.valueAsNumber, track.id));
     };
 
     const panner = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -27,7 +23,7 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
         const control = Object.assign({}, track.control);
         control.panner = event.currentTarget.valueAsNumber;
         newTrack.control = control;
-        dispatch(updateTrackAsync(newTrack));
+        //dispatch(updatePannerAsync());
     };
 
     const looping = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -35,7 +31,7 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
         const control = Object.assign({}, track.control);
         control.looping = event.currentTarget.checked;
         newTrack.control = control;
-        dispatch(updateTrackAsync(newTrack));
+        //dispatch(updateLoopingAsync());
     };
 
     const startTrack = (): void => {
