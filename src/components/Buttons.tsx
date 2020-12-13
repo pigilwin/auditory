@@ -11,20 +11,21 @@ const defaultClasses: string[] = [
     'text-indigo-100',
     'transition-colors',
     'duration-150',
-    'bg-indigo-700',
-    'rounded-lg'
+    'rounded-lg',
+    'disabled:opacity-50'
 ];
 
 export const Button = ({onClick, disabled, title}: ButtonConfiguration): JSX.Element => {
+    const classes = Array.from(defaultClasses);
+    classes.push('bg-indigo-700');
+
     return (
-        <button onClick={onClick} disabled={disabled} className={defaultClasses.join(' ')}>{title}</button>
+        <button onClick={onClick} disabled={disabled} className={classes.join(' ')}>{title}</button>
     );
 }
 
 export const DeleteButton = ({onClick, title, disabled}: ButtonConfiguration): JSX.Element => {
-    const classes = Array.from(defaultClasses).filter(className => {
-        return className !== 'bg-indigo-700';
-    });
+    const classes = Array.from(defaultClasses);
     classes.push('bg-red-500');
     return (
         <button onClick={onClick} disabled={disabled} className={classes.join(' ')}>{title}</button>

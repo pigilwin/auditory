@@ -74,13 +74,13 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
             </div>
             <div className="grid grid-cols-3">
                 <div className="p-2 text-center">
-                    <Button disabled={!isPlaying} title="Start" onClick={startTrack}/>
+                    <Button disabled={isPlaying} title="Start" onClick={startTrack}/>
                 </div>
                 <div className="p-2 text-center">
                     <Button disabled={false} title="Add Layer" onClick={addLayer}/>
                 </div>
                 <div className="p-2 text-center">
-                    <Button disabled={isPlaying} title="Stop" onClick={stopTrack}/>
+                    <Button disabled={!isPlaying} title="Stop" onClick={stopTrack}/>
                 </div>
             </div>
         </Panel>

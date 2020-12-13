@@ -55,7 +55,7 @@ const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowI
     /**
      * Always assign the layer to the delete button
      */
-    let button = <DeleteButton title="Delete" onClick={deleteLayer}/>;
+    let button = <DeleteButton disabled={false} title="Delete" onClick={deleteLayer}/>;
 
     if (currentLayerCount === 1) {
         button = <div></div>;
