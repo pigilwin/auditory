@@ -38,8 +38,9 @@ interface LayerPartComponentInterface {
 export const LayerPartComponent = ({id, sound, index}: LayerPartComponentInterface): JSX.Element => {
     const classes: string[] = [
         "rounded",
-        "mb-2",
         "p-2",
+        "mx-1",
+        "h-full",
         "text-center",
         "bg-yellow-400"
     ];

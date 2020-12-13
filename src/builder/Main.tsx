@@ -9,7 +9,8 @@ import { Title } from "./Title";
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../track/track";
 import { DragDropContext, DropResult, ResponderProvided } from "react-beautiful-dnd";
-import { addSoundAsync } from "../store/trackEvent";
+import { addSoundAsync, moveSoundToLayerAsync, moveSoundWithinLayerAsync } from "../store/trackEvent";
+import { idResolver } from "../lib/id";
 
 export const Main = (): JSX.Element => {
 
@@ -40,14 +41,9 @@ export const Main = (): JSX.Element => {
     }
 
     const handleDragDrop = (result: DropResult, provided: ResponderProvided) => {
-
-        console.log(result);
-
         
-        /**
-         * DraggableId here is the sound being dragged
-         */
-        const {destination, draggableId} = result;
+        const trackId: string = track.id;
+        const {destination, draggableId: soundId, source} = result;
     
         /**
          * If the destination is null then the sound was not dropped
@@ -57,12 +53,41 @@ export const Main = (): JSX.Element => {
             return;
         }
 
-        /**
-         * DroppableId is the layer the sound is being dropped too
-         */
-        const {droppableId} = destination;
+        const {droppableId: layerId, index: locationInLayer} = destination;
+        const {index: previousLocationInLayer} = source;
+        const [resolvedLayerId, resolvedSoundId] = idResolver(soundId);
 
-        dispatch(addSoundAsync(draggableId, droppableId, track.id));
+        /**
+         * If the index within the sound id is null
+         * then its a new sound being added
+         */
+        if (resolvedSoundId === undefined) {
+            dispatch(addSoundAsync({
+                soundId,
+                layerId,
+                trackId
+            }));
+            return;
+        }
+
+        if (layerId === resolvedLayerId) {
+            dispatch(moveSoundWithinLayerAsync({
+                trackId: trackId,
+                layerId: layerId,
+                previousIndex: previousLocationInLayer,
+                index: locationInLayer,
+                soundId: resolvedSoundId
+            }));
+            return;
+        }
+
+        dispatch(moveSoundToLayerAsync({
+            trackId: trackId,
+            layerId: layerId,
+            previousLayerId: resolvedLayerId,
+            soundId: resolvedSoundId,
+            index: previousLocationInLayer
+        }));
     };
 
     return (

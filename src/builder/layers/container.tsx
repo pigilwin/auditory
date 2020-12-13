@@ -1,6 +1,7 @@
 import { Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { Button, DeleteButton } from "../../components/Buttons";
+import { buildPartId } from "../../lib/id";
 import { addLayerAsync, deleteLayerAsync } from "../../store/trackEvent";
 import { SavedTrack, Layer } from "../../track/track";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
@@ -43,7 +44,7 @@ const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowI
     let partIndex: number = 0;
     for (const key in layer) {
         const part = layer[key];
-        parts.push(<LayerPartComponent key={key} id={key} sound={sounds[part.id]} index={partIndex}/>);
+        parts.push(<LayerPartComponent key={key} id={buildPartId(layerId, part.id)} sound={sounds[part.id]} index={partIndex}/>);
         partIndex++;
     }
 
