@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import {reducer as trackReducer} from './trackSlice';
+import {reducer as trackReducer} from './track/trackSlice';
 import {reducer as welcomeReducer} from './welcomeSlice';
 
 export const rootReducer = combineReducers({

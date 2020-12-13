@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { trackSelector } from "../store/trackSlice";
+import { trackSelector } from "../store/track/trackSlice";
 import { welcomeSelector } from "../store/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
@@ -7,9 +7,9 @@ import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
 import { LayerContainer } from './layers/container';
-import { SavedTrack } from "../store/trackTypes";
+import { SavedTrack } from "../store/track/trackTypes";
 import { DragDropContext, DropResult, ResponderProvided } from "react-beautiful-dnd";
-import { addSoundAsync, moveSoundToLayerAsync, moveSoundWithinLayerAsync } from "../store/trackEvent";
+import { addSoundAsync, moveSoundToLayerAsync, moveSoundWithinLayerAsync } from "../store/track/trackEvent";
 import { idResolver } from "../lib/id";
 
 export const Main = (): JSX.Element => {

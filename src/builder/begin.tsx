@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Buttons";
 import { TextSingleLineInput } from "../components/Inputs";
-import { createTrackAsync } from "../store/trackEvent";
+import { createTrackAsync } from "../store/track/trackEvent";
 import { useValidation } from "../lib/validation";
 
 export const Begin = (): JSX.Element => {

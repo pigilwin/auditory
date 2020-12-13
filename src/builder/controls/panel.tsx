@@ -1,9 +1,9 @@
 import { Panel, PanelTitle } from "../../components/Panel";
 import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { Button } from "../../components/Buttons";
-import { SavedTrack } from "../../store/trackTypes";
+import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
-import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/trackEvent";
+import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/track/trackEvent";
 
 interface ControlPanelState {
     track: SavedTrack;
