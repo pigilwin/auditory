@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 import { Context } from '../Context';
 import { SavedTrack } from '../track/track';
 import { RootStateHook } from './rootReducer';
@@ -55,6 +56,23 @@ export const deleteTrackAsync = (id: string): AppThunk => async (dispatch: AppDi
     await Context.get().database.deleteTrack(id);
     dispatch(deleteTrack(id));
 };
+
+
+export const addSoundAsync = (soundId: string, layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = fetchTrack(getState, trackId);
+    const layers = Object.assign({}, track.layers);
+    const layer = Object.assign({}, layers[layerId]);
+    layer[v4()] = {
+        id: soundId,
+    };
+    layers[layerId] = layer;
+    track.layers = layers;
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+};
+
 
 const fetchTrack = (getStateHook: RootStateHook, trackId: string): SavedTrack => {
     const currentTracks = getStateHook().trackReducer.tracks;
