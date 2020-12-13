@@ -19,19 +19,11 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
     };
 
     const panner = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const newTrack = Object.assign({}, track);
-        const control = Object.assign({}, track.control);
-        control.panner = event.currentTarget.valueAsNumber;
-        newTrack.control = control;
-        //dispatch(updatePannerAsync());
+        dispatch(updatePannerAsync(event.currentTarget.valueAsNumber, track.id));
     };
 
     const looping = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const newTrack = Object.assign({}, track);
-        const control = Object.assign({}, track.control);
-        control.looping = event.currentTarget.checked;
-        newTrack.control = control;
-        //dispatch(updateLoopingAsync());
+        dispatch(updateLoopingAsync(event.currentTarget.checked, track.id));
     };
 
     const startTrack = (): void => {
