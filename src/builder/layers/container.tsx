@@ -48,10 +48,6 @@ const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowI
         partIndex++;
     }
 
-    const addLayer = (): void => {
-        dispatch(addLayerAsync(trackId));
-    };
-
     const deleteLayer = (): void => {
         dispatch(deleteLayerAsync(layerId, trackId));
     };
@@ -61,8 +57,8 @@ const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowI
      */
     let button = <DeleteButton title="Delete" onClick={deleteLayer}/>;
 
-    if (index === currentLayerCount - 1 || (index === 0 && currentLayerCount === 1)) {
-        button = <Button title="Add" onClick={addLayer}/>;
+    if (currentLayerCount === 1) {
+        button = <div></div>;
     }
 
     return (
