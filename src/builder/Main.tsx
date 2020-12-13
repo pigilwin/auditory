@@ -9,6 +9,7 @@ import { Title } from "./Title";
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../track/track";
 import { DragDropContext, DropResult, ResponderProvided } from "react-beautiful-dnd";
+import { addSoundAsync } from "../store/trackEvent";
 
 export const Main = (): JSX.Element => {
 
@@ -39,6 +40,10 @@ export const Main = (): JSX.Element => {
     }
 
     const handleDragDrop = (result: DropResult, provided: ResponderProvided) => {
+        
+        /**
+         * DraggableId here is the sound being dragged
+         */
         const {destination, draggableId} = result;
     
         /**
@@ -49,7 +54,12 @@ export const Main = (): JSX.Element => {
             return;
         }
 
+        /**
+         * DroppableId is the layer the sound is being dropped too
+         */
         const {droppableId} = destination;
+
+        dispatch(addSoundAsync(draggableId, droppableId, track.id));
     };
 
     return (
