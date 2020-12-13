@@ -1,4 +1,5 @@
 import { Context } from '../lib/Context';
+import { deepCopy } from '../lib/deepClone';
 import { SavedTrack } from '../track/track';
 import { RootStateHook } from './rootReducer';
 import { AppThunk, AppDispatch } from './store';
@@ -19,10 +20,8 @@ export const loadTracksAsync = (): AppThunk => async (dispatch: AppDispatch) => 
 };
 
 export const updateVolumeAsync = (volume: number, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
-    const track = fetchTrack(getState, trackId);
-    const control = Object.assign({}, track.control);
-    control.volume = volume;
-    track.control = control;
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.control.volume = volume;
     await Context.get().database.updateTrack(track);
     dispatch(updateTrack({
         track: track
@@ -30,10 +29,8 @@ export const updateVolumeAsync = (volume: number, trackId: string): AppThunk => 
 };
 
 export const updatePannerAsync = (panner: number, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
-    const track = fetchTrack(getState, trackId);
-    const control = Object.assign({}, track.control);
-    control.panner = panner;
-    track.control = control;
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.control.panner = panner;
     await Context.get().database.updateTrack(track);
     dispatch(updateTrack({
         track: track
@@ -41,10 +38,8 @@ export const updatePannerAsync = (panner: number, trackId: string): AppThunk => 
 };
 
 export const updateLoopingAsync = (looping: boolean, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
-    const track = fetchTrack(getState, trackId);
-    const control = Object.assign({}, track.control);
-    control.looping = looping;
-    track.control = control;
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.control.looping = looping;
     await Context.get().database.updateTrack(track);
     dispatch(updateTrack({
         track: track
