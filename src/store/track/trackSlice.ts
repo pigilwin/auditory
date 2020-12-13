@@ -5,11 +5,13 @@ import { RootState } from '../rootReducer';
 export interface TrackState {
     tracks: SavedTrackMap;
     currentTrackId: string;
+    playing: boolean;
 }
 
 const initialState: TrackState =  {
     tracks: {},
-    currentTrackId: ''
+    currentTrackId: '',
+    playing: false
 };
 
 const trackSlice = createSlice({
