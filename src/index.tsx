@@ -5,8 +5,8 @@ import './assets/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from './store/store';
-import { Context } from './Context';
-import { database } from './database/database';
+import { Context } from './lib/Context';
+import { database } from './lib/database';
 import { Audio } from './audio/audio';
 
 

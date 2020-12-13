@@ -1,5 +1,5 @@
-import { Audio } from "./audio/audio";
-import { Database } from "./database/database";
+import { Audio } from "../audio/audio";
+import { Database } from "./database";
 
 export class Context {
     

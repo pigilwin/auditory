@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button } from "../components/Buttons";
 import { TextSingleLineInput } from "../components/Inputs";
 import { createTrackAsync } from "../store/trackEvent";
-import { useValidation } from "../validation/validation";
+import { useValidation } from "../lib/validation";
 
 export const Begin = (): JSX.Element => {
 
