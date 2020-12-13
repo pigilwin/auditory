@@ -21,7 +21,7 @@ export const Welcome = (): JSX.Element => {
                 <h2 className="text-2xl text-center p-2">This application will allow you to create and store tracks</h2> 
                 <h2 className="text-2xl text-center p-2">Your device has {numberOfChannels} channels available</h2>
                 <div className="text-center">
-                    <Button onClick={letsBeginClickHandler} title="Lets Begin"/>
+                    <Button disabled={false} onClick={letsBeginClickHandler} title="Lets Begin"/>
                 </div>
             </div>
         </div>

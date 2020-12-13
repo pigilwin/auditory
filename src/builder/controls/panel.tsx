@@ -2,8 +2,9 @@ import { Panel, PanelTitle } from "../../components/Panel";
 import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { Button } from "../../components/Buttons";
 import { SavedTrack } from "../../store/track/trackTypes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/track/trackEvent";
+import { isPlayingSelector } from "../../store/track/trackSlice";
 
 interface ControlPanelState {
     track: SavedTrack;
@@ -13,6 +14,7 @@ interface ControlPanelState {
 export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
 
     const dispatch = useDispatch();
+    const isPlaying = useSelector(isPlayingSelector);
 
     const volumeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         dispatch(updateVolumeAsync(event.currentTarget.valueAsNumber, track.id));
@@ -72,13 +74,13 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
             </div>
             <div className="grid grid-cols-3">
                 <div className="p-2 text-center">
-                    <Button title="Start" onClick={startTrack}/>
+                    <Button disabled={!isPlaying} title="Start" onClick={startTrack}/>
                 </div>
                 <div className="p-2 text-center">
-                    <Button title="Add Layer" onClick={addLayer}/>
+                    <Button disabled={false} title="Add Layer" onClick={addLayer}/>
                 </div>
                 <div className="p-2 text-center">
-                    <Button title="Stop" onClick={stopTrack}/>
+                    <Button disabled={isPlaying} title="Stop" onClick={stopTrack}/>
                 </div>
             </div>
         </Panel>

@@ -2,7 +2,8 @@ import { MouseEventHandler } from "react";
 
 interface ButtonConfiguration {
     title: string;
-    onClick: MouseEventHandler<HTMLButtonElement>
+    onClick: MouseEventHandler<HTMLButtonElement>;
+    disabled: boolean;
 }
 
 const defaultClasses: string[] = [
@@ -14,18 +15,18 @@ const defaultClasses: string[] = [
     'rounded-lg'
 ];
 
-export const Button = (attributes: ButtonConfiguration): JSX.Element => {
+export const Button = ({onClick, disabled, title}: ButtonConfiguration): JSX.Element => {
     return (
-        <button onClick={attributes.onClick} className={defaultClasses.join(' ')}>{attributes.title}</button>
+        <button onClick={onClick} disabled={disabled} className={defaultClasses.join(' ')}>{title}</button>
     );
 }
 
-export const DeleteButton = (attributes: ButtonConfiguration): JSX.Element => {
+export const DeleteButton = ({onClick, title, disabled}: ButtonConfiguration): JSX.Element => {
     const classes = Array.from(defaultClasses).filter(className => {
         return className !== 'bg-indigo-700';
     });
     classes.push('bg-red-500');
     return (
-        <button onClick={attributes.onClick} className={classes.join(' ')}>{attributes.title}</button>
+        <button onClick={onClick} disabled={disabled} className={classes.join(' ')}>{title}</button>
     );
 }

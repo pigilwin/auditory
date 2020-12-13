@@ -61,10 +61,10 @@ const SavedTrackListItem = (value: SavedTrackListItemInterface): JSX.Element => 
                 <h4 className="text-center text-2xl">{value.name}</h4>
             </div>
             <div className="w-1/3 text-center">
-                <Button title="Load Track" onClick={clickHandler}/>
+                <Button disabled={false} title="Load Track" onClick={clickHandler}/>
             </div>
             <div className="w-1/3 text-center">
-                <DeleteButton title="Delete Track" onClick={deleteHandler}/>
+                <DeleteButton disabled={false} title="Delete Track" onClick={deleteHandler}/>
             </div>
         </li>
     );

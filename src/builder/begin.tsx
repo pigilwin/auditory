@@ -57,10 +57,10 @@ export const Begin = (): JSX.Element => {
             />
             <div className="flex flex-row">
                 <div className="w-1/2 text-center">
-                    <Button title="Create New Track" onClick={createNewTrackClickHandler}/>
+                    <Button disabled={false} title="Create New Track" onClick={createNewTrackClickHandler}/>
                 </div>
                 <div className="w-1/2 text-center">
-                    <Button title="Load Existing Tracks" onClick={loadExistingTracksClickHandler}/>
+                    <Button disabled={false} title="Load Existing Tracks" onClick={loadExistingTracksClickHandler}/>
                 </div>
             </div>
         </div>
