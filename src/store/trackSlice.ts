@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SavedTrack, SavedTrackMap } from '../track/track';
+import { SavedTrack, SavedTrackMap } from './trackTypes';
 import { RootState } from './rootReducer';
 
 export interface TrackState {

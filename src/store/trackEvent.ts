@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import { Context } from '../lib/Context';
 import { deepCopy } from '../lib/deepClone';
-import { SavedTrack } from '../track/track';
+import { SavedTrack } from './trackTypes';
 import { RootStateHook } from './rootReducer';
 import { AppThunk, AppDispatch } from './store';
 import { createTrack, deleteTrack, loadTracks, updateTrack } from './trackSlice';

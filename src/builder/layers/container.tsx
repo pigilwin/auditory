@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { DeleteButton } from "../../components/Buttons";
 import { buildPartId } from "../../lib/id";
 import { deleteLayerAsync } from "../../store/trackEvent";
-import { SavedTrack, Layer } from "../../track/track";
+import { SavedTrack, Layer } from "../../store/trackTypes";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
 import { LayerPartComponent } from './part';
 

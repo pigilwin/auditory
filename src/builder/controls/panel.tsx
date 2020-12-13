@@ -1,7 +1,7 @@
 import { Panel, PanelTitle } from "../../components/Panel";
 import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { Button } from "../../components/Buttons";
-import { SavedTrack } from "../../track/track";
+import { SavedTrack } from "../../store/trackTypes";
 import { useDispatch } from "react-redux";
 import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/trackEvent";
 
@@ -31,7 +31,7 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
     };
 
     const startTrack = (): void => {
-
+        
     };
 
     const stopTrack = (): void => {

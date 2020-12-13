@@ -1,6 +1,6 @@
 import { DBSchema, IDBPDatabase, openDB } from 'idb';
 import { v4 } from 'uuid';
-import { SavedTrack, SavedTrackMap } from '../track/track';
+import { SavedTrack, SavedTrackMap } from '../store/trackTypes';
 
 export const database = async (): Promise<Database> => {
     const database = await openDB<TrackDatabase>('tracks', 1, {

@@ -7,7 +7,7 @@ import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
 import { LayerContainer } from './layers/container';
-import { SavedTrack } from "../track/track";
+import { SavedTrack } from "../store/trackTypes";
 import { DragDropContext, DropResult, ResponderProvided } from "react-beautiful-dnd";
 import { addSoundAsync, moveSoundToLayerAsync, moveSoundWithinLayerAsync } from "../store/trackEvent";
 import { idResolver } from "../lib/id";
