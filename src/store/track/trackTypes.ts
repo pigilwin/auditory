@@ -17,7 +17,7 @@ interface Control {
 }
 
 export type Layer = LayerPart[];
-interface LayerMap {
+export interface LayerMap {
     [id: string]: Layer;
 }
 
