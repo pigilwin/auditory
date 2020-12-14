@@ -5,6 +5,7 @@ import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/track/trackEvent";
 import { isPlayingSelector } from "../../store/track/trackSlice";
+import { Context } from "../../lib/Context";
 
 interface ControlPanelState {
     track: SavedTrack;
@@ -32,8 +33,8 @@ export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
         dispatch(addLayerAsync(track.id));
     };
 
-    const startTrack = (): void => {
-        
+    const startTrack = async (): Promise<void> => {
+        await Context.get().audio.play();
     };
 
     const stopTrack = (): void => {
