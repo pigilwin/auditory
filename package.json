@@ -12,6 +12,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
+    "tone": "^14.7.58",
     "uuid": "^8.3.1",
     "web-vitals": "^0.2.4"
   },
