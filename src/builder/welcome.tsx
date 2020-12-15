@@ -1,14 +1,12 @@
 import { useDispatch } from "react-redux";
 import { Audio } from "../audio/audio";
 import { Button } from "../components/Buttons";
-import { Context } from "../lib/Context";
 import { acceptWelcomeMessage } from "../store/welcome/welcomeSlice";
 
 export const Welcome = (): JSX.Element => {
 
-    const audio: Audio = Context.get().audio;
-    const numberOfChannels: number = audio.numberOfChannels;
-    const numberOfSamples: number = audio.numberOfSamples;
+    const numberOfChannels: number = Audio.numberOfChannels();
+    const numberOfSamples: number = Audio.numberOfSamples();
     const dispatch = useDispatch();
 
     const letsBeginClickHandler = (): void => {

@@ -5,10 +5,10 @@ export class Context {
     
     private static _instance: Context;
     
-    private constructor(public readonly database: Database, public readonly audio: Audio){}
+    private constructor(public readonly database: Database){}
 
-    public static load(database: Database, audio: Audio) {
-        Context._instance = new Context(database, audio);
+    public static load(database: Database) {
+        Context._instance = new Context(database);
     }
 
     public static get(): Context {

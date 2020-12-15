@@ -7,11 +7,10 @@ import reportWebVitals from './reportWebVitals';
 import {store} from './store/store';
 import { Context } from './lib/Context';
 import { database } from './lib/database';
-import { Audio } from './audio/audio';
 
 
 (async () => {
-  Context.load(await database(), new Audio(new AudioContext()));
+  Context.load(await database());
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
