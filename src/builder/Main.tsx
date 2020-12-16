@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
-import { tracksSelector, currentTrackIdSelector, currentlySelectedLayerSelector } from "../store/track/trackSlice";
+import { tracksSelector, currentTrackIdSelector, currentlySelectedLayerSelector, currentlySelectedNoteIndexSelector } from "../store/track/trackSlice";
 import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
+import { ConfigureNotePanel } from './ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";
 
@@ -15,6 +16,7 @@ export const Main = (): JSX.Element => {
     const tracks = useSelector(tracksSelector);
     const currentTrackId = useSelector(currentTrackIdSelector);
     const currentLayerId = useSelector(currentlySelectedLayerSelector);
+    const currentNote = useSelector(currentlySelectedNoteIndexSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -34,6 +36,11 @@ export const Main = (): JSX.Element => {
 
     const track: SavedTrack = tracks[currentTrackId];
 
+    /**
+     * If the track has somehow failed to been found,
+     * lets show the begin page so the application
+     * does not error
+     */
     if (track === null) {
         return (<Begin/>);
     }
@@ -45,7 +52,8 @@ export const Main = (): JSX.Element => {
             </div>
             <SoundsPanel/>
             <LayerContainer hidden={currentLayerId.length > 0} track={track}/>
-            <ControlPanel id={currentTrackId} track={track}/>
+            <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
+            <ControlPanel track={track}/>
         </div>
     );
 }

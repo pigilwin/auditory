@@ -80,6 +80,14 @@ export const getSoundsForDisplay = (): SoundForDisplay => {
   return soundsForDisplay;
 };
 
+export const getName = (id: string): string | null => {
+  if (sounds[id] === undefined) {
+    return null;
+  }
+
+  return sounds[id].name;
+}
+
 export const getFrequency = (id: string): number | null => {
 
   if (sounds[id] === undefined) {

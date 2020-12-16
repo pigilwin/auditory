@@ -35,7 +35,7 @@ export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Ele
             <div className="grid grid-cols-1">
                 {layers}
             </div>
-            <div className="text-center">
+            <div className="text-center mt-2">
                 <Button title="Add Layer" onClick={addLayer} disabled={false}/>
             </div>
         </div>
@@ -66,7 +66,7 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
     let i: number = 0;
     for (const key in layer) {
         const part = layer[key];
-        parts.push(<LayerPartComponent index={i} key={key} sound={sounds[part.id]}/>);
+        parts.push(<LayerPartComponent layer={layerId} index={i} key={key} sound={sounds[part.id]}/>);
         i++;
     }
 

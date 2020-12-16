@@ -2,10 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SavedTrack, SavedTrackMap } from './trackTypes';
 import { RootState } from '../rootReducer';
 
+export interface SelectedNote {
+    index: number;
+    layerId: string;
+}
 export interface TrackState {
     tracks: SavedTrackMap;
     currentTrackId: string;
     currentlySelectedLayer: string;
+    currentlySelectedNote: SelectedNote;
     playing: boolean;
 }
 
@@ -13,7 +18,11 @@ const initialState: TrackState =  {
     tracks: {},
     currentTrackId: '',
     playing: false,
-    currentlySelectedLayer: ''
+    currentlySelectedLayer: '',
+    currentlySelectedNote: {
+        index: 0,
+        layerId: ''
+    }
 };
 
 const trackSlice = createSlice({
@@ -64,6 +73,11 @@ const trackSlice = createSlice({
             const newState = state;
             state.currentlySelectedLayer = '';
             return newState;
+        },
+        editNoteForLayer(state, action: PayloadAction<SelectedNote>) {
+            const newState = state;
+            newState.currentlySelectedNote = action.payload;
+            return newState;
         }
     }
 });
@@ -81,8 +95,9 @@ interface UpdateTrack {
 }
 
 export const reducer = trackSlice.reducer;
-export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack, selectLayer, deselectLayer} = trackSlice.actions;
+export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack, selectLayer, deselectLayer, editNoteForLayer} = trackSlice.actions;
 
+export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
 export const currentlySelectedLayerSelector = (state: RootState): string => state.trackReducer.currentlySelectedLayer;
 export const isPlayingSelector = (state: RootState): boolean => state.trackReducer.playing;
 export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;

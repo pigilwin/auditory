@@ -5,12 +5,11 @@ import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync } from "../../
 import { Audio } from "../../audio/audio";
 import { Play, Stop } from "../../components/icon";
 
-interface ControlPanelState {
+interface ControlPanelProps {
     track: SavedTrack;
-    id: string;
 }
 
-export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
+export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
 
     const dispatch = useDispatch();
 

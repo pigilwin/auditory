@@ -1,19 +1,28 @@
-interface LayerPartComponentInterface {
+import { useDispatch } from "react-redux";
+import { editNoteForLayer } from '../../store/track/trackSlice';
+
+interface LayerPartComponentProps {
     sound: string;
     index: number;
+    layer: string;
 }
 
-export const LayerPartComponent = ({sound, index}: LayerPartComponentInterface): JSX.Element => {
+export const LayerPartComponent = ({sound, index, layer}: LayerPartComponentProps): JSX.Element => {
+    const dispatch = useDispatch();
     const classes: string[] = [
         "rounded",
         "p-2",
         "mx-1",
         "text-center",
         "bg-yellow-400",
+        "cursor-pointer"
     ];
 
     const showConfigurationPanel = (): void => {
-
+        dispatch(editNoteForLayer({
+            index: index,
+            layerId: layer
+        }));
     };
 
     return (
