@@ -1,15 +1,18 @@
 import { useDispatch } from "react-redux";
 import { Button, DeleteButton } from "../../components/Buttons";
-import { addLayerAsync, deleteLayerAsync, selectLayerAsync } from "../../store/track/trackEvent";
+import { addLayerAsync, deleteLayerAsync } from "../../store/track/trackEvent";
+import { selectLayer } from "../../store/track/trackSlice";
 import { SavedTrack, Layer } from "../../store/track/trackTypes";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
 import { LayerPartComponent } from './part';
 
 interface PartContainerInterface {
     track: SavedTrack;
+    hidden: boolean;
+
 }
 
-export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => {
+export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Element => {
     
     const dispatch = useDispatch();
 
@@ -22,8 +25,13 @@ export const LayerContainer = ({track}: PartContainerInterface): JSX.Element => 
         dispatch(addLayerAsync(track.id));
     }
 
+    const classes: string[] = ['w-full'];
+    if (hidden) {
+        classes.push('hidden');
+    }
+
     return (
-        <div className="w-full">
+        <div className={classes.join(' ')}>
             <div className="grid grid-cols-1">
                 {layers}
             </div>
@@ -47,17 +55,19 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
     const sounds: SoundForDisplay = getSoundsForDisplay();
     const parts: JSX.Element[] = [];
 
-    const selectLayer = (): void => {
-        dispatch(selectLayerAsync(layerId));
+    const selectLayerHandler = (): void => {
+        dispatch(selectLayer(layerId));
     };
 
     const deleteLayer = (): void => {
         dispatch(deleteLayerAsync(layerId, trackId));
     };
 
+    let i: number = 0;
     for (const key in layer) {
         const part = layer[key];
-        parts.push(<LayerPartComponent key={key} sound={sounds[part.id]}/>);
+        parts.push(<LayerPartComponent index={i} key={key} sound={sounds[part.id]}/>);
+        i++;
     }
 
     /**
@@ -72,7 +82,7 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
     return (
         <div className="w-full flex flex-row mt-5">
             <div className="w-2/12 text-center">
-                <Button disabled={false} title="Select" onClick={selectLayer}/>
+                <Button disabled={false} title="Select" onClick={selectLayerHandler}/>
             </div>
             <div className="w-8/12 flex flex-row">
                 {parts}

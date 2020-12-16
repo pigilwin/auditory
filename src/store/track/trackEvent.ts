@@ -4,7 +4,7 @@ import { deepCopy } from '../../lib/deepClone';
 import { SavedTrack } from './trackTypes';
 import { RootStateHook } from '../rootReducer';
 import { AppThunk, AppDispatch } from '../store';
-import { createTrack, deleteTrack, loadTracks, updateTrack, selectLayer} from './trackSlice';
+import { createTrack, deleteTrack, loadTracks, updateTrack} from './trackSlice';
 
 export const createTrackAsync = (name: string): AppThunk => async (dispatch: AppDispatch) => {
     const track = await Context.get().database.createTrack(name);
@@ -69,10 +69,6 @@ export const deleteLayerAsync = (layerId: string, trackId: string): AppThunk => 
     dispatch(updateTrack({
         track: track
     }));
-};
-
-export const selectLayerAsync = (layerId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
-    dispatch(selectLayer(layerId));
 };
 
 interface addSoundAsyncInterface {

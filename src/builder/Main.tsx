@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { tracksSelector, currentTrackIdSelector } from "../store/track/trackSlice";
+import { tracksSelector, currentTrackIdSelector, currentlySelectedLayerSelector } from "../store/track/trackSlice";
 import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
@@ -14,6 +14,7 @@ export const Main = (): JSX.Element => {
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
     const tracks = useSelector(tracksSelector);
     const currentTrackId = useSelector(currentTrackIdSelector);
+    const currentLayerId = useSelector(currentlySelectedLayerSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -43,7 +44,7 @@ export const Main = (): JSX.Element => {
                 <Title title={"Track Name: " + track.name}/>
             </div>
             <SoundsPanel/>
-            <LayerContainer track={track}/>
+            <LayerContainer hidden={currentLayerId.length > 0} track={track}/>
             <ControlPanel id={currentTrackId} track={track}/>
         </div>
     );
