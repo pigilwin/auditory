@@ -59,7 +59,7 @@ const trackSlice = createSlice({
              * viewing then unassign the track that is being viewed 
              */
             if (action.payload === newState.currentTrackId) {
-                newState.currentTrackId = '';
+                newState.currentTrackId = initialState.currentTrackId;
             }
 
             return newState;
@@ -71,12 +71,17 @@ const trackSlice = createSlice({
         },
         deselectLayer(state) {
             const newState = state;
-            state.currentlySelectedLayer = '';
+            state.currentlySelectedLayer = initialState.currentlySelectedLayer;
             return newState;
         },
         editNoteForLayer(state, action: PayloadAction<SelectedNote>) {
             const newState = state;
             newState.currentlySelectedNote = action.payload;
+            return newState;
+        },
+        unselectNote(state) {
+            const newState = state;
+            newState.currentlySelectedNote = initialState.currentlySelectedNote;
             return newState;
         }
     }
@@ -95,7 +100,17 @@ interface UpdateTrack {
 }
 
 export const reducer = trackSlice.reducer;
-export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack, selectLayer, deselectLayer, editNoteForLayer} = trackSlice.actions;
+export const { 
+    createTrack, 
+    loadTrack, 
+    loadTracks, 
+    updateTrack, 
+    deleteTrack, 
+    selectLayer, 
+    deselectLayer, 
+    editNoteForLayer,
+    unselectNote
+} = trackSlice.actions;
 
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
 export const currentlySelectedLayerSelector = (state: RootState): string => state.trackReducer.currentlySelectedLayer;
