@@ -70,6 +70,10 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
         i++;
     }
 
+    if (parts.length === 0) {
+        parts.push(<h1 className="text-2xl">Please select the layer and add some notes</h1>);
+    }
+
     /**
      * Always assign the layer to the delete button
      */
