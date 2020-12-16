@@ -9,7 +9,10 @@ import { SavedTrack } from "../store/track/trackTypes";
 
 export const LoadPanel = (): JSX.Element => {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
     const tracks = useSelector(tracksSelector);
+
     const elements: JSX.Element[] = [];
     for (const key in tracks) {
         const track: SavedTrack = tracks[key];
@@ -21,6 +24,16 @@ export const LoadPanel = (): JSX.Element => {
                 date={track.date}
             />
         );
+    }
+
+    if (elements.length === 0) {
+        const clickHandler = () => {
+            dispatch(acceptWelcomeMessage(true));
+            history.push('/');
+        };
+
+        elements.push(<h1 className="text-2xl text-center">Saved tracks will appear here when they are created. You have no tracks saved currently.</h1>);
+        elements.push(<div className="text-center"><Button title="Create New Track" onClick={clickHandler} disabled={false}/></div>);
     }
 
     return (
