@@ -1,8 +1,7 @@
 import { RangeInput, ToggleSwitch } from "../../components/Inputs";
 import { SavedTrack } from "../../store/track/trackTypes";
-import { useDispatch, useSelector } from "react-redux";
-import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync, addLayerAsync } from "../../store/track/trackEvent";
-import { isPlayingSelector } from "../../store/track/trackSlice";
+import { useDispatch } from "react-redux";
+import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync } from "../../store/track/trackEvent";
 import { Audio } from "../../audio/audio";
 import { Play, Stop } from "../../components/icon";
 
@@ -14,7 +13,6 @@ interface ControlPanelState {
 export const ControlPanel = ({track}: ControlPanelState): JSX.Element => {
 
     const dispatch = useDispatch();
-    const isPlaying = useSelector(isPlayingSelector);
 
     const volumeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         dispatch(updateVolumeAsync(event.currentTarget.valueAsNumber, track.id));
