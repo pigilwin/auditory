@@ -63,6 +63,10 @@ const sounds: SoundMap = {
   "drum-kick": {
     name: 'Kick',
     frequency: 0
+  },
+  "empty-space": {
+    name: 'Empty',
+    frequency: 0
   }
 };
 
