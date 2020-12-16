@@ -1,4 +1,3 @@
-import { Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { DeleteButton } from "../../components/Buttons";
 import { buildPartId } from "../../lib/id";
@@ -67,14 +66,7 @@ const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowI
                 {button}
             </div>
             <div className="w-10/12">
-                <Droppable droppableId={layerId}>
-                    {(provided, snapshot) => (
-                        <div ref={provided.innerRef} {...provided.droppableProps} className="border-2 h-full flex flex-row overflow-auto">
-                            {provided.placeholder}
-                            {parts}
-                        </div>
-                    )}
-                </Droppable>
+                {parts}
             </div>
         </div>
     );
