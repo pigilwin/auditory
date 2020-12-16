@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { DeleteButton } from "../../components/Buttons";
-import { buildPartId } from "../../lib/id";
 import { deleteLayerAsync } from "../../store/track/trackEvent";
 import { SavedTrack, Layer } from "../../store/track/trackTypes";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
@@ -40,11 +39,10 @@ const LayerRow = ({layer, layerId, trackId, index, currentLayerCount}: LayerRowI
     const sounds: SoundForDisplay = getSoundsForDisplay();
 
     const parts: JSX.Element[] = [];
-    let partIndex: number = 0;
+
     for (const key in layer) {
         const part = layer[key];
-        parts.push(<LayerPartComponent key={key} id={buildPartId(layerId, part.id)} sound={sounds[part.id]} index={partIndex}/>);
-        partIndex++;
+        parts.push(<LayerPartComponent key={key} sound={sounds[part.id]}/>);
     }
 
     const deleteLayer = (): void => {

@@ -5,13 +5,15 @@ import { RootState } from '../rootReducer';
 export interface TrackState {
     tracks: SavedTrackMap;
     currentTrackId: string;
+    currentlySelectedLayer: string;
     playing: boolean;
 }
 
 const initialState: TrackState =  {
     tracks: {},
     currentTrackId: '',
-    playing: false
+    playing: false,
+    currentlySelectedLayer: ''
 };
 
 const trackSlice = createSlice({
@@ -71,6 +73,7 @@ interface UpdateTrack {
 export const reducer = trackSlice.reducer;
 export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack} = trackSlice.actions;
 
+export const currentlySelectedLayerSelector = (state: RootState): string => state.trackReducer.currentlySelectedLayer;
 export const isPlayingSelector = (state: RootState): boolean => state.trackReducer.playing;
 export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;
 export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;

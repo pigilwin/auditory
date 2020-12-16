@@ -1,10 +1,8 @@
 interface LayerPartComponentInterface {
-    id: string;
     sound: string;
-    index: number;
 }
 
-export const LayerPartComponent = ({id, sound, index}: LayerPartComponentInterface): JSX.Element => {
+export const LayerPartComponent = ({sound}: LayerPartComponentInterface): JSX.Element => {
     const classes: string[] = [
         "rounded",
         "p-2",
