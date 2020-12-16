@@ -71,7 +71,7 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
     }
 
     if (parts.length === 0) {
-        parts.push(<h1 className="text-2xl">Please select the layer and add some notes</h1>);
+        parts.push(<h1 className="text-2xl p-3">Please select the layer and add some notes</h1>);
     }
 
     /**
@@ -88,7 +88,7 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
             <div className="w-2/12 text-center">
                 <Button disabled={false} title="Select" onClick={selectLayerHandler}/>
             </div>
-            <div className="w-8/12 flex flex-row">
+            <div className="w-8/12 flex flex-row shadow-md overflow-x-auto">
                 {parts}
             </div>
             <div className="w-2/12 text-center">
