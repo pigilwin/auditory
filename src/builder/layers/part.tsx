@@ -7,9 +7,9 @@ export const LayerPartComponent = ({sound}: LayerPartComponentInterface): JSX.El
         "rounded",
         "p-2",
         "mx-1",
-        "h-full",
         "text-center",
-        "bg-yellow-400"
+        "bg-yellow-400",
+        "w-10"
     ];
 
     return (

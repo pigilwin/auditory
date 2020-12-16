@@ -54,6 +54,11 @@ const trackSlice = createSlice({
             }
 
             return newState;
+        },
+        selectLayer(state, action: PayloadAction<string>) {
+            const newState = state;
+            state.currentlySelectedLayer = action.payload;
+            return newState;
         }
     }
 });
@@ -71,7 +76,7 @@ interface UpdateTrack {
 }
 
 export const reducer = trackSlice.reducer;
-export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack} = trackSlice.actions;
+export const { createTrack, loadTrack, loadTracks, updateTrack, deleteTrack, selectLayer} = trackSlice.actions;
 
 export const currentlySelectedLayerSelector = (state: RootState): string => state.trackReducer.currentlySelectedLayer;
 export const isPlayingSelector = (state: RootState): boolean => state.trackReducer.playing;
