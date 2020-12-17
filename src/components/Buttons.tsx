@@ -12,7 +12,8 @@ const defaultClasses: string[] = [
     'transition-colors',
     'duration-150',
     'rounded-lg',
-    'disabled:opacity-50'
+    'disabled:opacity-50',
+    'hover:bg-green-600'
 ];
 
 export const Button = ({onClick, disabled, title}: ButtonConfiguration): JSX.Element => {
