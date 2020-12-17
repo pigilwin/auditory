@@ -15,7 +15,7 @@ export const Main = (): JSX.Element => {
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
     const tracks = useSelector(tracksSelector);
     const currentTrackId = useSelector(currentTrackIdSelector);
-    const currentLayerId = useSelector(currentlySelectedLayerSelector);
+    const currentLayer = useSelector(currentlySelectedLayerSelector);
     const currentNote = useSelector(currentlySelectedNoteIndexSelector);
 
     /**
@@ -51,7 +51,7 @@ export const Main = (): JSX.Element => {
                 <Title title={"Track Name: " + track.name}/>
             </div>
             <SoundsPanel/>
-            <LayerContainer hidden={currentLayerId.length > 0} track={track}/>
+            <LayerContainer hidden={currentLayer.layerId.length > 0} track={track}/>
             <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
             <ControlPanel track={track}/>
         </div>

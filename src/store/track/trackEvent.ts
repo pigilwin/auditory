@@ -4,7 +4,14 @@ import { deepCopy } from '../../lib/deepClone';
 import { SavedTrack } from './trackTypes';
 import { RootStateHook } from '../rootReducer';
 import { AppThunk, AppDispatch } from '../store';
-import { createTrack, deleteTrack, loadTracks, unselectNote, updateTrack} from './trackSlice';
+import { 
+    createTrack, 
+    deleteTrack, 
+    loadTracks, 
+    unselectNote, 
+    updateTrack,
+    addNoteToUsedSounds
+} from './trackSlice';
 
 export const createTrackAsync = (name: string): AppThunk => async (dispatch: AppDispatch) => {
     const track = await Context.get().database.createTrack(name);
@@ -77,6 +84,7 @@ export const addSoundAsync = (soundId: string, layerId: string, trackId: string)
         id: soundId
     });
     await Context.get().database.updateTrack(track);
+    dispatch(addNoteToUsedSounds(soundId));
     dispatch(updateTrack({
         track: track
     }));

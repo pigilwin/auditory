@@ -6,10 +6,16 @@ export interface SelectedNote {
     index: number;
     layerId: string;
 }
+
+export interface SelectedLayer {
+    layerId: string;
+    usedNotes: string[];
+}
+
 export interface TrackState {
     tracks: SavedTrackMap;
     currentTrackId: string;
-    currentlySelectedLayer: string;
+    currentlySelectedLayer: SelectedLayer;
     currentlySelectedNote: SelectedNote;
     playing: boolean;
 }
@@ -18,7 +24,10 @@ const initialState: TrackState =  {
     tracks: {},
     currentTrackId: '',
     playing: false,
-    currentlySelectedLayer: '',
+    currentlySelectedLayer: {
+        layerId: '',
+        usedNotes: []
+    },
     currentlySelectedNote: {
         index: 0,
         layerId: ''
@@ -66,7 +75,10 @@ const trackSlice = createSlice({
         },
         selectLayer(state, action: PayloadAction<string>) {
             const newState = state;
-            state.currentlySelectedLayer = action.payload;
+            state.currentlySelectedLayer = {
+                layerId: action.payload,
+                usedNotes: []
+            };
             return newState;
         },
         deselectLayer(state) {
@@ -82,6 +94,11 @@ const trackSlice = createSlice({
         unselectNote(state) {
             const newState = state;
             newState.currentlySelectedNote = initialState.currentlySelectedNote;
+            return newState;
+        },
+        addNoteToUsedSounds(state, action: PayloadAction<string>) {
+            const newState = state;
+            newState.currentlySelectedLayer.usedNotes.push(action.payload);
             return newState;
         }
     }
@@ -109,11 +126,12 @@ export const {
     selectLayer, 
     deselectLayer, 
     editNoteForLayer,
-    unselectNote
+    unselectNote,
+    addNoteToUsedSounds
 } = trackSlice.actions;
 
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
-export const currentlySelectedLayerSelector = (state: RootState): string => state.trackReducer.currentlySelectedLayer;
+export const currentlySelectedLayerSelector = (state: RootState): SelectedLayer => state.trackReducer.currentlySelectedLayer;
 export const isPlayingSelector = (state: RootState): boolean => state.trackReducer.playing;
 export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;
 export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;

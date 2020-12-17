@@ -2,7 +2,7 @@ import { PanelTitle } from "../../components/Panel";
 import { Button } from '../../components/Buttons';
 import { getSoundsForDisplay, SoundForDisplay } from "./sounds";
 import { useDispatch, useSelector } from "react-redux";
-import { currentlySelectedLayerSelector, currentTrackIdSelector, deselectLayer } from "../../store/track/trackSlice";
+import { currentlySelectedLayerSelector, currentTrackIdSelector, deselectLayer, SelectedLayer } from "../../store/track/trackSlice";
 import { addSoundAsync } from "../../store/track/trackEvent";
 import { Dispatch } from "react";
 
@@ -10,8 +10,8 @@ export const SoundsPanel = (): JSX.Element => {
 
     const dispatch = useDispatch();
     const trackId = useSelector(currentTrackIdSelector);
-    const currentSelectedLayerId = useSelector(currentlySelectedLayerSelector);
-    const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayerId);
+    const currentSelectedLayer = useSelector(currentlySelectedLayerSelector);
+    const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer);
     
 
     const closeLayer = (): void => {
@@ -24,7 +24,7 @@ export const SoundsPanel = (): JSX.Element => {
         "overflow-hidden"
     ];
 
-    if (currentSelectedLayerId.length === 0) {
+    if (currentSelectedLayer.layerId.length === 0) {
         classes.push('hidden');
     }
 
@@ -42,17 +42,20 @@ export const SoundsPanel = (): JSX.Element => {
     );
 }
 
-const buildSoundButtons = (dispatch: Dispatch<any>, trackId: string, currentSelectedLayerId: string): JSX.Element[] => {
+const buildSoundButtons = (dispatch: Dispatch<any>, trackId: string, currentSelectedLayer: SelectedLayer): JSX.Element[] => {
     const elements: JSX.Element[] = [];
     const sounds: SoundForDisplay = getSoundsForDisplay();
     
     for (const key in sounds) {
 
-        const onClickHandler = async (): Promise<void> => {
-            dispatch(addSoundAsync(key, currentSelectedLayerId, trackId));
-        };
-        
-        elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);
+        if (!currentSelectedLayer.usedNotes.includes(key)){
+            
+            const onClickHandler = async (): Promise<void> => {
+                dispatch(addSoundAsync(key, currentSelectedLayer.layerId, trackId));
+            };
+            
+            elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);
+        }
     }
     
     return elements;
