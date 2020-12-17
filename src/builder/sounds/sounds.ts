@@ -4,69 +4,69 @@ interface SoundMap {
 
 interface Sound {
   name: string;
-  frequency: number;
+  toneCode: string;
 }
 
 const sounds: SoundMap = {
   "note-A": { 
     name: "A", 
-    frequency: 440.0 
+    toneCode: 'A'
   },
   "note-A#": { 
-    name: "A#", 
-    frequency: 466.16
+    name: "A#",
+    toneCode: 'A#'
   },
   "note-B": { 
     name: "B", 
-    frequency: 493.88
+    toneCode: 'B'
   },
   "note-C": { 
     name: "C", 
-    frequency: 261.63
+    toneCode: 'C'
   },
   "note-C#": { 
     name: "C#", 
-    frequency: 277.18
+    toneCode: "C#"
   },
   "note-D": { 
     name: "D", 
-    frequency: 293.66
+    toneCode: "D"
   },
   "note-D#": { 
     name: "D#", 
-    frequency: 311.13
+    toneCode: "D#"
   },
   "note-E": { 
     name: "E", 
-    frequency: 329.63 
+    toneCode: 'E'
   },
   "note-F": { 
     name: "F", 
-    frequency: 349.23 
+    toneCode: 'F'
   },
   "note-F#": { 
     name: "F#", 
-    frequency: 369.99 
+    toneCode: 'F#'
   },
   "note-G": { 
     name: "G", 
-    frequency: 392.0 
+    toneCode: 'G' 
   },
   "note-G#": { 
     name: "G#", 
-    frequency: 415.3
+    toneCode: 'G#'
   },
   "drum-snare": {
     name: 'Snare',
-    frequency: 0
+    toneCode: ''
   },
   "drum-kick": {
     name: 'Kick',
-    frequency: 0
+    toneCode: ''
   },
   "empty-space": {
     name: 'Empty',
-    frequency: 0
+    toneCode: ''
   }
 };
 
@@ -92,11 +92,11 @@ export const getName = (id: string): string | null => {
   return sounds[id].name;
 }
 
-export const getFrequency = (id: string): number | null => {
+export const getToneCode = (id: string): string => {
 
   if (sounds[id] === undefined) {
-    return null;
+    return '';
   }
 
-  return sounds[id].frequency;
+  return sounds[id].toneCode;
 };
