@@ -9,8 +9,13 @@ import { Title } from "./Title";
 import { ConfigureNotePanel } from './ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";
+import { Audio } from "../audio/audio";
 
 export const Main = (): JSX.Element => {
+
+    if (Audio.isPlaying()) {
+        Audio.stop();
+    }
 
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
     const tracks = useSelector(tracksSelector);

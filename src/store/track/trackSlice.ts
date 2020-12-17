@@ -17,13 +17,11 @@ export interface TrackState {
     currentTrackId: string;
     currentlySelectedLayer: SelectedLayer;
     currentlySelectedNote: SelectedNote;
-    playing: boolean;
 }
 
 const initialState: TrackState =  {
     tracks: {},
     currentTrackId: '',
-    playing: false,
     currentlySelectedLayer: {
         layerId: '',
         usedNotes: []
@@ -132,7 +130,6 @@ export const {
 
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
 export const currentlySelectedLayerSelector = (state: RootState): SelectedLayer => state.trackReducer.currentlySelectedLayer;
-export const isPlayingSelector = (state: RootState): boolean => state.trackReducer.playing;
 export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;
 export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;
 export const trackNameSelector = (state: RootState): string[] =>  {
