@@ -1,4 +1,4 @@
-import { start, context, MembraneSynth, Transport, Part } from 'tone';
+import { start, context, Synth, Transport, Part } from 'tone';
 import { getToneCode } from '../builder/sounds/sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 export class Audio {
@@ -21,7 +21,8 @@ export class Audio {
 
         for (const layerId in track.layers) {
             const notes: PartableSound[] = [];
-            const synth = new MembraneSynth().toDestination();
+            const synth = new Synth().toDestination();
+            synth.volume.value = track.control.volume;
             
             let i: number = 0;
             for (const sound of track.layers[layerId]){

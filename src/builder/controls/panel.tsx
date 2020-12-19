@@ -39,8 +39,8 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
                 <div className="w-full text-center">
                     <RangeInput 
                         id="volume"
-                        min={0}
-                        max={10}
+                        min={-10}
+                        max={0}
                         value={track.control.volume}
                         step={1}
                         title="Volume"
