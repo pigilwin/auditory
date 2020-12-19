@@ -8,53 +8,117 @@ interface Sound {
 }
 
 const sounds: SoundMap = {
-  "note-A": { 
-    name: "A", 
-    toneCode: 'A'
+  "note-A-one": {
+    name: 'A1',
+    toneCode: 'A1'
   },
-  "note-A#": { 
-    name: "A#",
-    toneCode: 'A#'
+  "note-A-two": {
+    name: 'A2',
+    toneCode: 'A2'
   },
-  "note-B": { 
-    name: "B", 
-    toneCode: 'B'
+  "note-A-three": {
+    name: 'A3',
+    toneCode: 'A3'
   },
-  "note-C": { 
-    name: "C", 
-    toneCode: 'C'
+  "note-A-four": { 
+    name: "A4", 
+    toneCode: 'A4'
   },
-  "note-C#": { 
-    name: "C#", 
-    toneCode: "C#"
+  "note-B-one": { 
+    name: "B1", 
+    toneCode: 'B1'
   },
-  "note-D": { 
-    name: "D", 
-    toneCode: "D"
+  "note-B-two": { 
+    name: "B2", 
+    toneCode: 'B2'
   },
-  "note-D#": { 
-    name: "D#", 
-    toneCode: "D#"
+  "note-B-three": { 
+    name: "B3", 
+    toneCode: 'B3'
   },
-  "note-E": { 
-    name: "E", 
-    toneCode: 'E'
+  "note-B-four": { 
+    name: "B4", 
+    toneCode: 'B4'
   },
-  "note-F": { 
-    name: "F", 
-    toneCode: 'F'
+  "note-C-one": { 
+    name: "C1", 
+    toneCode: 'C1'
   },
-  "note-F#": { 
-    name: "F#", 
-    toneCode: 'F#'
+  "note-C-two": { 
+    name: "C2", 
+    toneCode: 'C2'
   },
-  "note-G": { 
-    name: "G", 
-    toneCode: 'G' 
+  "note-C-three": { 
+    name: "C3", 
+    toneCode: 'C3'
   },
-  "note-G#": { 
-    name: "G#", 
-    toneCode: 'G#'
+  "note-C-four": { 
+    name: "C4", 
+    toneCode: 'C4'
+  },
+  "note-D-one": { 
+    name: "D1", 
+    toneCode: 'D1'
+  },
+  "note-D-two": { 
+    name: "D2", 
+    toneCode: 'D2'
+  },
+  "note-D-three": { 
+    name: "D3", 
+    toneCode: 'D3'
+  },
+  "note-D-four": { 
+    name: "D4", 
+    toneCode: 'D4'
+  },
+  "note-E-one": { 
+    name: "E1", 
+    toneCode: 'E1'
+  },
+  "note-E-two": { 
+    name: "E2", 
+    toneCode: 'E2'
+  },
+  "note-E-three": { 
+    name: "E3", 
+    toneCode: 'B3'
+  },
+  "note-E-four": { 
+    name: "B4", 
+    toneCode: 'E4'
+  },
+  "note-F-one": { 
+    name: "F1", 
+    toneCode: 'F1'
+  },
+  "note-F-two": { 
+    name: "F2", 
+    toneCode: 'F2'
+  },
+  "note-F-three": { 
+    name: "F3", 
+    toneCode: 'F3'
+  },
+  "note-F-four": { 
+    name: "F4", 
+    toneCode: 'F4'
+  },
+  "note-G-one": { 
+    name: "G1", 
+    toneCode: 'G1'
+  },
+  "note-G-two": { 
+    name: "G2", 
+    toneCode: 'G2'
+  },
+  "note-G-three": { 
+    name: "G3", 
+    toneCode: 'G3'
+  },
+  "note-G-four": { 
+    name: "G4", 
+    toneCode: 'G4'
   },
   "drum-snare": {
     name: 'Snare',
