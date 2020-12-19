@@ -14,8 +14,10 @@ interface Control {
     panner: number;
     volume: number;
 }
-
-export type Layer = LayerPart[];
+export interface Layer {
+    sounds: LayerMap[];
+    synth: string;
+}
 export interface LayerMap {
     [id: string]: Layer;
 }
