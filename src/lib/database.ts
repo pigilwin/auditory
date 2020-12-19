@@ -26,8 +26,7 @@ export class Database {
             },
             control: {
                 panner: 0,
-                volume: 10,
-                looping: false
+                volume: 10
             }
         };
         await store.put(track, track.id);

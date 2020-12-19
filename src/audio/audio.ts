@@ -1,4 +1,4 @@
-import { start, context, Synth, Transport, Part } from 'tone';
+import { start, context, Synth, Transport, Part, Panner } from 'tone';
 import { getToneCode } from '../builder/sounds/sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 export class Audio {
@@ -21,8 +21,15 @@ export class Audio {
 
         for (const layerId in track.layers) {
             const notes: PartableSound[] = [];
+
             const synth = new Synth().toDestination();
             synth.volume.value = track.control.volume;
+
+            const panner = new Panner({
+                pan: track.control.panner
+            });
+
+            synth.connect(panner);
             
             let i: number = 0;
             for (const sound of track.layers[layerId]){
@@ -35,7 +42,7 @@ export class Audio {
                 i++;
             }
 
-            const synthPart = new Part((time, note: PartableSound) => {
+            const synthPart = new Part<PartableSound>((time, note: PartableSound) => {
                 synth.triggerAttackRelease(note.note, note.duration, time);
             }, notes);
             
