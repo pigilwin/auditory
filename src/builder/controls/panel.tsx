@@ -30,7 +30,7 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
     };
 
     const stopTrack = (): void => {
-
+        Audio.stop();
     };
 
     return (
