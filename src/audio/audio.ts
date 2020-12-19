@@ -12,7 +12,7 @@ export class Audio {
     }
 
     public static async playTrack(track: SavedTrack): Promise<void> {
-        
+                
         if (Audio.isPlaying()) {
             return;
         }
