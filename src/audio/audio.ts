@@ -1,4 +1,4 @@
-import { start, context, Synth, Transport, Part, Panner } from 'tone';
+import { start, context, Synth, Transport, Part, Panner, Time } from 'tone';
 import { getToneCode } from '../builder/sounds/sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 export class Audio {
@@ -12,25 +12,51 @@ export class Audio {
     }
 
     public static async playTrack(track: SavedTrack): Promise<void> {
-                
+        /**
+         * If the audio is already playing
+         * then stop it and cancel the process
+         */
         if (Audio.isPlaying()) {
             return;
         }
+
+        const time = Time('4n');
+        console.log(time.toMidi(), time.toFrequency(), time.toNotation());
         
+        /**
+         * Start the audio context
+         */
         await start();
 
+        /**
+         * Loop through each layer within the track
+         */
         for (const layerId in track.layers) {
             const notes: PartableSound[] = [];
-
+            
+            /**
+             * Create a new synth for the audio to be bound to
+             */
             const synth = new Synth().toDestination();
+
+            /**
+             * Bind the volume to the synth
+             */
             synth.volume.value = track.control.volume;
 
+            /**
+             * Apply the panner to the synth
+             */
             const panner = new Panner({
                 pan: track.control.panner
             });
-
             synth.connect(panner);
             
+            /**
+             * Loop over the sounds in the layer
+             * attach the sounds with the duration
+             * appending the time
+             */
             let i: number = 0;
             for (const sound of track.layers[layerId]){
                 notes.push({
@@ -42,13 +68,26 @@ export class Audio {
                 i++;
             }
 
+            /**
+             * Apply the sounds to the part, each part will play
+             * simultaneously at the time and duration specified
+             */
             const synthPart = new Part<PartableSound>((time, note: PartableSound) => {
                 synth.triggerAttackRelease(note.note, note.duration, time);
             }, notes);
             
+            /**
+             * Start the synth, this will be applied to 
+             * the Transport then the sound will start
+             * once the Transport has been started
+             */
             synthPart.start();
         }
 
+        /**
+         * Start the transport, this will have all the parts
+         * attatched to be played simultaneously
+         */
         Transport.start();
     }
 
