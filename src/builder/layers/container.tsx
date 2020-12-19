@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Button, DeleteButton } from "../../components/Buttons";
-import { addLayerAsync, deleteLayerAsync } from "../../store/track/trackEvent";
+import { deleteLayerAsync } from "../../store/track/trackEvent";
 import { selectLayer } from "../../store/track/trackSlice";
 import { SavedTrack, Layer } from "../../store/track/trackTypes";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
@@ -14,16 +14,14 @@ interface PartContainerInterface {
 
 export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Element => {
     
-    const dispatch = useDispatch();
-
     const layers: JSX.Element[] = [];
     for (const key in track.layers) {
         layers.push(<LayerRow key={key} currentLayerCount={Object.keys(track.layers).length} trackId={track.id} layerId={key} layer={track.layers[key]}/>);
     }
 
-    const addLayer = (): void => {
-        dispatch(addLayerAsync(track.id));
-    }
+    const openAddNewLayerPanel = (): void => {
+
+    };
 
     const classes: string[] = ['w-full'];
     if (hidden) {
@@ -36,7 +34,7 @@ export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Ele
                 {layers}
             </div>
             <div className="text-center mt-2">
-                <Button title="Add Layer" onClick={addLayer} disabled={false}/>
+                <Button title="Add Layer" onClick={openAddNewLayerPanel} disabled={false}/>
             </div>
         </div>
     );
@@ -64,8 +62,8 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
     };
 
     let i: number = 0;
-    for (const key in layer) {
-        const part = layer[key];
+    for (const key in layer.sounds) {
+        const part = layer.sounds[key];
         parts.push(<LayerPartComponent layer={layerId} index={i} key={key} sound={sounds[part.id]}/>);
         i++;
     }

@@ -15,7 +15,7 @@ interface Control {
     volume: number;
 }
 export interface Layer {
-    sounds: LayerMap[];
+    sounds: LayerPart[];
     synth: string;
 }
 export interface LayerMap {

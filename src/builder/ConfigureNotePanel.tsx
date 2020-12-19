@@ -19,7 +19,7 @@ export const ConfigureNotePanel = ({track, hidden}: ConfigureNotePanelProps): JS
         return (<div/>);
     }
 
-    const sound = getName(track.layers[note.layerId][note.index].id);
+    const sound = getName(track.layers[note.layerId].sounds[note.index].id);
 
     const deleteNoteClickHandler = (): void => {
         dispatch(deleteNoteAsync(note.index, note.layerId, track.id));

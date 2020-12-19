@@ -51,9 +51,12 @@ export const deleteTrackAsync = (id: string): AppThunk => async (dispatch: AppDi
 };
 
 
-export const addLayerAsync = (trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+export const addLayerAsync = (trackId: string, synth: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
     const track = deepCopy(fetchTrack(getState, trackId));
-    track.layers[v4()] = [];
+    track.layers[v4()] = {
+        sounds: [],
+        synth: synth
+    };
     await Context.get().database.updateTrack(track);
     dispatch(updateTrack({
         track: track
@@ -71,7 +74,7 @@ export const deleteLayerAsync = (layerId: string, trackId: string): AppThunk => 
 
 export const addSoundAsync = (soundId: string, layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
     const track = deepCopy(fetchTrack(getState, trackId));
-    track.layers[layerId].push({
+    track.layers[layerId].sounds.push({
         id: soundId
     });
     await Context.get().database.updateTrack(track);
@@ -83,7 +86,7 @@ export const addSoundAsync = (soundId: string, layerId: string, trackId: string)
 
 export const deleteNoteAsync = (index: number, layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
     const track = deepCopy(fetchTrack(getState, trackId));
-    track.layers[layerId].splice(index, 1);
+    track.layers[layerId].sounds.splice(index, 1);
     await Context.get().database.updateTrack(track);
     dispatch(unselectNote());
     dispatch(updateTrack({

@@ -1,6 +1,7 @@
-import { start, context, Synth, Transport, Part, Panner, Time } from 'tone';
+import { start, context, Transport, Part, Panner, Time } from 'tone';
 import { getToneCode } from '../builder/sounds/sounds';
 import { SavedTrack } from '../store/track/trackTypes';
+import { fetchSynthObject } from './synthGenerator';
 export class Audio {
 
     public static numberOfChannels(): number {
@@ -32,12 +33,15 @@ export class Audio {
          * Loop through each layer within the track
          */
         for (const layerId in track.layers) {
+
+            const layer = track.layers[layerId];
+
             const notes: PartableSound[] = [];
             
             /**
              * Create a new synth for the audio to be bound to
              */
-            const synth = new Synth().toDestination();
+            const synth = fetchSynthObject(layer.synth);
 
             /**
              * Bind the volume to the synth
@@ -52,13 +56,15 @@ export class Audio {
             });
             synth.connect(panner);
             
+
             /**
              * Loop over the sounds in the layer
              * attach the sounds with the duration
              * appending the time
              */
             let i: number = 0;
-            for (const sound of track.layers[layerId]){
+
+            for (const sound of layer.sounds){
                 notes.push({
                     note: getToneCode(sound.id),
                     duration: '8n',
