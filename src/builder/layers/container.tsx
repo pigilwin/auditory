@@ -71,7 +71,7 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
     }
 
     if (parts.length === 0) {
-        parts.push(<h1 className="text-2xl p-3">Please select the layer and add some notes</h1>);
+        parts.push(<h1 className="text-2xl p-3" key="a">Please select the layer and add some notes</h1>);
     }
 
     /**
