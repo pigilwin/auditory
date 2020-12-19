@@ -1,6 +1,6 @@
-import {start, context, Synth, Transport, PolySynth, Part } from 'tone';
+import { start, context, MembraneSynth, Transport, Part } from 'tone';
 import { getToneCode } from '../builder/sounds/sounds';
-import { Layer, SavedTrack } from '../store/track/trackTypes';
+import { SavedTrack } from '../store/track/trackTypes';
 export class Audio {
 
     public static numberOfChannels(): number {
@@ -12,28 +12,33 @@ export class Audio {
     }
 
     public static async playTrack(track: SavedTrack): Promise<void> {
+        
+        if (Audio.isPlaying()) {
+            return;
+        }
+        
         await start();
 
-        new PolySynth(Synth, {
-            oscillator : {
-                count: 6,
-                spread: 80,
-                type : "fatsawtooth"
-            }
-        }).toDestination();
-
         for (const layerId in track.layers) {
+            const notes: PartableSound[] = [];
+            const synth = new MembraneSynth().toDestination();
+            
+            let i: number = 0;
+            for (const sound of track.layers[layerId]){
+                notes.push({
+                    note: getToneCode(sound.id),
+                    duration: '8n',
+                    velocity: 0.9,
+                    time: "0:" + i
+                });
+                i++;
+            }
 
-            const sounds = Audio.convertSoundsToPart(track.layers[layerId]);
-            const synth = new PolySynth(Synth, {
-                oscillator : {
-                      type : "sawtooth"
-                  }
-            }).toDestination();
-
-            new Part((time: number, note: PartableSound) => {
+            const synthPart = new Part((time, note: PartableSound) => {
                 synth.triggerAttackRelease(note.note, note.duration, time);
-            }, sounds).start(0);
+            }, notes);
+            
+            synthPart.start();
         }
 
         Transport.start();
@@ -47,20 +52,11 @@ export class Audio {
     {
         Transport.stop();
     }
-
-    private static convertSoundsToPart(sounds: Layer): PartableSound[] {
-        const partableSounds: PartableSound[] = [];
-        for (const sound in sounds) {
-            partableSounds.push({
-                note: getToneCode(sound),
-                duration: '2n'
-            });
-        }
-        return partableSounds;
-    }
 }
 
 interface PartableSound {
     note: string;
     duration: string;
+    time: string;
+    velocity: number;
 }
