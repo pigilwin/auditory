@@ -13,7 +13,6 @@ export interface SavedTrack {
 interface Control {
     panner: number;
     volume: number;
-    looping: boolean;
 }
 
 export type Layer = LayerPart[];

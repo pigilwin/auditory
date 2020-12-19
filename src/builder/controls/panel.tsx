@@ -1,7 +1,7 @@
-import { RangeInput, ToggleSwitch } from "../../components/Inputs";
+import { RangeInput } from "../../components/Inputs";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
-import { updateVolumeAsync, updatePannerAsync, updateLoopingAsync } from "../../store/track/trackEvent";
+import { updateVolumeAsync, updatePannerAsync } from "../../store/track/trackEvent";
 import { Audio } from "../../audio/audio";
 import { Play, Stop } from "../../components/icon";
 
@@ -19,10 +19,6 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
 
     const panner = (event: React.ChangeEvent<HTMLInputElement>): void => {
         dispatch(updatePannerAsync(event.currentTarget.valueAsNumber, track.id));
-    };
-
-    const looping = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatch(updateLoopingAsync(event.currentTarget.checked, track.id));
     };
 
     const startTrack = async (): Promise<void> => {
@@ -53,15 +49,6 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
                         <Play/>
                         <span className="tab tab-kategori block text-xs">Play</span>
                     </button>
-                </div>
-                <div className="w-full justify-center inline-block text-center pt-2 pb-1">
-                    <ToggleSwitch
-                        id="looping"
-                        title="Looping"
-                        value={track.control.looping}
-                        onChange={looping}
-                        error=""
-                    />
                 </div>
                 <div className="w-full justify-center inline-block text-center cursor-pointer pt-2 pb-1">
                     <button onClick={stopTrack}>

@@ -45,15 +45,6 @@ export const updatePannerAsync = (panner: number, trackId: string): AppThunk => 
     }));
 };
 
-export const updateLoopingAsync = (looping: boolean, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
-    const track = deepCopy(fetchTrack(getState, trackId));
-    track.control.looping = looping;
-    await Context.get().database.updateTrack(track);
-    dispatch(updateTrack({
-        track: track
-    }));
-};
-
 export const deleteTrackAsync = (id: string): AppThunk => async (dispatch: AppDispatch) => {
     await Context.get().database.deleteTrack(id);
     dispatch(deleteTrack(id));
