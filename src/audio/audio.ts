@@ -41,6 +41,12 @@ export class Audio {
             const synth = fetchSynthObject(layer.synth);
 
             /**
+             * Apply the synth to the destination
+             * this is the speakers of the device
+             */
+            synth.toDestination();
+
+            /**
              * Bind the volume to the synth
              */
             synth.volume.value = track.control.volume;
@@ -101,6 +107,8 @@ export class Audio {
     public static stop(): void
     {
         Transport.stop();
+        Transport.position = 0;
+        Transport.cancel();
     }
 }
 

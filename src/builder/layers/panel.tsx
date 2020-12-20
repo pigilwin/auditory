@@ -47,7 +47,7 @@ const buildSynths = (dispatch: Dispatch<any>, trackId: string): JSX.Element[] =>
             dispatch(addLayerAsync(trackId, key));
         };
 
-        buttons.push(<Button disabled={false} title={idToSynthMap[key].name} onClick={onClickHandler}/>);
+        buttons.push(<Button disabled={false} key={key} title={idToSynthMap[key].name} onClick={onClickHandler}/>);
     }
     return buttons;
 };

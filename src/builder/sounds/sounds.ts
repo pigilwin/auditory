@@ -82,10 +82,10 @@ const sounds: SoundMap = {
   },
   "note-E-three": { 
     name: "E3", 
-    toneCode: 'B3'
+    toneCode: 'E3'
   },
   "note-E-four": { 
-    name: "B4", 
+    name: "E4", 
     toneCode: 'E4'
   },
   "note-F-one": { 
