@@ -86,7 +86,7 @@ const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowInterfac
             <div className="w-2/12 text-center">
                 <Button disabled={false} title="Select" onClick={selectLayerHandler}/>
             </div>
-            <div className="w-8/12 flex flex-row shadow-md m-1 bg-gray-300 p-1 overflow-x-auto">
+            <div className="w-8/12 flex flex-row shadow-md bg-gray-300 p-1 overflow-x-auto">
                 {parts}
             </div>
             <div className="w-2/12 text-center">
