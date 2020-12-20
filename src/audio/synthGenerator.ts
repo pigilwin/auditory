@@ -8,7 +8,6 @@ import {
     NoiseSynth,
     PluckSynth,
     PolySynth,
-    Sampler,
     Synth
 } from "tone";
 import { Instrument } from "tone/build/esm/instrument/Instrument";
@@ -49,10 +48,6 @@ export const idToSynthMap: Synths = {
     'PolySynth': {
         name: 'Poly',
         synth: new PolySynth()
-    },
-    'Sampler': {
-        name: 'Sampler',
-        synth: new Sampler(),
     },
     'Synth': {
         name: 'Synth',
