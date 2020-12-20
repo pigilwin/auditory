@@ -10,7 +10,6 @@ import {
     loadTracks, 
     unselectNote, 
     updateTrack,
-    addNoteToUsedSounds,
     closeCreateLayer
 } from './trackSlice';
 
@@ -80,7 +79,6 @@ export const addSoundAsync = (soundId: string, layerId: string, trackId: string)
         id: soundId
     });
     await Context.get().database.updateTrack(track);
-    dispatch(addNoteToUsedSounds(soundId));
     dispatch(updateTrack({
         track: track
     }));

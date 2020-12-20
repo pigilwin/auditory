@@ -45,15 +45,12 @@ const buildSoundButtons = (dispatch: Dispatch<any>, trackId: string, currentSele
     const sounds: SoundForDisplay = getSoundsForDisplay();
     
     for (const key in sounds) {
-
-        if (!currentSelectedLayer.usedNotes.includes(key)){
-            
-            const onClickHandler = async (): Promise<void> => {
-                dispatch(addSoundAsync(key, currentSelectedLayer.layerId, trackId));
-            };
-            
-            elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);
-        }
+          
+        const onClickHandler = async (): Promise<void> => {
+            dispatch(addSoundAsync(key, currentSelectedLayer.layerId, trackId));
+        };
+        
+        elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);
     }
     
     return elements;

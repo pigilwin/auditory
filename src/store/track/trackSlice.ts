@@ -9,7 +9,6 @@ export interface SelectedNote {
 
 export interface SelectedLayer {
     layerId: string;
-    usedNotes: string[];
 }
 
 export interface TrackState {
@@ -24,8 +23,7 @@ const initialState: TrackState =  {
     tracks: {},
     currentTrackId: '',
     currentlySelectedLayer: {
-        layerId: '',
-        usedNotes: []
+        layerId: ''
     },
     currentlySelectedNote: {
         index: 0,
@@ -86,8 +84,7 @@ const trackSlice = createSlice({
         selectLayer(state, action: PayloadAction<string>) {
             const newState = state;
             newState.currentlySelectedLayer = {
-                layerId: action.payload,
-                usedNotes: []
+                layerId: action.payload
             };
             return newState;
         },
@@ -104,11 +101,6 @@ const trackSlice = createSlice({
         unselectNote(state) {
             const newState = state;
             newState.currentlySelectedNote = initialState.currentlySelectedNote;
-            return newState;
-        },
-        addNoteToUsedSounds(state, action: PayloadAction<string>) {
-            const newState = state;
-            newState.currentlySelectedLayer.usedNotes.push(action.payload);
             return newState;
         }
     }
@@ -138,8 +130,7 @@ export const {
     selectLayer, 
     deselectLayer, 
     editNoteForLayer,
-    unselectNote,
-    addNoteToUsedSounds
+    unselectNote
 } = trackSlice.actions;
 
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
