@@ -120,14 +120,6 @@ const sounds: SoundMap = {
     name: "G4", 
     toneCode: 'G4'
   },
-  "drum-snare": {
-    name: 'Snare',
-    toneCode: ''
-  },
-  "drum-kick": {
-    name: 'Kick',
-    toneCode: ''
-  },
   "empty-space": {
     name: 'Empty',
     toneCode: ''
