@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Button, DeleteButton } from "../../components/Buttons";
 import { deleteLayerAsync } from "../../store/track/trackEvent";
-import { selectLayer } from "../../store/track/trackSlice";
+import { createLayer, selectLayer } from "../../store/track/trackSlice";
 import { SavedTrack, Layer } from "../../store/track/trackTypes";
 import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
 import { LayerPartComponent } from './part';
@@ -12,24 +12,24 @@ interface PartContainerInterface {
 
 }
 
-export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Element => {
+export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Element | null => {
     
+    const dispatch = useDispatch();
     const layers: JSX.Element[] = [];
     for (const key in track.layers) {
         layers.push(<LayerRow key={key} currentLayerCount={Object.keys(track.layers).length} trackId={track.id} layerId={key} layer={track.layers[key]}/>);
     }
 
     const openAddNewLayerPanel = (): void => {
-
+        dispatch(createLayer());
     };
 
-    const classes: string[] = ['w-full'];
     if (hidden) {
-        classes.push('hidden');
+        return null;
     }
 
     return (
-        <div className={classes.join(' ')}>
+        <div className="w-full">
             <div className="grid grid-cols-1">
                 {layers}
             </div>

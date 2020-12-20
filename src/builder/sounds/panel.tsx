@@ -1,16 +1,20 @@
 import { PanelTitle } from "../../components/Panel";
 import { Button } from '../../components/Buttons';
 import { getSoundsForDisplay, SoundForDisplay } from "./sounds";
-import { useDispatch, useSelector } from "react-redux";
-import { currentlySelectedLayerSelector, currentTrackIdSelector, deselectLayer, SelectedLayer } from "../../store/track/trackSlice";
+import { useDispatch } from "react-redux";
+import { deselectLayer, SelectedLayer } from "../../store/track/trackSlice";
 import { addSoundAsync } from "../../store/track/trackEvent";
 import { Dispatch } from "react";
 
-export const SoundsPanel = (): JSX.Element => {
+interface SoundsPanelProps {
+    hidden: boolean;
+    currentSelectedLayer: SelectedLayer;
+    trackId: string;
+}
+
+export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanelProps): JSX.Element | null => {
 
     const dispatch = useDispatch();
-    const trackId = useSelector(currentTrackIdSelector);
-    const currentSelectedLayer = useSelector(currentlySelectedLayerSelector);
     const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer);
     
 
@@ -18,18 +22,12 @@ export const SoundsPanel = (): JSX.Element => {
         dispatch(deselectLayer());
     }
 
-    const classes: string[] = [
-        "w-full",
-        "px-4",
-        "overflow-hidden"
-    ];
-
-    if (currentSelectedLayer.layerId.length === 0) {
-        classes.push('hidden');
+    if (hidden) {
+        return null;
     }
 
     return (
-        <div className={classes.join(' ')}>
+        <div className="w-full px-4 overflow-hidden">
             <PanelTitle title="Sounds"/>
             <p className="text-center">Choose sounds too add to the layer the close the panel</p>
             <div className="grid grid-cols-8 gap-4">

@@ -17,6 +17,7 @@ export interface TrackState {
     currentTrackId: string;
     currentlySelectedLayer: SelectedLayer;
     currentlySelectedNote: SelectedNote;
+    currentlyAddingNewLayer: boolean;
 }
 
 const initialState: TrackState =  {
@@ -29,7 +30,8 @@ const initialState: TrackState =  {
     currentlySelectedNote: {
         index: 0,
         layerId: ''
-    }
+    },
+    currentlyAddingNewLayer: false
 };
 
 const trackSlice = createSlice({
@@ -71,9 +73,14 @@ const trackSlice = createSlice({
 
             return newState;
         },
+        createLayer(state) {
+            const newState = state;
+            newState.currentlyAddingNewLayer = true;
+            return newState;
+        },
         selectLayer(state, action: PayloadAction<string>) {
             const newState = state;
-            state.currentlySelectedLayer = {
+            newState.currentlySelectedLayer = {
                 layerId: action.payload,
                 usedNotes: []
             };
@@ -81,7 +88,7 @@ const trackSlice = createSlice({
         },
         deselectLayer(state) {
             const newState = state;
-            state.currentlySelectedLayer = initialState.currentlySelectedLayer;
+            newState.currentlySelectedLayer = initialState.currentlySelectedLayer;
             return newState;
         },
         editNoteForLayer(state, action: PayloadAction<SelectedNote>) {
@@ -120,7 +127,8 @@ export const {
     loadTrack, 
     loadTracks, 
     updateTrack, 
-    deleteTrack, 
+    deleteTrack,
+    createLayer, 
     selectLayer, 
     deselectLayer, 
     editNoteForLayer,
@@ -130,6 +138,7 @@ export const {
 
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
 export const currentlySelectedLayerSelector = (state: RootState): SelectedLayer => state.trackReducer.currentlySelectedLayer;
+export const currentlyAddingLayerSelector = (state: RootState): boolean => state.trackReducer.currentlyAddingNewLayer;
 export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;
 export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;
 export const trackNameSelector = (state: RootState): string[] =>  {

@@ -1,8 +1,15 @@
 import { useSelector } from "react-redux";
-import { tracksSelector, currentTrackIdSelector, currentlySelectedLayerSelector, currentlySelectedNoteIndexSelector } from "../store/track/trackSlice";
+import { 
+    tracksSelector,
+    currentTrackIdSelector,
+    currentlySelectedLayerSelector,
+    currentlySelectedNoteIndexSelector,
+    currentlyAddingLayerSelector
+} from "../store/track/trackSlice";
 import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
+import { LayerPanel } from './layers/panel';
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
 import { Title } from "./Title";
@@ -17,6 +24,7 @@ export const Main = (): JSX.Element => {
     const currentTrackId = useSelector(currentTrackIdSelector);
     const currentLayer = useSelector(currentlySelectedLayerSelector);
     const currentNote = useSelector(currentlySelectedNoteIndexSelector);
+    const addingNewLayer = useSelector(currentlyAddingLayerSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -50,8 +58,9 @@ export const Main = (): JSX.Element => {
             <div className="w-full">
                 <Title title={"Track Name: " + track.name}/>
             </div>
-            <SoundsPanel/>
-            <LayerContainer hidden={currentLayer.layerId.length > 0} track={track}/>
+            <SoundsPanel trackId={track.id} currentSelectedLayer={currentLayer} hidden={currentLayer.layerId.length === 0}/>
+            <LayerPanel/>
+            <LayerContainer hidden={currentLayer.layerId.length > 0 || addingNewLayer} track={track}/>
             <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
             <ControlPanel track={track}/>
         </div>
