@@ -1,5 +1,5 @@
 import { start, context, Transport, Part, Panner } from 'tone';
-import { getToneCode } from '../builder/sounds/sounds';
+import { getToneCode } from './sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
 export class Audio {

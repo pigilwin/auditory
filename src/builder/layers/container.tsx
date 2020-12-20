@@ -3,7 +3,7 @@ import { Button, DeleteButton } from "../../components/Buttons";
 import { deleteLayerAsync } from "../../store/track/trackEvent";
 import { createLayer, selectLayer } from "../../store/track/trackSlice";
 import { SavedTrack, Layer } from "../../store/track/trackTypes";
-import { getSoundsForDisplay, SoundForDisplay } from "../sounds/sounds";
+import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { LayerPartComponent } from './part';
 
 interface PartContainerInterface {

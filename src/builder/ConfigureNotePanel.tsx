@@ -3,7 +3,7 @@ import { Button, DeleteButton } from "../components/Buttons";
 import { currentlySelectedNoteIndexSelector, unselectNote } from "../store/track/trackSlice";
 import { deleteNoteAsync } from '../store/track/trackEvent';
 import { SavedTrack } from "../store/track/trackTypes";
-import { getName } from "./sounds/sounds";
+import { getName } from "../audio/sounds";
 
 interface ConfigureNotePanelProps {
     track: SavedTrack;

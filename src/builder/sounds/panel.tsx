@@ -1,6 +1,6 @@
 import { PanelTitle } from "../../components/Panel";
 import { Button } from '../../components/Buttons';
-import { getSoundsForDisplay, SoundForDisplay } from "./sounds";
+import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { useDispatch } from "react-redux";
 import { deselectLayer, SelectedLayer } from "../../store/track/trackSlice";
 import { addSoundAsync } from "../../store/track/trackEvent";
