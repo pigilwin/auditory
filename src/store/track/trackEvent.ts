@@ -10,7 +10,8 @@ import {
     loadTracks, 
     unselectNote, 
     updateTrack,
-    addNoteToUsedSounds
+    addNoteToUsedSounds,
+    closeCreateLayer
 } from './trackSlice';
 
 export const createTrackAsync = (name: string): AppThunk => async (dispatch: AppDispatch) => {
@@ -58,6 +59,7 @@ export const addLayerAsync = (trackId: string, synth: string): AppThunk => async
         synth: synth
     };
     await Context.get().database.updateTrack(track);
+    dispatch(closeCreateLayer());
     dispatch(updateTrack({
         track: track
     }));

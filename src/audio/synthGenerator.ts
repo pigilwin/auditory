@@ -13,7 +13,7 @@ import {
 } from "tone";
 import { Instrument } from "tone/build/esm/instrument/Instrument";
 
-const idToSynthMap: Synths = {
+export const idToSynthMap: Synths = {
     'AMSynth': {
         name: 'AM',
         synth: new AMSynth()

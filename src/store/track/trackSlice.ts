@@ -78,6 +78,11 @@ const trackSlice = createSlice({
             newState.currentlyAddingNewLayer = true;
             return newState;
         },
+        closeCreateLayer(state) {
+            const newState = state;
+            newState.currentlyAddingNewLayer = initialState.currentlyAddingNewLayer;
+            return newState;
+        },
         selectLayer(state, action: PayloadAction<string>) {
             const newState = state;
             newState.currentlySelectedLayer = {
@@ -128,7 +133,8 @@ export const {
     loadTracks, 
     updateTrack, 
     deleteTrack,
-    createLayer, 
+    createLayer,
+    closeCreateLayer, 
     selectLayer, 
     deselectLayer, 
     editNoteForLayer,

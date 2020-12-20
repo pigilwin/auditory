@@ -1,4 +1,4 @@
-import { start, context, Transport, Part, Panner, Time } from 'tone';
+import { start, context, Transport, Part, Panner } from 'tone';
 import { getToneCode } from '../builder/sounds/sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
@@ -20,9 +20,6 @@ export class Audio {
         if (Audio.isPlaying()) {
             return;
         }
-
-        const time = Time('4n');
-        console.log(time.toMidi(), time.toFrequency(), time.toNotation());
         
         /**
          * Start the audio context

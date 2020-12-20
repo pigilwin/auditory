@@ -59,7 +59,7 @@ export const Main = (): JSX.Element => {
                 <Title title={"Track Name: " + track.name}/>
             </div>
             <SoundsPanel trackId={track.id} currentSelectedLayer={currentLayer} hidden={currentLayer.layerId.length === 0}/>
-            <LayerPanel/>
+            <LayerPanel trackId={track.id}/>
             <LayerContainer hidden={currentLayer.layerId.length > 0 || addingNewLayer} track={track}/>
             <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
             <ControlPanel track={track}/>
