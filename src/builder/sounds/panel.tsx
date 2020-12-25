@@ -1,10 +1,11 @@
 import { PanelTitle } from "../../components/Panel";
 import { Button } from '../../components/Buttons';
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
-import { useDispatch } from "react-redux";
-import { deselectLayer, SelectedLayer } from "../../store/track/trackSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { deselectLayer, SelectedLayer, tracksSelector } from "../../store/track/trackSlice";
 import { addSoundAsync } from "../../store/track/trackEvent";
 import { Dispatch } from "react";
+import { Audio } from "../../audio/audio";
 
 interface SoundsPanelProps {
     hidden: boolean;
@@ -15,15 +16,18 @@ interface SoundsPanelProps {
 export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanelProps): JSX.Element | null => {
 
     const dispatch = useDispatch();
-    const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer);
+    const tracks = useSelector(tracksSelector);
+
+    if (hidden) {
+        return null;
+    }
+    
+    const synthKey = tracks[trackId].layers[currentSelectedLayer.layerId].synth;
+    const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer, synthKey);
     
 
     const closeLayer = (): void => {
         dispatch(deselectLayer());
-    }
-
-    if (hidden) {
-        return null;
     }
 
     return (
@@ -40,13 +44,19 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
     );
 }
 
-const buildSoundButtons = (dispatch: Dispatch<any>, trackId: string, currentSelectedLayer: SelectedLayer): JSX.Element[] => {
+const buildSoundButtons = (
+    dispatch: Dispatch<any>, 
+    trackId: string, 
+    currentSelectedLayer: SelectedLayer,
+    synth: string
+): JSX.Element[] => {
     const elements: JSX.Element[] = [];
     const sounds: SoundForDisplay = getSoundsForDisplay();
     
     for (const key in sounds) {
           
         const onClickHandler = async (): Promise<void> => {
+            await Audio.playNoteFromSynth(key, synth);
             dispatch(addSoundAsync(key, currentSelectedLayer.layerId, trackId));
         };
         

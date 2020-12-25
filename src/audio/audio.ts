@@ -100,6 +100,35 @@ export class Audio {
         Transport.start();
     }
 
+    public static async playNoteFromSynth(key: string, synth: string): Promise<void>
+    {
+        /**
+         * If the audio is already playing
+         * then stop it and cancel the process
+         */
+        if (Audio.isPlaying()) {
+            return;
+        }
+        
+        /**
+         * Start the audio context
+         */
+        await start();
+
+        /**
+         * Create a new synth for the audio to be bound to
+         */
+        const synthObject = fetchSynthObject(synth);
+
+        /**
+         * Apply the synth to the destination
+         * this is the speakers of the device
+         */
+        synthObject.toDestination();
+
+        synthObject.triggerAttack(getToneCode(key));
+    }
+
     public static isPlaying(): boolean {
         return Transport.state === 'started';
     }

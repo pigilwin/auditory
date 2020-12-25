@@ -11,12 +11,12 @@ This app was created using:
 
 ## What does this app let you do?
 
-- Play notes/drums generated from the browsers apis.
-- Build tracks as combinations of notes/drums.
-- Save tracks to a local database to be played again in the future.
-- Generate random tracks.
-- Load tracks from file.
-- Export tracks as importable format.
+- [x] Play notes/drums generated from the browsers apis.
+- [x] Build tracks as combinations of notes/drums.
+- [x] Save tracks to a local database to be played again in the future.
+- [] Generate random tracks.
+- [] Load tracks from file.
+- [] Export tracks as importable format.
 
 ## What is a "track", understanding the data structure
 
@@ -41,4 +41,5 @@ Multiple layers can be used within one track to create overlapping sounds
 
 ## What needs to be done?
 
-- If the client only has one channel then remove the panner control
+- Allow note length to be extended
+- Allow synths to be customised via the add new synth screen or the edit synth screen
