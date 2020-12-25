@@ -41,7 +41,7 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
                 {buttons}
             </div>
             <div className="w-full text-center mt-2">
-                <Button disabled={false} title="Close Sounds" onClick={closeLayer}/>
+                <Button disabled={false} title="Finish editting layer" onClick={closeLayer}/>
             </div>
         </div>
     );
