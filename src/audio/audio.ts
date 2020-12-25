@@ -2,6 +2,7 @@ import { start, context, Transport, Part, Panner } from 'tone';
 import { getToneCode } from './sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
+import { Time } from 'tone/build/esm/core/type/Units';
 export class Audio {
 
     public static numberOfChannels(): number {
@@ -70,7 +71,7 @@ export class Audio {
             for (const sound of layer.sounds){
                 notes.push({
                     note: getToneCode(sound.id),
-                    duration: '8n',
+                    duration: 1,
                     velocity: 0.9,
                     time: "0:" + i
                 });
@@ -146,7 +147,7 @@ export class Audio {
 
 interface PartableSound {
     note: string;
-    duration: string;
+    duration: Time;
     time: string;
     velocity: number;
 }
