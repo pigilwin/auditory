@@ -126,6 +126,9 @@ export class Audio {
          */
         synthObject.toDestination();
 
+        /**
+         * Play the note
+         */
         synthObject.triggerAttack(getToneCode(key));
     }
 

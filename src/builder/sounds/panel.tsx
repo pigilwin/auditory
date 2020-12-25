@@ -6,6 +6,7 @@ import { deselectLayer, SelectedLayer, tracksSelector } from "../../store/track/
 import { addSoundAsync } from "../../store/track/trackEvent";
 import { Dispatch } from "react";
 import { Audio } from "../../audio/audio";
+import { fetchSynthName } from "../../audio/synthGenerator";
 
 interface SoundsPanelProps {
     hidden: boolean;
@@ -24,6 +25,7 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
     
     const synthKey = tracks[trackId].layers[currentSelectedLayer.layerId].synth;
     const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer, synthKey);
+    const synthName = fetchSynthName(synthKey);
     
 
     const closeLayer = (): void => {
@@ -33,7 +35,8 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
     return (
         <div className="w-full px-4 overflow-hidden">
             <PanelTitle title="Sounds"/>
-            <p className="text-center">Choose sounds too add to the layer the close the panel</p>
+            <p className="text-center">This layer is using the synth - {synthName}</p>
+            <p className="text-center">Choose sounds too add to the layer then close the panel</p>
             <div className="grid grid-cols-8 gap-4">
                 {buttons}
             </div>
