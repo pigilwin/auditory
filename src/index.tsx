@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './assets/index.css';
-import App from './App';
+import { App } from './App';
 import reportWebVitals from './reportWebVitals';
-import {store} from './store/store';
+import { store } from './store/store';
 import { Context } from './lib/Context';
 import { database } from './lib/database';
 
