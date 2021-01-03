@@ -10,59 +10,52 @@ import {
     PolySynth,
     Synth
 } from "tone";
-import { Instrument } from "tone/build/esm/instrument/Instrument";
 
 export const idToSynthMap: Synths = {
     'AMSynth': {
         name: 'AM',
-        synth: new AMSynth()
+        synth: AMSynth
     },
     'DuoSynth': {
         name: 'Duo',
-        synth: new DuoSynth(),   
+        synth: DuoSynth,   
     },
     'FMSynth': {
         name: 'FM',
-        synth: new FMSynth()
+        synth: FMSynth
     },
     'MembraneSynth': {
         name: 'Membrane',
-        synth: new MembraneSynth()
+        synth: MembraneSynth
     },
     'MetalSynth': {
         name: 'Metal',
-        synth: new MetalSynth()
+        synth: MetalSynth
     },
     'MonoSynth': {
         name: 'Mono',
-        synth: new MonoSynth()
+        synth: MonoSynth,
     },
     'NoiseSynth': {
         name: 'Noise',
-        synth: new NoiseSynth(),
+        synth: NoiseSynth,
     },
     'PluckSynth': {
         name: 'Pluck',
-        synth: new PluckSynth()
-    },
-    'PolySynth': {
-        name: 'Poly',
-        synth: new PolySynth()
+        synth: PluckSynth
     },
     'Synth': {
         name: 'Synth',
-        synth: new Synth()
+        synth: Synth
     }
 };
 
-type AnyInstrument = Instrument<any>;
-
-export const fetchSynthObject = (id: string): AnyInstrument  => {
+export const fetchSynthObject = (id: string): PolySynth  => {
     
     if (idToSynthMap[id] === undefined) {
         throw new Error('id ' + id + ' is not a valid synth');
     }
-    return idToSynthMap[id].synth;
+    return new PolySynth(idToSynthMap[id].synth);
 }
 
 export const fetchSynthName = (id: string): string  => {
@@ -73,9 +66,14 @@ export const fetchSynthName = (id: string): string  => {
     return idToSynthMap[id].name;
 }
 
+/**
+ * Not a massive issue using any here, 
+ * if tone exports VoiceConstructor at 
+ * some point then we will use it
+ */
 interface Synths {
     [id: string]: {
         name: string;
-        synth: AnyInstrument;
+        synth: any;
     }
 }

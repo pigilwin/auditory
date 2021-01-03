@@ -1,4 +1,4 @@
-import { start, context, Transport, Part, Panner } from 'tone';
+import { start, context, Transport, Part } from 'tone';
 import { getToneCode } from './sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
@@ -53,15 +53,6 @@ export class Audio {
             synth.volume.value = track.control.volume;
 
             /**
-             * Apply the panner to the synth
-             */
-            const panner = new Panner({
-                pan: track.control.panner
-            });
-            synth.connect(panner);
-            
-
-            /**
              * Loop over the sounds in the layer
              * attach the sounds with the duration
              * appending the time
@@ -71,11 +62,11 @@ export class Audio {
             for (const sound of layer.sounds){
                 notes.push({
                     note: getToneCode(sound.id),
-                    duration: 1,
+                    duration: '8n',
                     velocity: 0.9,
                     time: "0:" + i
                 });
-                i++;
+                i += 2;
             }
 
             /**
@@ -83,7 +74,7 @@ export class Audio {
              * simultaneously at the time and duration specified
              */
             const synthPart = new Part<PartableSound>((time, note: PartableSound) => {
-                synth.triggerAttackRelease(note.note, note.duration, time);
+                synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
             }, notes);
             
             /**
@@ -93,6 +84,8 @@ export class Audio {
              */
             synthPart.start();
         }
+
+        Transport.swing = track.control.panner;
 
         /**
          * Start the transport, this will have all the parts
