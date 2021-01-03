@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadTracksAsync } from './store/track/trackEvent';
 
-function App() {
+export const App = (): JSX.Element => {
 
   const dispatch = useDispatch();
 
@@ -36,5 +36,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;
