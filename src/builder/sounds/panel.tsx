@@ -1,4 +1,3 @@
-import { PanelTitle } from "../../components/Panel";
 import { Button } from '../../components/Buttons';
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import { addSoundAsync } from "../../store/track/trackEvent";
 import { Dispatch } from "react";
 import { Audio } from "../../audio/audio";
 import { fetchSynthName } from "../../audio/synthGenerator";
+import { Accordion } from "../../components/accordion/Accordion";
 
 interface SoundsPanelProps {
     hidden: boolean;
@@ -34,12 +34,13 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
 
     return (
         <div className="w-full px-4 overflow-hidden">
-            <PanelTitle title="Sounds"/>
-            <p className="text-center">This layer is using the synth - {synthName}</p>
-            <p className="text-center">Choose sounds too add to the layer then close the panel</p>
-            <div className="grid grid-cols-8 gap-4">
-                {buttons}
-            </div>
+            <h1 className="text-xl p-2">Editing Layer</h1>
+            <h2 className="text-lg p-2">This layer is using a {synthName}</h2>
+            <Accordion title="Choose sounds too add to the layer then close the panel">
+                <div className="grid grid-cols-8 gap-4">
+                    {buttons}
+                </div>
+            </Accordion>
             <div className="w-full text-center mt-2">
                 <Button disabled={false} title="Finish editting layer" onClick={closeLayer}/>
             </div>
