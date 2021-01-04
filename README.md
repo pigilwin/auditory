@@ -30,7 +30,8 @@ A track is:
 
 ### What is a "layer"
 
-A layer is a list of notes to be played in a specific order
+A layer is a list of notes to be played in a specific order, each layer has a synth which is incharge of generating the sounds and some additional configuration information about the layer.
+
 Multiple layers can be used within one track to create overlapping sounds
 
 ## How the applications logic should flow
@@ -42,4 +43,7 @@ Multiple layers can be used within one track to create overlapping sounds
 ## What needs to be done?
 
 - Allow note length to be extended
-- Allow synths to be customised via the add new synth screen or the edit synth screen
+- Allow synths to be changed via the edit layer screen.
+- Allow synths to be customised via the add new layer screen or the edit layer screen.
+- When selecting a synth on the add new synth screen/ edit synth screen, play a character when choosing a synth to get a feel of the synth before confirming the choice.
+- Add settings page to allow pre configuration for layers
