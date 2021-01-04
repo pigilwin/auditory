@@ -1,3 +1,4 @@
+import { Audio } from "../../audio/audio";
 import { idToSynthMap } from "../../audio/synthGenerator";
 import { Button } from '../../components/Buttons';
 
@@ -18,8 +19,9 @@ export const SynthSelector = ({synthId, onSynthSelected}: SynthSelectorProps): J
             additionalClasses.push('border-4', 'border-green-400');
         }
 
-        const onClickHandler = (): void => {
+        const onClickHandler = async (): Promise<void> => {
             onSynthSelected(key);
+            await Audio.playNoteFromSynth('note-C-four', key);
         };
 
         synths.push(<Button 

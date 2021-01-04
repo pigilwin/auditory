@@ -5,7 +5,6 @@ import {
     MembraneSynth,
     MetalSynth,
     MonoSynth,
-    NoiseSynth,
     PluckSynth,
     PolySynth,
     Synth
@@ -35,10 +34,6 @@ export const idToSynthMap: Synths = {
     'MonoSynth': {
         name: 'Mono',
         synth: MonoSynth,
-    },
-    'NoiseSynth': {
-        name: 'Noise',
-        synth: NoiseSynth,
     },
     'PluckSynth': {
         name: 'Pluck',

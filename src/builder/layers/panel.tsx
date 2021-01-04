@@ -4,7 +4,7 @@ import { Button } from "../../components/Buttons";
 import { ToggleSwitch } from "../../components/Inputs";
 import { addLayerAsync } from "../../store/track/trackEvent";
 import { closeCreateLayer, currentlyAddingLayerSelector } from "../../store/track/trackSlice";
-import { SynthSelector } from "./synthSelector";
+import { SynthSelector } from "./SynthSelector";
 
 interface LayerPanelProps {
     trackId: string;
