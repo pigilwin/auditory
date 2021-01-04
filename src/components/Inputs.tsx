@@ -61,7 +61,7 @@ export const TextSingleLineInput = (single: TextSingleLineInputInterface): JSX.E
     
     return (
         <div className="flex flex-col mb-4">
-            <label className="mb-2 uppercase font-bold text-lg text-grey-darkest">{single.title}</label>
+            <label className="mb-2 font-bold text-lg text-grey-darkest">{single.title}</label>
             <input onKeyUp={single.onKeyUp} className={classNames()} type="text" id={single.id}/>
             <BasicTextErrorMessage message={single.error}/>
         </div>
