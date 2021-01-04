@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button } from "../components/Buttons";
-import { TextSingleLineInput } from "../components/Inputs";
-import { createTrackAsync } from "../store/track/trackEvent";
-import { useValidation } from "../lib/validation";
-import { trackNameSelector } from "../store/track/trackSlice";
+import { Button } from "../../components/Buttons";
+import { TextSingleLineInput } from "../../components/Inputs";
+import { createTrackAsync } from "../../store/track/trackEvent";
+import { useValidation } from "../../lib/validation";
+import { trackNameSelector } from "../../store/track/trackSlice";
 
 export const Begin = (): JSX.Element => {
     const trackNames = useSelector(trackNameSelector);
