@@ -2,11 +2,12 @@ import { Button } from '../../components/Buttons';
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { useDispatch, useSelector } from "react-redux";
 import { deselectLayer, SelectedLayer, tracksSelector } from "../../store/track/trackSlice";
-import { addSoundAsync } from "../../store/track/trackEvent";
+import { addNoteAsync, editSynthForLayerAsync } from "../../store/track/trackEvent";
 import { Dispatch } from "react";
 import { Audio } from "../../audio/audio";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Accordion } from "../../components/accordion/Accordion";
+import { SynthSelector } from '../layers/SynthSelector';
 
 interface SoundsPanelProps {
     hidden: boolean;
@@ -32,10 +33,19 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
         dispatch(deselectLayer());
     }
 
+    const onSynthSelectedHandler = (v: string): void => {
+        dispatch(editSynthForLayerAsync(v, currentSelectedLayer.layerId, trackId));
+    }
+
     return (
         <div className="w-full px-4 overflow-hidden">
             <h1 className="text-xl p-2">Editing Layer</h1>
-            <h2 className="text-lg p-2">This layer is using a {synthName}</h2>
+            <Accordion title={"This layer is using a " + synthName + ". Click here to edit"}>
+                <SynthSelector
+                    synthId={synthKey}
+                    onSynthSelected={onSynthSelectedHandler}
+                />
+            </Accordion>
             <Accordion title="Choose sounds too add to the layer then close the panel">
                 <div className="grid grid-cols-8 gap-4">
                     {buttons}
@@ -61,7 +71,7 @@ const buildSoundButtons = (
           
         const onClickHandler = async (): Promise<void> => {
             await Audio.playNoteFromSynth(key, synth);
-            dispatch(addSoundAsync(key, currentSelectedLayer.layerId, trackId));
+            dispatch(addNoteAsync(key, currentSelectedLayer.layerId, trackId));
         };
         
         elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);

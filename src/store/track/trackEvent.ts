@@ -65,6 +65,15 @@ export const addLayerAsync = (trackId: string, synth: string, loop: boolean): Ap
     }));
 };
 
+export const editSynthForLayerAsync = (synthId: string, layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.layers[layerId].synth = synthId;
+    await Context.get().database.updateTrack(track);
+    dispatch(updateTrack({
+        track: track
+    }));
+}
+
 export const deleteLayerAsync = (layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
     const track = deepCopy(fetchTrack(getState, trackId));
     delete track.layers[layerId];
@@ -74,7 +83,7 @@ export const deleteLayerAsync = (layerId: string, trackId: string): AppThunk => 
     }));
 };
 
-export const addSoundAsync = (soundId: string, layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+export const addNoteAsync = (soundId: string, layerId: string, trackId: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
     const track = deepCopy(fetchTrack(getState, trackId));
     track.layers[layerId].sounds.push({
         id: soundId
