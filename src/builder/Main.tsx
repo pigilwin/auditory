@@ -11,7 +11,7 @@ import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
 import { LayerPanel } from './layers/panel';
 import { Welcome } from './Welcome';
-import { Begin } from './begin/Index';
+import { Begin } from './Begin';
 import { Title } from "./Title";
 import { ConfigureNotePanel } from './ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
