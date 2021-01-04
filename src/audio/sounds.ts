@@ -4,7 +4,7 @@ interface SoundMap {
 
 interface Sound {
   name: string;
-  toneCode: string;
+  toneCode: string | null;
 }
 
 const sounds: SoundMap = {
@@ -122,7 +122,7 @@ const sounds: SoundMap = {
   },
   "empty-space": {
     name: 'Empty',
-    toneCode: ''
+    toneCode: null
   }
 };
 
@@ -148,10 +148,10 @@ export const getName = (id: string): string | null => {
   return sounds[id].name;
 }
 
-export const getToneCode = (id: string): string => {
+export const getToneCode = (id: string): string | null => {
 
   if (sounds[id] === undefined) {
-    return '';
+    return null;
   }
 
   return sounds[id].toneCode;

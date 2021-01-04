@@ -34,7 +34,7 @@ export class Audio {
 
             const layer = track.layers[layerId];
 
-            const notes: PartableSound[] = [];
+            const notes: SoundsToToneJsConversionLayer[] = [];
             
             /**
              * Create a new synth for the audio to be bound to
@@ -60,12 +60,24 @@ export class Audio {
             let i: number = 0;
 
             for (const sound of layer.sounds){
-                notes.push({
-                    note: getToneCode(sound.id),
-                    duration: '8n',
-                    velocity: 0.9,
-                    time: "0:" + i
-                });
+
+                const toneCode = getToneCode(sound.id);
+                
+                /**
+                 * We have encountered an empty space,
+                 * Don't add this to the list however
+                 * do increment the timer to simulate a
+                 * space
+                 */
+                if (toneCode !== null) {
+                    notes.push({
+                        note: toneCode,
+                        duration: '8n',
+                        velocity: 0.9,
+                        time: "0:" + i
+                    });
+                }
+
                 i += 2;
             }
 
@@ -73,7 +85,7 @@ export class Audio {
              * Apply the sounds to the part, each part will play
              * simultaneously at the time and duration specified
              */
-            const synthPart = new Part<PartableSound>((time, note: PartableSound) => {
+            const synthPart = new Part<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
                 synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
             }, notes);
             
@@ -96,6 +108,16 @@ export class Audio {
 
     public static async playNoteFromSynth(key: string, synth: string): Promise<void>
     {
+        const toneCode = getToneCode(key);
+
+        /**
+         * We have encountered an empty space,
+         * moving along as this has no sound
+         */
+        if (toneCode === null) {
+            return;
+        }
+
         /**
          * If the audio is already playing
          * then stop it and cancel the process
@@ -123,7 +145,7 @@ export class Audio {
         /**
          * Play the note
          */
-        synthObject.triggerAttack(getToneCode(key));
+        synthObject.triggerAttack(toneCode);
     }
 
     public static isPlaying(): boolean {
@@ -138,7 +160,7 @@ export class Audio {
     }
 }
 
-interface PartableSound {
+interface SoundsToToneJsConversionLayer {
     note: string;
     duration: Time;
     time: string;
