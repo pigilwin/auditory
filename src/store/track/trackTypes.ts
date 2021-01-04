@@ -17,6 +17,7 @@ interface Control {
 export interface Layer {
     sounds: LayerPart[];
     synth: string;
+    loop: boolean;
 }
 export interface LayerMap {
     [id: string]: Layer;

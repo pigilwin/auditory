@@ -51,11 +51,12 @@ export const deleteTrackAsync = (id: string): AppThunk => async (dispatch: AppDi
 };
 
 
-export const addLayerAsync = (trackId: string, synth: string): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
+export const addLayerAsync = (trackId: string, synth: string, loop: boolean): AppThunk => async (dispatch: AppDispatch, getState: RootStateHook) => {
     const track = deepCopy(fetchTrack(getState, trackId));
     track.layers[v4()] = {
         sounds: [],
-        synth: synth
+        synth: synth,
+        loop: loop
     };
     await Context.get().database.updateTrack(track);
     dispatch(closeCreateLayer());

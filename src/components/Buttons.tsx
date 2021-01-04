@@ -4,6 +4,7 @@ interface ButtonConfiguration {
     title: string;
     onClick: MouseEventHandler<HTMLButtonElement>;
     disabled: boolean;
+    additionalClasses?: string[];
 }
 
 const defaultClasses: string[] = [
@@ -16,9 +17,15 @@ const defaultClasses: string[] = [
     'hover:bg-green-600'
 ];
 
-export const Button = ({onClick, disabled, title}: ButtonConfiguration): JSX.Element => {
+export const Button = ({onClick, disabled, title, additionalClasses}: ButtonConfiguration): JSX.Element => {
     const classes = Array.from(defaultClasses);
     classes.push('bg-indigo-700');
+
+    if (additionalClasses !== undefined) {
+        for(const className of additionalClasses){
+            classes.push(className);
+        }
+    }
 
     return (
         <button onClick={onClick} disabled={disabled} className={classes.join(' ')}>{title}</button>
