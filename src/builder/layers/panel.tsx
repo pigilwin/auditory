@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { idToSynthMap } from "../../audio/synthGenerator";
 import { Button } from "../../components/Buttons";
 import { ToggleSwitch } from "../../components/Inputs";
-import { PanelTitle } from "../../components/Panel";
 import { addLayerAsync } from "../../store/track/trackEvent";
 import { closeCreateLayer, currentlyAddingLayerSelector } from "../../store/track/trackSlice";
 
@@ -43,7 +42,7 @@ export const LayerPanel = ({trackId}: LayerPanelProps): JSX.Element | null => {
     
     return (
         <div className="w-full px-4 overflow-hidden">
-            <PanelTitle title="New Layer"/>
+            <h1 className="text-xl p-2">New Layer</h1>
             <p className="text-center">Choose a synth too create a new layer</p>
             <div className="grid grid-cols-8 gap-4">
                 {synths}
