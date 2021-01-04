@@ -1,4 +1,4 @@
-import { start, context, Transport, Part } from 'tone';
+import { start, context, Transport, Part, Pattern } from 'tone';
 import { getToneCode } from './sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
@@ -81,20 +81,39 @@ export class Audio {
                 i += 2;
             }
 
-            /**
-             * Apply the sounds to the part, each part will play
-             * simultaneously at the time and duration specified
-             */
-            const synthPart = new Part<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
-                synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
-            }, notes);
-            
-            /**
-             * Start the synth, this will be applied to 
-             * the Transport then the sound will start
-             * once the Transport has been started
-             */
-            synthPart.start();
+
+
+            if (layer.loop) {
+
+                /**
+                 * Apply the sounds to the part, each part will play
+                 * simultaneously at the time and duration specified
+                 */
+                const synthPart = new Pattern<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
+                    synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
+                }, notes);
+                /**
+                 * Start the synth, this will be applied to 
+                 * the Transport then the sound will start
+                 * once the Transport has been started
+                 */
+                synthPart.start();
+
+            } else {
+                /**
+                 * Apply the sounds to the part, each part will play
+                 * simultaneously at the time and duration specified
+                 */
+                const synthPart = new Part<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
+                    synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
+                }, notes);
+                /**
+                 * Start the synth, this will be applied to 
+                 * the Transport then the sound will start
+                 * once the Transport has been started
+                 */
+                synthPart.start();
+            }
         }
 
         Transport.swing = track.control.panner;
@@ -145,7 +164,7 @@ export class Audio {
         /**
          * Play the note
          */
-        synthObject.triggerAttack(toneCode);
+        synthObject.triggerAttackRelease(toneCode, '8n');
     }
 
     public static isPlaying(): boolean {
