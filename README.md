@@ -42,6 +42,7 @@ Multiple layers can be used within one track to create overlapping sounds
 
 ## What needs to be done?
 
+- Allow layers to be muted
 - Allow note length to be configured
 - Allow synths to be configured via the add new layer screen or the edit layer screen.
 - Add settings page to allow pre configuration for layers
