@@ -1,13 +1,11 @@
-import { Dispatch } from "react";
-import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { useDispatch, useSelector } from "react-redux";
 import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
-import { addNoteAsync, editSynthForLayerAsync } from "../../store/track/trackEvent";
-import { Audio } from "../../audio/audio";
+import { editSynthForLayerAsync } from "../../store/track/trackEvent";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Accordion, Button } from "../../components/components";
 import { SynthSelector } from '../layers/SynthSelector';
 import { SelectedLayer } from "../../store/track/trackTypes";
+import { NoteSelector } from "./NoteSelector";
 
 interface SoundsPanelProps {
     hidden: boolean;
@@ -25,7 +23,6 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
     }
     
     const synthKey = tracks[trackId].layers[currentSelectedLayer].synth;
-    const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer, synthKey);
     const synthName = fetchSynthName(synthKey);
     
 
@@ -47,35 +44,15 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
                 />
             </Accordion>
             <Accordion title="Choose sounds too add to the layer then close the panel">
-                <div className="grid grid-cols-8 gap-4">
-                    {buttons}
-                </div>
+                <NoteSelector
+                    trackId={trackId}
+                    layerId={currentSelectedLayer}
+                    synthKey={synthKey}
+                />
             </Accordion>
             <div className="w-full text-center mt-2">
                 <Button disabled={false} title="Finish editting layer" onClick={closeLayer}/>
             </div>
         </div>
     );
-}
-
-const buildSoundButtons = (
-    dispatch: Dispatch<any>, 
-    trackId: string, 
-    currentSelectedLayer: SelectedLayer,
-    synth: string
-): JSX.Element[] => {
-    const elements: JSX.Element[] = [];
-    const sounds: SoundForDisplay = getSoundsForDisplay();
-    
-    for (const key in sounds) {
-          
-        const onClickHandler = async (): Promise<void> => {
-            await Audio.playNoteFromSynth(key, synth);
-            dispatch(addNoteAsync(key, currentSelectedLayer, trackId));
-        };
-        
-        elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);
-    }
-    
-    return elements;
 }
