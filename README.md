@@ -45,3 +45,7 @@ Multiple layers can be used within one track to create overlapping sounds
 - Allow note length to be configured
 - Allow synths to be configured via the add new layer screen or the edit layer screen.
 - Add settings page to allow pre configuration for layers
+- Add BPM changer to controls
+- Add custom track view screen
+- Add generate random track button on load
+- Make about page more useful, more detailed and looking professional
