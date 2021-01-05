@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { Button } from "../components/Buttons";
-import { TextSingleLineInput } from "../components/Inputs";
-import { useValidation } from "../lib/validation";
-import { createTrackAsync } from "../store/track/trackEvent";
-import { trackNameSelector } from "../store/track/trackSlice";
+import { TextSingleLineInput, Button } from "../../components/components";
+import { useValidation } from "../../lib/validation";
+import { createTrackAsync } from "../../store/track/trackEvent";
+import { trackNameSelector } from "../../store/track/trackSlice";
 
-export const Begin = (): JSX.Element => {
+export const CreateNew = (): JSX.Element => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const trackNames = useSelector(trackNameSelector);
     const [state, setFormState, validate, errors] = useValidation({
         trackName: {
@@ -41,28 +38,22 @@ export const Begin = (): JSX.Element => {
             trackName: value
         });
     };
-
-    const loadExistingTracksClickHandler = (): void => {
-        history.push('/load');
-    };
-
+    
+    
     return (
-        <div className="container mx-auto flex flex-col w-1/2">
-            <h1 className="text-2xl text-center">To begin using sounds, either create a new track below or view exisitng tracks.</h1>
+        <div className="container w-1/2">
+            <h1 className="text-2xl w-full text-center">Create New</h1>
             <TextSingleLineInput 
                 error={errors.trackName} 
                 id="track-name" 
                 title="Track Name"
                 onKeyUp={saveTrackNameHandler}
             />
-            <div className="flex flex-row">
-                <div className="w-1/2 text-center">
-                    <Button disabled={false} title="Create New Track" onClick={createNewTrackClickHandler}/>
-                </div>
-                <div className="w-1/2 text-center">
-                    <Button disabled={false} title="Load Existing Tracks" onClick={loadExistingTracksClickHandler}/>
-                </div>
-            </div>
+            <Button
+                disabled={false} 
+                title="Create New Track" 
+                onClick={createNewTrackClickHandler}
+            />
         </div>
     );
-};
+}

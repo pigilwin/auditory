@@ -4,7 +4,6 @@ import {
   Route
 } from 'react-router-dom';
 import { AboutPanel } from './about/About';
-import { LoadPanel } from './load/Load';
 import { NavBar } from './components/NavBar';
 import { Main } from './builder/Main';
 import { useEffect } from 'react';
@@ -26,9 +25,6 @@ export const App = (): JSX.Element => {
       <Switch>
         <Route path="/about">
           <AboutPanel/>
-        </Route>
-        <Route path="/load">
-          <LoadPanel/>
         </Route>
         <Route path="/settings">
           <Settings/>

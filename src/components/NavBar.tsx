@@ -9,7 +9,6 @@ export const NavBar = (): JSX.Element => {
                 </div>
                 <div className="text-sm lg:flex-grow text-center lg:text-right">
                     <NavButton to="/" id="home-button" title="Home"/>
-                    <NavButton to="/load" id="load-button" title="Load"/>
                     <NavButton to="/settings" id="settings-button" title="Settings"/>
                     <NavButton to="/about" id="about-button" title="About"/>
                 </div>
