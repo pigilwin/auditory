@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SavedTrack, SavedTrackMap } from './trackTypes';
 import { RootState } from '../rootReducer';
-import { deepCopy } from '../../lib/deepClone';
 
 export interface SelectedNote {
     index: number;
@@ -105,9 +104,11 @@ const trackSlice = createSlice({
             return newState;
         },
         clearCurrentTrack(state) {
-            const tracks = deepCopy(state.tracks);
-            const newState = initialState;
-            newState.tracks = tracks;
+            const newState = state;
+            newState.currentTrackId = '';
+            newState.currentlyAddingNewLayer = false;
+            newState.currentlySelectedLayer = initialState.currentlySelectedLayer;
+            newState.currentlySelectedNote = initialState.currentlySelectedNote;
             return newState;
         }
     }
