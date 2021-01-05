@@ -8,18 +8,18 @@ interface ButtonConfiguration {
 }
 
 const defaultClasses: string[] = [
-    'p-8',
-    'text-indigo-100',
+    'p-4',
     'transition-colors',
     'duration-150',
     'rounded-lg',
     'disabled:opacity-50',
-    'hover:bg-green-600'
+    'border-2'
 ];
 
 export const Button = ({onClick, disabled, title, additionalClasses}: ButtonConfiguration): JSX.Element => {
     const classes = Array.from(defaultClasses);
-    classes.push('bg-indigo-700');
+    classes.push('border-indigo-700');
+    classes.push('hover:bg-indigo-700');
 
     if (additionalClasses !== undefined) {
         for(const className of additionalClasses){
@@ -34,7 +34,8 @@ export const Button = ({onClick, disabled, title, additionalClasses}: ButtonConf
 
 export const DeleteButton = ({onClick, title, disabled}: ButtonConfiguration): JSX.Element => {
     const classes = Array.from(defaultClasses);
-    classes.push('bg-red-500');
+    classes.push('border-red-500');
+    classes.push('hover:bg-red-500');
     return (
         <button onClick={onClick} disabled={disabled} className={classes.join(' ')}>{title}</button>
     );
