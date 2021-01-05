@@ -19,9 +19,9 @@ const trackSlice = createSlice({
     name: 'track',
     initialState,
     reducers: {
-        loadTracks(state, action: PayloadAction<LoadTracks>) {
+        loadTracks(state, action: PayloadAction<SavedTrackMap>) {
             const newState = state;
-            newState.tracks = action.payload.tracks;
+            newState.tracks = action.payload;
             return newState;
         },
         loadTrack(state, action: PayloadAction<string>) {
@@ -29,15 +29,15 @@ const trackSlice = createSlice({
             newState.current.trackId = action.payload;
             return newState;
         },
-        createTrack(state, action: PayloadAction<CreateTrack>) {
+        createTrack(state, action: PayloadAction<SavedTrack>) {
             const newState = state;
-            newState.current.trackId = action.payload.track.id;
-            newState.tracks[action.payload.track.id] = action.payload.track;
+            newState.current.trackId = action.payload.id;
+            newState.tracks[action.payload.id] = action.payload;
             return newState;
         },
-        updateTrack(state, action: PayloadAction<UpdateTrack>) {
+        updateTrack(state, action: PayloadAction<SavedTrack>) {
             const newState = state;
-            newState.tracks[action.payload.track.id] = action.payload.track;
+            newState.tracks[action.payload.id] = action.payload;
             return newState;
         },
         deleteTrack(state, action: PayloadAction<string>) {
@@ -92,18 +92,6 @@ const trackSlice = createSlice({
     }
 });
 
-interface CreateTrack {
-    track: SavedTrack;
-}
-
-interface LoadTracks {
-    tracks: SavedTrackMap;
-}
-
-interface UpdateTrack {
-    track: SavedTrack;
-}
-
 export const reducer = trackSlice.reducer;
 export const { 
     createTrack, 
@@ -127,8 +115,8 @@ export const currentTrackIdSelector = (state: RootState): string => state.trackR
 export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;
 export const trackNameSelector = (state: RootState): string[] =>  {
     const names: string[] = [];
-    Object.keys(state.trackReducer.tracks).forEach(key => {
+    for (const key in state.trackReducer.tracks) {
         names.push(state.trackReducer.tracks[key].name);
-    });
+    }
     return names;
 }
