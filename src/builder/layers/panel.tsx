@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../../components/Buttons";
-import { ToggleSwitch } from "../../components/Inputs";
+import { Button, ToggleSwitch} from "../../components/components";
 import { addLayerAsync } from "../../store/track/trackEvent";
 import { closeCreateLayer, currentlyAddingLayerSelector } from "../../store/track/trackSlice";
 import { SynthSelector } from "./SynthSelector";

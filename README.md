@@ -42,8 +42,6 @@ Multiple layers can be used within one track to create overlapping sounds
 
 ## What needs to be done?
 
-- Allow note length to be extended
-- Allow synths to be changed via the edit layer screen.
-- Allow synths to be customised via the add new layer screen or the edit layer screen.
-- When selecting a synth on the add new synth screen/ edit synth screen, play a character when choosing a synth to get a feel of the synth before confirming the choice.
+- Allow note length to be configured
+- Allow synths to be configured via the add new layer screen or the edit layer screen.
 - Add settings page to allow pre configuration for layers

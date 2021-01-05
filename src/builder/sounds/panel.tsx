@@ -1,12 +1,11 @@
-import { Button } from '../../components/Buttons';
+import { Dispatch } from "react";
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { useDispatch, useSelector } from "react-redux";
 import { deselectLayer, SelectedLayer, tracksSelector } from "../../store/track/trackSlice";
 import { addNoteAsync, editSynthForLayerAsync } from "../../store/track/trackEvent";
-import { Dispatch } from "react";
 import { Audio } from "../../audio/audio";
 import { fetchSynthName } from "../../audio/synthGenerator";
-import { Accordion } from "../../components/accordion/Accordion";
+import { Accordion, Button } from "../../components/components";
 import { SynthSelector } from '../layers/SynthSelector';
 
 interface SoundsPanelProps {

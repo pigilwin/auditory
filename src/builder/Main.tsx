@@ -12,7 +12,7 @@ import { SoundsPanel } from "./sounds/panel";
 import { LayerPanel } from './layers/panel';
 import { Welcome } from './Welcome';
 import { Begin } from './Begin';
-import { Title } from "./Title";
+import { Title } from "../components/components";
 import { ConfigureNotePanel } from './ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";

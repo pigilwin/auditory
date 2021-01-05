@@ -10,6 +10,7 @@ import { Main } from './builder/Main';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadTracksAsync } from './store/track/trackEvent';
+import { Settings } from './settings/Settings';
 
 export const App = (): JSX.Element => {
 
@@ -28,6 +29,9 @@ export const App = (): JSX.Element => {
         </Route>
         <Route path="/load">
           <LoadPanel/>
+        </Route>
+        <Route path="/settings">
+          <Settings/>
         </Route>
         <Route path="/">
           <Main/>

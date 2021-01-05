@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Title } from "../builder/Title"
-import { Button, DeleteButton } from "../components/Buttons";
+import { Title, Button, DeleteButton } from "../components/components";
 import { deleteTrackAsync } from "../store/track/trackEvent";
 import { loadTrack, tracksSelector } from "../store/track/trackSlice";
 import { acceptWelcomeMessage } from "../store/welcome/welcomeSlice";

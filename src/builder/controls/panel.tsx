@@ -1,9 +1,8 @@
-import { RangeInput } from "../../components/Inputs";
+import { RangeInput, Play, Stop } from "../../components/components";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
 import { updateVolumeAsync, updatePannerAsync } from "../../store/track/trackEvent";
 import { Audio } from "../../audio/audio";
-import { Play, Stop } from "../../components/icon";
 
 interface ControlPanelProps {
     track: SavedTrack;
