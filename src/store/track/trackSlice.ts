@@ -12,7 +12,8 @@ const initialState: TrackState =  {
             layerId: ''
         },
         addingLayer: false
-    }
+    },
+    isPlaying: false
 };
 
 const trackSlice = createSlice({
@@ -88,6 +89,16 @@ const trackSlice = createSlice({
             const newState = state;
             newState.current = initialState.current;
             return newState;
+        },
+        play(state) {
+            const newState = state;
+            newState.isPlaying = true;
+            return newState;
+        },
+        pause(state) {
+            const newState = state;
+            newState.isPlaying = false;
+            return newState;
         }
     }
 });
@@ -105,9 +116,12 @@ export const {
     deselectLayer, 
     editNoteForLayer,
     unselectNote,
-    clearCurrentTrack
+    clearCurrentTrack,
+    play,
+    pause
 } = trackSlice.actions;
 
+export const currentlyPlayingSelector = (state: RootState): boolean => state.trackReducer.isPlaying;
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.current.selectedNote;
 export const currentlySelectedLayerSelector = (state: RootState): SelectedLayer => state.trackReducer.current.selectedLayer;
 export const currentlyAddingLayerSelector = (state: RootState): boolean => state.trackReducer.current.addingLayer;
