@@ -28,9 +28,9 @@ export const LoadPanel = (): JSX.Element | null => {
     }
 
     return (
-        <div className="container w-1/2 flex flex-wrap overflow-hidden">
+        <div className="w-full flex flex-wrap overflow-hidden">
             <h1 className="text-2xl w-full text-center">Load</h1>
-            <ul className="justify-center ml-2">
+            <ul className="justify-center ml-2 w-full">
                 {elements}
             </ul>
         </div>
@@ -58,14 +58,10 @@ const SavedTrackListItem = ({id, name, date}: SavedTrackListItemProps): JSX.Elem
     };
 
     return (
-        <li className="p-4 w-full mx-auto flex flex-row shadow-md rounded-md bg-gray-300">
-            <div className="w-1/3 p-2 my-auto">
-                <h4 className="text-center text-2xl">{name}</h4>
-            </div>
-            <div className="w-1/3 p-2 text-center">
+        <li className="p-2 w-full shadow-md rounded-md bg-gray-300">
+            <h4 className="text-center text-2xl">{name}</h4>
+            <div className="grid grid-cols-2 p-2 gap-4">
                 <Button disabled={false} title="Load Track" onClick={clickHandler}/>
-            </div>
-            <div className="w-1/3 p-2 text-center">
                 <DeleteButton disabled={false} title="Delete Track" onClick={deleteHandler}/>
             </div>
         </li>

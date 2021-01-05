@@ -41,7 +41,7 @@ export const CreateNew = (): JSX.Element => {
     
     
     return (
-        <div className="container w-1/2">
+        <div className="container p-5">
             <h1 className="text-2xl w-full text-center">Create New</h1>
             <TextSingleLineInput 
                 error={errors.trackName} 
