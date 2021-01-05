@@ -102,6 +102,12 @@ const trackSlice = createSlice({
             const newState = state;
             newState.currentlySelectedNote = initialState.currentlySelectedNote;
             return newState;
+        },
+        clearCurrentTrack(state) {
+            const tracks = state.tracks;
+            const newState = initialState;
+            newState.tracks = tracks;
+            return newState;
         }
     }
 });
@@ -130,7 +136,8 @@ export const {
     selectLayer, 
     deselectLayer, 
     editNoteForLayer,
-    unselectNote
+    unselectNote,
+    clearCurrentTrack
 } = trackSlice.actions;
 
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;

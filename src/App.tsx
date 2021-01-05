@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import { AboutPanel } from './about/About';
-import { NavBar } from './components/NavBar';
+import { NavBar } from './components/Nav/NavBar';
 import { Main } from './builder/Main';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';

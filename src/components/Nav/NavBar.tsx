@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import { GoBack } from "./GoBack";
 
 export const NavBar = (): JSX.Element => {
     return (
@@ -7,6 +8,7 @@ export const NavBar = (): JSX.Element => {
                 <div className="lg:flex-grow text-center lg:text-left">
                     <h1 className="text-3xl">Sounds</h1>
                 </div>
+                <GoBack/>
                 <div className="text-sm lg:flex-grow text-center lg:text-right">
                     <NavButton to="/" id="home-button" title="Home"/>
                     <NavButton to="/settings" id="settings-button" title="Settings"/>
