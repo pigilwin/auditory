@@ -58,9 +58,9 @@ export const Main = (): JSX.Element => {
             <div className="w-full">
                 <Title title={"Track Name: " + track.name}/>
             </div>
-            <SoundsPanel trackId={track.id} currentSelectedLayer={currentLayer} hidden={currentLayer.layerId.length === 0}/>
+            <SoundsPanel trackId={track.id} currentSelectedLayer={currentLayer} hidden={currentLayer.length === 0}/>
             <LayerPanel trackId={track.id}/>
-            <LayerContainer hidden={currentLayer.layerId.length > 0 || addingNewLayer} track={track}/>
+            <LayerContainer hidden={currentLayer.length > 0 || addingNewLayer} track={track}/>
             <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
             <ControlPanel track={track}/>
         </div>

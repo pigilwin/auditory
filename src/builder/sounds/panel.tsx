@@ -1,12 +1,13 @@
 import { Dispatch } from "react";
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { useDispatch, useSelector } from "react-redux";
-import { deselectLayer, SelectedLayer, tracksSelector } from "../../store/track/trackSlice";
+import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
 import { addNoteAsync, editSynthForLayerAsync } from "../../store/track/trackEvent";
 import { Audio } from "../../audio/audio";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Accordion, Button } from "../../components/components";
 import { SynthSelector } from '../layers/SynthSelector';
+import { SelectedLayer } from "../../store/track/trackTypes";
 
 interface SoundsPanelProps {
     hidden: boolean;
@@ -23,7 +24,7 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
         return null;
     }
     
-    const synthKey = tracks[trackId].layers[currentSelectedLayer.layerId].synth;
+    const synthKey = tracks[trackId].layers[currentSelectedLayer].synth;
     const buttons = buildSoundButtons(dispatch, trackId, currentSelectedLayer, synthKey);
     const synthName = fetchSynthName(synthKey);
     
@@ -33,7 +34,7 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
     }
 
     const onSynthSelectedHandler = (v: string): void => {
-        dispatch(editSynthForLayerAsync(v, currentSelectedLayer.layerId, trackId));
+        dispatch(editSynthForLayerAsync(v, currentSelectedLayer, trackId));
     }
 
     return (
@@ -70,7 +71,7 @@ const buildSoundButtons = (
           
         const onClickHandler = async (): Promise<void> => {
             await Audio.playNoteFromSynth(key, synth);
-            dispatch(addNoteAsync(key, currentSelectedLayer.layerId, trackId));
+            dispatch(addNoteAsync(key, currentSelectedLayer, trackId));
         };
         
         elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);

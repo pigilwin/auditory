@@ -26,3 +26,20 @@ export interface LayerMap {
 export interface LayerPart {
     id: string;
 }
+
+export interface TrackState {
+    tracks: SavedTrackMap;
+    current: {
+        trackId: string;
+        selectedLayer: string;
+        selectedNote: {
+            index: number;
+            layerId: string;
+        },
+        addingLayer: boolean;
+    }
+}
+
+export type Current = TrackState['current'];
+export type SelectedNote = Current['selectedNote'];
+export type SelectedLayer = Current['selectedLayer'];

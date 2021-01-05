@@ -1,35 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SavedTrack, SavedTrackMap } from './trackTypes';
+import { SavedTrack, SavedTrackMap, SelectedLayer, SelectedNote, TrackState } from './trackTypes';
 import { RootState } from '../rootReducer';
-
-export interface SelectedNote {
-    index: number;
-    layerId: string;
-}
-
-export interface SelectedLayer {
-    layerId: string;
-}
-
-export interface TrackState {
-    tracks: SavedTrackMap;
-    currentTrackId: string;
-    currentlySelectedLayer: SelectedLayer;
-    currentlySelectedNote: SelectedNote;
-    currentlyAddingNewLayer: boolean;
-}
 
 const initialState: TrackState =  {
     tracks: {},
-    currentTrackId: '',
-    currentlySelectedLayer: {
-        layerId: ''
-    },
-    currentlySelectedNote: {
-        index: 0,
-        layerId: ''
-    },
-    currentlyAddingNewLayer: false
+    current: {
+        trackId: '',
+        selectedLayer: '',
+        selectedNote: {
+            index: 0,
+            layerId: ''
+        },
+        addingLayer: false
+    }
 };
 
 const trackSlice = createSlice({
@@ -43,12 +26,12 @@ const trackSlice = createSlice({
         },
         loadTrack(state, action: PayloadAction<string>) {
             const newState = state;
-            newState.currentTrackId = action.payload;
+            newState.current.trackId = action.payload;
             return newState;
         },
         createTrack(state, action: PayloadAction<CreateTrack>) {
             const newState = state;
-            newState.currentTrackId = action.payload.track.id;
+            newState.current.trackId = action.payload.track.id;
             newState.tracks[action.payload.track.id] = action.payload.track;
             return newState;
         },
@@ -65,50 +48,45 @@ const trackSlice = createSlice({
              * If the current user deletes the track they are currently 
              * viewing then unassign the track that is being viewed 
              */
-            if (action.payload === newState.currentTrackId) {
-                newState.currentTrackId = initialState.currentTrackId;
+            if (action.payload === newState.current.trackId) {
+                newState.current.trackId = initialState.current.trackId;
             }
 
             return newState;
         },
         createLayer(state) {
             const newState = state;
-            newState.currentlyAddingNewLayer = true;
+            newState.current.addingLayer = true;
             return newState;
         },
         closeCreateLayer(state) {
             const newState = state;
-            newState.currentlyAddingNewLayer = initialState.currentlyAddingNewLayer;
+            newState.current.addingLayer = initialState.current.addingLayer;
             return newState;
         },
         selectLayer(state, action: PayloadAction<string>) {
             const newState = state;
-            newState.currentlySelectedLayer = {
-                layerId: action.payload
-            };
+            newState.current.selectedLayer = action.payload;
             return newState;
         },
         deselectLayer(state) {
             const newState = state;
-            newState.currentlySelectedLayer = initialState.currentlySelectedLayer;
+            newState.current.selectedLayer = initialState.current.selectedLayer;
             return newState;
         },
         editNoteForLayer(state, action: PayloadAction<SelectedNote>) {
             const newState = state;
-            newState.currentlySelectedNote = action.payload;
+            newState.current.selectedNote = action.payload;
             return newState;
         },
         unselectNote(state) {
             const newState = state;
-            newState.currentlySelectedNote = initialState.currentlySelectedNote;
+            newState.current.selectedNote = initialState.current.selectedNote;
             return newState;
         },
         clearCurrentTrack(state) {
             const newState = state;
-            newState.currentTrackId = '';
-            newState.currentlyAddingNewLayer = false;
-            newState.currentlySelectedLayer = initialState.currentlySelectedLayer;
-            newState.currentlySelectedNote = initialState.currentlySelectedNote;
+            newState.current = initialState.current;
             return newState;
         }
     }
@@ -142,10 +120,10 @@ export const {
     clearCurrentTrack
 } = trackSlice.actions;
 
-export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.currentlySelectedNote;
-export const currentlySelectedLayerSelector = (state: RootState): SelectedLayer => state.trackReducer.currentlySelectedLayer;
-export const currentlyAddingLayerSelector = (state: RootState): boolean => state.trackReducer.currentlyAddingNewLayer;
-export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.currentTrackId;
+export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.current.selectedNote;
+export const currentlySelectedLayerSelector = (state: RootState): SelectedLayer => state.trackReducer.current.selectedLayer;
+export const currentlyAddingLayerSelector = (state: RootState): boolean => state.trackReducer.current.addingLayer;
+export const currentTrackIdSelector = (state: RootState): string => state.trackReducer.current.trackId;
 export const tracksSelector = (state: RootState): SavedTrackMap => state.trackReducer.tracks;
 export const trackNameSelector = (state: RootState): string[] =>  {
     const names: string[] = [];
