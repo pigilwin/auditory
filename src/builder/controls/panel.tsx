@@ -1,5 +1,5 @@
 import { RangeInput } from "../../components/Inputs";
-import { Play, Stop } from "../../components/icon";
+import { Play, Stop } from "../../components/Icon";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { updateVolumeAsync, updatePannerAsync } from "../../store/track/trackEvent";
