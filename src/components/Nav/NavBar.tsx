@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import { Theme } from "../Theme";
 import { GoBack } from "./GoBack";
 
 export const NavBar = (): JSX.Element => {
@@ -13,6 +14,9 @@ export const NavBar = (): JSX.Element => {
                     <NavButton to="/" id="home-button" title="Home"/>
                     <NavButton to="/settings" id="settings-button" title="Settings"/>
                     <NavButton to="/about" id="about-button" title="About"/>
+                    <div className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
+                        <Theme/>
+                    </div>
                 </div>
             </div>
         </nav>
