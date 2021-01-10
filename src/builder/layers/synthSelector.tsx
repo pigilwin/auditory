@@ -1,6 +1,6 @@
 import { Audio } from "../../audio/audio";
 import { idToSynthMap } from "../../audio/synthGenerator";
-import { Button } from '../../components/components';
+import { Button } from '../../components/Inputs';
 
 interface SynthSelectorProps {
     synthId: string;

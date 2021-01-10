@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import { useDispatch } from "react-redux";
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { Audio } from "../../audio/audio";
-import { Button } from "../../components/components";
+import { Button } from "../../components/Inputs";
 import { addNoteAsync } from "../../store/track/trackEvent";
 import { SelectedLayer } from "../../store/track/trackTypes";
 

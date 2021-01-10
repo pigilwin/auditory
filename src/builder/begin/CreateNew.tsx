@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { TextSingleLineInput, Button } from "../../components/components";
+import { TextSingleLineInput, Button } from "../../components/Inputs";
 import { useValidation } from "../../lib/validation";
 import { createTrackAsync } from "../../store/track/trackEvent";
 import { trackNameSelector } from "../../store/track/trackSlice";
@@ -44,8 +44,7 @@ export const CreateNew = (): JSX.Element => {
         <div className="container p-5">
             <h1 className="text-2xl w-full text-center">Create New</h1>
             <TextSingleLineInput 
-                error={errors.trackName} 
-                id="track-name" 
+                error={errors.trackName}
                 title="Track Name"
                 onKeyUp={saveTrackNameHandler}
             />

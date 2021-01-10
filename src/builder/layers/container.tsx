@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Button, DeleteButton } from "../../components/components";
+import { Button, DeleteButton } from "../../components/Inputs";
 import { deleteLayerAsync } from "../../store/track/trackEvent";
 import { createLayer, selectLayer } from "../../store/track/trackSlice";
 import { SavedTrack, Layer } from "../../store/track/trackTypes";

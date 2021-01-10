@@ -1,4 +1,4 @@
-import { Title } from '../components/components';
+import { Title } from '../components/Title';
 
 export const Settings = (): JSX.Element => {
     return (

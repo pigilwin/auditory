@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, ToggleSwitch} from "../../components/components";
+import { Button, ToggleSwitch} from "../../components/Inputs";
 import { addLayerAsync } from "../../store/track/trackEvent";
 import { closeCreateLayer, currentlyAddingLayerSelector } from "../../store/track/trackSlice";
 import { SynthSelector } from "./SynthSelector";
@@ -52,7 +52,6 @@ export const LayerPanel = ({trackId}: LayerPanelProps): JSX.Element | null => {
                 <ToggleSwitch
                     title="Loop?"
                     value={looping}
-                    id="loop-layer"
                     onChange={onLoopChangeHandler}
                     error=""
                 />

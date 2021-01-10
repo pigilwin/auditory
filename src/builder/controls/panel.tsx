@@ -1,4 +1,5 @@
-import { RangeInput, Play, Stop } from "../../components/components";
+import { RangeInput } from "../../components/Inputs";
+import { Play, Stop } from "../../components/icon";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { updateVolumeAsync, updatePannerAsync } from "../../store/track/trackEvent";
@@ -38,8 +39,7 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
         <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow">
             <div id="tabs" className="flex justify-between">
                 <div className="w-full text-center">
-                    <RangeInput 
-                        id="volume"
+                    <RangeInput
                         min={-10}
                         max={0}
                         value={track.control.volume}
@@ -63,7 +63,6 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
                 </div>
                 <div className="w-full justify-center inline-block text-center">
                     <RangeInput
-                        id="panner"
                         min={-1}
                         max={1}
                         value={track.control.panner}
