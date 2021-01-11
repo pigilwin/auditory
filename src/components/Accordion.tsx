@@ -1,5 +1,4 @@
 import { PropsWithChildren, useState } from "react";
-import './Accordion.css';
 interface AccordionProps {
   title: string;
 }
@@ -13,16 +12,16 @@ export const Accordion = ({title, children}: PropsWithChildren<AccordionProps>):
     setOpen(!open);
   };
 
-  const classes: string[] = ['accordion'];
+  let classes: string[] = ['hidden', 'p-4'];
   if (open) {
     currentTitle = 'Click to close the panel';
-    classes.push('active');
+    classes = classes.filter(name => name !== 'hidden');
   }
 
   return (
-    <div className={classes.join(' ')}>
-      <h2 className="accordion-title cursor-pointer" onClick={onClickHandler}>{currentTitle}</h2>
-      <div className="accordion-child">
+    <div className="w-full my-2 bg-gray-100 rounded-md dark:bg-gray-600">
+      <h2 className="cursor-pointer p-4 dark:text-white" onClick={onClickHandler}>{currentTitle}</h2>
+      <div className={classes.join(' ')}>
         {children}
       </div>
     </div>

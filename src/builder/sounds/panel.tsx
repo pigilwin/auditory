@@ -3,7 +3,7 @@ import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
 import { editSynthForLayerAsync } from "../../store/track/trackEvent";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Button } from "../../components/Inputs";
-import { Accordion } from "../../components/accordion/Accordion";
+import { Accordion } from "../../components/Accordion";
 import { SynthSelector } from '../layers/SynthSelector';
 import { SelectedLayer } from "../../store/track/trackTypes";
 import { NoteSelector } from "./NoteSelector";
