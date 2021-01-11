@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState, RootStateHook } from '../rootReducer';
 import { SavedTrack, SavedTrackMap, SelectedLayer, SelectedNote, TrackState } from './trackTypes';
 import { loadTracksReducer, loadTrackReducer, createTrackReducer, updateTrackReducer, deleteTrackReducer } from './actions/trackActions'; 
 import { clearCurrentTrackReducer, pauseReducer, playReducer } from './actions/controlActions';
 import { closeCreateLayerReducer, createLayerReducer, deselectLayerReducer, selectLayerReducer } from './actions/layerActions';
+import { editNoteForLayerReducer, unselectNoteReducer } from './actions/noteActions';
 
 export const initialState: TrackState =  {
     tracks: {},
@@ -32,16 +33,8 @@ const trackSlice = createSlice({
         closeCreateLayer: closeCreateLayerReducer,
         selectLayer: selectLayerReducer,
         deselectLayer: deselectLayerReducer,
-        editNoteForLayer(state, action: PayloadAction<SelectedNote>) {
-            const newState = state;
-            newState.current.selectedNote = action.payload;
-            return newState;
-        },
-        unselectNote(state) {
-            const newState = state;
-            newState.current.selectedNote = initialState.current.selectedNote;
-            return newState;
-        },
+        editNoteForLayer: editNoteForLayerReducer,
+        unselectNote: unselectNoteReducer,
         clearCurrentTrack: clearCurrentTrackReducer,
         play: playReducer,
         pause: pauseReducer,

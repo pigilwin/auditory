@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { Audio } from "../../audio/audio";
 import { Button } from "../../components/Inputs";
-import { addNoteAsync } from "../../store/track/trackAsyncAction";
 import { SelectedLayer } from "../../store/track/trackTypes";
+import { addNoteAsync } from "../../store/track/asyncActions/asyncNoteActions";
 
 interface NoteSelectorProps {
     trackId: string;

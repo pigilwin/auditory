@@ -1,11 +1,8 @@
-import { deepCopy } from '../../lib/deepClone';
-import { RootStateHook } from '../rootReducer';
-import { AppThunk, AppDispatch } from '../store';
-import {
-    unselectNote, 
-    updateTrack,
-} from './trackSlice';
-import { TrackDatabase } from './trackDatabase';
+import { deepCopy } from "../../../lib/deepClone";
+import { RootStateHook } from "../../rootReducer";
+import { AppDispatch, AppThunk } from "../../store";
+import { TrackDatabase } from "../trackDatabase";
+import { fetchTrack, unselectNote, updateTrack } from "../trackSlice";
 
 export const addNoteAsync = (
     soundId: string, 
