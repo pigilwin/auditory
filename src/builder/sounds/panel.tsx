@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
-import { editSynthForLayerAsync } from "../../store/track/trackAsyncAction";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Button } from "../../components/Inputs";
 import { Accordion } from "../../components/Accordion";
 import { SynthSelector } from '../components/SynthSelector';
 import { SavedTrack, SelectedLayer } from "../../store/track/trackTypes";
 import { NoteSelector } from "../components/NoteSelector";
+import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
+import { editSynthForLayerAsync } from "../../store/track/asyncActions/asyncLayerActions";
 
 interface SoundsPanelProps {
     currentSelectedLayer: SelectedLayer;

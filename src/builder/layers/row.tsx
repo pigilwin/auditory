@@ -1,11 +1,11 @@
 import { DeleteButton, Button } from '../../components/Inputs';
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { NotePart } from './part';
-import { deleteLayerAsync } from "../../store/track/trackAsyncAction";
 import { Layer } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
 import { selectLayer } from '../../store/track/trackSlice';
-import { FullVolume, Mute } from '../../components/Icon';
+import { FullVolume } from '../../components/Icon';
+import { deleteLayerAsync } from '../../store/track/asyncActions/asyncLayerActions';
 
 interface LayerRowInterface {
     layer: Layer;
