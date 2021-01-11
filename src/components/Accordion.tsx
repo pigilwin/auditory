@@ -19,7 +19,7 @@ export const Accordion = ({title, children}: PropsWithChildren<AccordionProps>):
   }
 
   return (
-    <div className="w-full my-2 bg-gray-100 rounded-md dark:bg-gray-600">
+    <div className="w-full my-2 bg-gray-400 rounded-md dark:bg-gray-600">
       <h2 className="cursor-pointer p-4 dark:text-white" onClick={onClickHandler}>{currentTitle}</h2>
       <div className={classes.join(' ')}>
         {children}
