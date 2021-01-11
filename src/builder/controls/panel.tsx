@@ -36,7 +36,7 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
     console.log(isTrackRunning);
 
     return (
-        <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+        <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 shadow">
             <div id="tabs" className="flex justify-between">
                 <div className="w-full text-center">
                     <RangeInput

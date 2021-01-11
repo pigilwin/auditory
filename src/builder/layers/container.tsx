@@ -29,7 +29,7 @@ export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Ele
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full min-h-screen">
             <div className="grid grid-cols-1">
                 {layers}
             </div>

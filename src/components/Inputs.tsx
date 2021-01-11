@@ -67,7 +67,7 @@ export const TextSingleLineInput = ({error, onKeyUp, title}: TextSingleLineInput
     
     return (
         <div className="flex flex-col mb-4">
-            <label className="mb-2 font-bold text-lg text-grey-darkest">{title}</label>
+            <label className="mb-2 font-bold text-lg text-grey-darkest dark:text-white">{title}</label>
             <input onKeyUp={onKeyUp} className={classNames()} type="text"/>
             <BasicTextErrorMessage message={error}/>
         </div>
@@ -87,7 +87,9 @@ const defaultClasses: string[] = [
     'duration-150',
     'rounded-lg',
     'disabled:opacity-50',
-    'border-2'
+    'border-2',
+    'dark:text-white',
+    'hover:text-white'
 ];
 
 export const Button = ({onClick, disabled, title, additionalClasses}: ButtonProps): JSX.Element => {
