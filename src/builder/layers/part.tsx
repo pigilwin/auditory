@@ -7,7 +7,7 @@ interface LayerPartComponentProps {
     layer: string;
 }
 
-export const LayerPartComponent = ({sound, index, layer}: LayerPartComponentProps): JSX.Element => {
+export const NotePart = ({sound, index, layer}: LayerPartComponentProps): JSX.Element => {
     const dispatch = useDispatch();
     const classes: string[] = [
         "rounded",
