@@ -15,3 +15,28 @@ export const Stop = (): JSX.Element => {
         </svg>
     );
 }
+
+export const FullVolume = (): JSX.Element => {
+    return (
+        <svg height="50" viewBox="0 0 21 21" width="50" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fillRule="evenodd" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round" transform="translate(3 3)">
+                <path d="m1.5 4.5h3l5-4v14l-5-4h-3c-.55228475 0-1-.4477153-1-1v-4c0-.55228475.44771525-1 1-1zm10 8c1.3333333-1 2-2.66666667 2-5s-.6666667-4-2-5"/>
+                <path d="m11.5 5.5v4"/>
+            </g>
+        </svg>
+    );
+}
+
+export const Mute = (): JSX.Element => {
+    return (
+        <svg className="inline-block mx-auto" height="50" viewBox="0 0 21 21" width="50" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fillRule="evenodd" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round" transform="translate(3 2)">
+                <path d="m1 5.5h2.5l5-5v16l-5-5h-2.5c-.55228475 0-1-.4477153-1-1v-4c0-.55228475.44771525-1 1-1z"/>
+                <g transform="translate(10.328 5.657)">
+                    <path d="m.172 4.843 4-4"/>
+                    <path d="m4.17157288 4.84314575-4-4z"/>
+                </g>
+            </g>
+        </svg>
+    );
+}

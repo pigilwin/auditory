@@ -5,6 +5,7 @@ import { deleteLayerAsync } from "../../store/track/trackEvent";
 import { Layer } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
 import { selectLayer } from '../../store/track/trackSlice';
+import { FullVolume, Mute } from '../../components/Icon';
 
 interface LayerRowInterface {
     layer: Layer;
@@ -26,6 +27,12 @@ export const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowI
     const deleteLayer = (): void => {
         dispatch(deleteLayerAsync(layerId, trackId));
     };
+
+    const toggleMuteLayer = (): void => {
+
+    }
+
+    let muteIcon: JSX.Element = <FullVolume/>;
 
     let i: number = 0;
     for (const key in layer.sounds) {
@@ -55,8 +62,13 @@ export const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowI
             <div className="w-1/12 text-center">
                 <Button disabled={false} title="Edit" onClick={selectLayerHandler}/>
             </div>
-            <div className="w-10/12 flex flex-row rounded-md shadow-md bg-gray-300 p-1 overflow-x-auto">
+            <div className="w-9/12 flex flex-row rounded-md shadow-md bg-gray-300 p-1 overflow-x-auto">
                 {parts}
+            </div>
+            <div className="w-1/12 flex align-middle self-center">
+                <button onClick={toggleMuteLayer} className="mx-auto">
+                    {muteIcon}
+                </button>
             </div>
             <div className="w-1/12 text-center">
                 {deleteButton}
