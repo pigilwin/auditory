@@ -13,7 +13,7 @@ import { LayerPanel } from './layers/panel';
 import { Welcome } from './Welcome';
 import { Begin } from './begin/Begin';
 import { Title } from "../components/Title";
-import { ConfigureNotePanel } from './ConfigureNotePanel';
+import { ConfigureNotePanel } from './components/ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";
 
