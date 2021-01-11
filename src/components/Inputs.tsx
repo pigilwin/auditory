@@ -15,7 +15,7 @@ interface RangeInputProps extends InputProps {
 export const RangeInput = ({title, error, min, max, step, value, onChange}: RangeInputProps): JSX.Element => {
     return (
         <div className="range-slider flex flex-col">
-            <label className="text-xl mb-2">{title}</label>
+            <label className="text-xl mb-2 dark:text-white">{title}</label>
             <input 
                 onChange={onChange} 
                 type="range" 
