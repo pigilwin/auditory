@@ -77,7 +77,8 @@ export const addLayerAsync = (
     track.layers[v4()] = {
         sounds: [],
         synth: synth,
-        loop: loop
+        loop: loop,
+        muted: false
     };
     await TrackDatabase.updateTrack(track);
     dispatch(closeCreateLayer());
