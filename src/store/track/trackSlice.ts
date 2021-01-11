@@ -1,8 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SavedTrack, SavedTrackMap, SelectedLayer, SelectedNote, TrackState } from './trackTypes';
+import { 
+    SavedTrackMap, 
+    SelectedLayer, 
+    SelectedNote, 
+    TrackState 
+} from './trackTypes';
 import { RootState } from '../rootReducer';
+import { 
+    loadTracksReducer,
+    loadTrackReducer,
+    createTrackReducer,
+    updateTrackReducer,
+    deleteTrackReducer
+} from './actions/trackActions'; 
 
-const initialState: TrackState =  {
+export const initialState: TrackState =  {
     tracks: {},
     current: {
         trackId: '',
@@ -20,41 +32,11 @@ const trackSlice = createSlice({
     name: 'track',
     initialState,
     reducers: {
-        loadTracks(state, action: PayloadAction<SavedTrackMap>) {
-            const newState = state;
-            newState.tracks = action.payload;
-            return newState;
-        },
-        loadTrack(state, action: PayloadAction<string>) {
-            const newState = state;
-            newState.current.trackId = action.payload;
-            return newState;
-        },
-        createTrack(state, action: PayloadAction<SavedTrack>) {
-            const newState = state;
-            newState.current.trackId = action.payload.id;
-            newState.tracks[action.payload.id] = action.payload;
-            return newState;
-        },
-        updateTrack(state, action: PayloadAction<SavedTrack>) {
-            const newState = state;
-            newState.tracks[action.payload.id] = action.payload;
-            return newState;
-        },
-        deleteTrack(state, action: PayloadAction<string>) {
-            const newState = state;
-            delete newState.tracks[action.payload];
-            
-            /**
-             * If the current user deletes the track they are currently 
-             * viewing then unassign the track that is being viewed 
-             */
-            if (action.payload === newState.current.trackId) {
-                newState.current.trackId = initialState.current.trackId;
-            }
-
-            return newState;
-        },
+        loadTracks: loadTracksReducer,
+        loadTrack: loadTrackReducer,
+        createTrack: createTrackReducer,
+        updateTrack: updateTrackReducer,
+        deleteTrack: deleteTrackReducer,
         createLayer(state) {
             const newState = state;
             newState.current.addingLayer = true;
