@@ -1,4 +1,4 @@
-import { start, context, Transport, Part, Pattern } from 'tone';
+import { start, context, Transport, Part, Pattern, PolySynth, SynthOptions, Synth } from 'tone';
 import { getToneCode } from './sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
@@ -33,6 +33,13 @@ export class Audio {
         for (const layerId in track.layers) {
 
             const layer = track.layers[layerId];
+
+            /**
+             * If the layer is muted then just move to the next one
+             */
+            if (layer.muted) {
+                continue;
+            }
 
             const notes: SoundsToToneJsConversionLayer[] = [];
             
@@ -81,38 +88,10 @@ export class Audio {
                 i += 2;
             }
 
-
-
             if (layer.loop) {
-
-                /**
-                 * Apply the sounds to the part, each part will play
-                 * simultaneously at the time and duration specified
-                 */
-                const synthPart = new Pattern<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
-                    synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
-                }, notes);
-                /**
-                 * Start the synth, this will be applied to 
-                 * the Transport then the sound will start
-                 * once the Transport has been started
-                 */
-                synthPart.start();
-
+                Audio.addPatternToTransport(synth, notes);
             } else {
-                /**
-                 * Apply the sounds to the part, each part will play
-                 * simultaneously at the time and duration specified
-                 */
-                const synthPart = new Part<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
-                    synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
-                }, notes);
-                /**
-                 * Start the synth, this will be applied to 
-                 * the Transport then the sound will start
-                 * once the Transport has been started
-                 */
-                synthPart.start();
+                Audio.addPartsToTransport(synth, notes);
             }
         }
 
@@ -176,6 +155,40 @@ export class Audio {
         Transport.stop();
         Transport.position = 0;
         Transport.cancel();
+    }
+
+    private static addPartsToTransport(synth: PolySynth<Synth<SynthOptions>>, notes: SoundsToToneJsConversionLayer[]): void 
+    {
+        /**
+         * Apply the sounds to the part, each part will play
+         * simultaneously at the time and duration specified
+         */
+        const synthPart = new Part<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
+            synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
+        }, notes);
+        /**
+         * Start the synth, this will be applied to 
+         * the Transport then the sound will start
+         * once the Transport has been started
+         */
+        synthPart.start();
+    }
+
+    private static addPatternToTransport(synth: PolySynth<Synth<SynthOptions>>, notes: SoundsToToneJsConversionLayer[]): void
+    {
+        /**
+         * Apply the sounds to the part, each part will play
+         * simultaneously at the time and duration specified
+         */
+        const synthPart = new Pattern<SoundsToToneJsConversionLayer>((time, note: SoundsToToneJsConversionLayer) => {
+            synth.triggerAttackRelease(note.note, note.duration, time, note.velocity);
+        }, notes);
+        /**
+         * Start the synth, this will be applied to 
+         * the Transport then the sound will start
+         * once the Transport has been started
+         */
+        synthPart.start();
     }
 }
 
