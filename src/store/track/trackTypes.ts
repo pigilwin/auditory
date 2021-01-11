@@ -7,22 +7,20 @@ export interface SavedTrack {
     name: string;
     date: string;
     layers: LayerMap;
-    control: Control;
+    control: {
+        panner: number;
+        volume: number;
+    }
 }
-
-interface Control {
-    panner: number;
-    volume: number;
+interface LayerMap {
+    [id: string]: Layer;
 }
 export interface Layer {
     sounds: LayerPart[];
     synth: string;
     loop: boolean;
+    muted: boolean;
 }
-export interface LayerMap {
-    [id: string]: Layer;
-}
-
 export interface LayerPart {
     id: string;
 }
