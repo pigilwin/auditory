@@ -3,31 +3,12 @@ import { deepCopy } from '../../lib/deepClone';
 import { SavedTrack } from './trackTypes';
 import { RootStateHook } from '../rootReducer';
 import { AppThunk, AppDispatch } from '../store';
-import { 
-    createTrack, 
-    deleteTrack, 
-    loadTracks, 
+import {
     unselectNote, 
     updateTrack,
     closeCreateLayer
 } from './trackSlice';
 import { TrackDatabase } from './trackDatabase';
-
-export const createTrackAsync = (
-    name: string
-): AppThunk => async (
-    dispatch: AppDispatch
-) => {
-    const track = await TrackDatabase.createTrack(name);
-    dispatch(createTrack(track));
-};
-
-export const loadTracksAsync = (): AppThunk => async (
-    dispatch: AppDispatch
-) => {
-    const tracks = await TrackDatabase.read();
-    dispatch(loadTracks(tracks));
-};
 
 export const updateVolumeAsync = (
     volume: number, 
@@ -53,15 +34,6 @@ export const updatePannerAsync = (
     track.control.panner = panner;
     await TrackDatabase.updateTrack(track);
     dispatch(updateTrack(track));
-};
-
-export const deleteTrackAsync = (
-    id: string
-): AppThunk => async (
-    dispatch: AppDispatch
-) => {
-    await TrackDatabase.deleteTrack(id);
-    dispatch(deleteTrack(id));
 };
 
 
