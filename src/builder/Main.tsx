@@ -55,7 +55,7 @@ export const Main = (): JSX.Element => {
 
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
-            <div className="w-full">
+            <div className="w-full dark:text-white">
                 <Title title={"Track Name: " + track.name}/>
             </div>
             <SoundsPanel trackId={track.id} currentSelectedLayer={currentLayer} hidden={currentLayer.length === 0}/>

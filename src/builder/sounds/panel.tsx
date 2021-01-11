@@ -37,7 +37,7 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
 
     return (
         <div className="w-full px-4 overflow-hidden min-h-screen">
-            <h1 className="text-xl p-2">Editing Layer</h1>
+            <h1 className="text-xl p-2 dark:text-white">Editing Layer</h1>
             <Accordion title={"This layer is using a " + synthName + ". Click here to edit"}>
                 <SynthSelector
                     synthId={synthKey}
