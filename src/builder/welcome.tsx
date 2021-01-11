@@ -14,7 +14,7 @@ export const Welcome = (): JSX.Element => {
     };
 
     return (
-        <div id="welcome-panel" className="flex h-screen">
+        <div id="welcome-panel" className="flex min-h-screen">
             <div className="m-auto">
                 <h1 className="text-7xl text-center p-2">Welcome to Sounds</h1>
                 <h2 className="text-2xl text-center p-2">This application will allow you to create and store tracks</h2> 
