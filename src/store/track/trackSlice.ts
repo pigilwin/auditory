@@ -1,25 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, RootStateHook } from '../rootReducer';
-import { 
-    SavedTrack,
-    SavedTrackMap, 
-    SelectedLayer, 
-    SelectedNote, 
-    TrackState 
-} from './trackTypes';
-
-import { 
-    loadTracksReducer,
-    loadTrackReducer,
-    createTrackReducer,
-    updateTrackReducer,
-    deleteTrackReducer
-} from './actions/trackActions'; 
-
-import { 
-    pauseReducer, 
-    playReducer 
-} from './actions/controlActions';
+import { SavedTrack, SavedTrackMap, SelectedLayer, SelectedNote, TrackState } from './trackTypes';
+import { loadTracksReducer, loadTrackReducer, createTrackReducer, updateTrackReducer, deleteTrackReducer } from './actions/trackActions'; 
+import { clearCurrentTrackReducer, pauseReducer, playReducer } from './actions/controlActions';
+import { closeCreateLayerReducer, createLayerReducer, deselectLayerReducer, selectLayerReducer } from './actions/layerActions';
 
 export const initialState: TrackState =  {
     tracks: {},
@@ -44,26 +28,10 @@ const trackSlice = createSlice({
         createTrack: createTrackReducer,
         updateTrack: updateTrackReducer,
         deleteTrack: deleteTrackReducer,
-        createLayer(state) {
-            const newState = state;
-            newState.current.addingLayer = true;
-            return newState;
-        },
-        closeCreateLayer(state) {
-            const newState = state;
-            newState.current.addingLayer = initialState.current.addingLayer;
-            return newState;
-        },
-        selectLayer(state, action: PayloadAction<string>) {
-            const newState = state;
-            newState.current.selectedLayer = action.payload;
-            return newState;
-        },
-        deselectLayer(state) {
-            const newState = state;
-            newState.current.selectedLayer = initialState.current.selectedLayer;
-            return newState;
-        },
+        createLayer: createLayerReducer,
+        closeCreateLayer: closeCreateLayerReducer,
+        selectLayer: selectLayerReducer,
+        deselectLayer: deselectLayerReducer,
         editNoteForLayer(state, action: PayloadAction<SelectedNote>) {
             const newState = state;
             newState.current.selectedNote = action.payload;
@@ -74,11 +42,7 @@ const trackSlice = createSlice({
             newState.current.selectedNote = initialState.current.selectedNote;
             return newState;
         },
-        clearCurrentTrack(state) {
-            const newState = state;
-            newState.current = initialState.current;
-            return newState;
-        },
+        clearCurrentTrack: clearCurrentTrackReducer,
         play: playReducer,
         pause: pauseReducer,
     }

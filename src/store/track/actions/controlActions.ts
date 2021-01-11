@@ -1,4 +1,11 @@
+import { initialState } from "../trackSlice";
 import { TrackState } from "../trackTypes";
+
+export const clearCurrentTrackReducer = (state: TrackState) => {
+    const newState = state;
+    newState.current = initialState.current;
+    return newState;
+}
 
 export const playReducer = (state: TrackState) => {
     const newState = state;
