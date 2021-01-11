@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Button, ToggleSwitch} from "../../components/Inputs";
 import { addLayerAsync } from "../../store/track/trackEvent";
 import { closeCreateLayer } from "../../store/track/trackSlice";
-import { SynthSelector } from "./SynthSelector";
+import { SynthSelector } from "../components/SynthSelector";
 
 interface LayerPanelProps {
     trackId: string;

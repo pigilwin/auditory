@@ -15,7 +15,7 @@ export const Accordion = ({title, children}: PropsWithChildren<AccordionProps>):
   let classes: string[] = ['hidden', 'p-4'];
   if (open) {
     currentTitle = 'Click to close the panel';
-    classes = classes.filter(name => name !== 'hidden');
+    classes = ['p-4'];
   }
 
   return (

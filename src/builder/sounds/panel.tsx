@@ -4,9 +4,9 @@ import { editSynthForLayerAsync } from "../../store/track/trackEvent";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Button } from "../../components/Inputs";
 import { Accordion } from "../../components/Accordion";
-import { SynthSelector } from '../layers/SynthSelector';
+import { SynthSelector } from '../components/SynthSelector';
 import { SavedTrack, SelectedLayer } from "../../store/track/trackTypes";
-import { NoteSelector } from "./NoteSelector";
+import { NoteSelector } from "../components/NoteSelector";
 
 interface SoundsPanelProps {
     currentSelectedLayer: SelectedLayer;
