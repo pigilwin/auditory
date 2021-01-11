@@ -42,6 +42,9 @@ export const Main = (): JSX.Element => {
         return (<Begin/>);
     }
 
+    /**
+     * Look up the saved track and hold the value
+     */
     const track: SavedTrack = tracks[currentTrackId];
 
     /**
@@ -53,14 +56,27 @@ export const Main = (): JSX.Element => {
         return (<Begin/>);
     }
 
+    /**
+     * If the currently selected layer id is found then we are configuring that layer
+     */
+    if (currentLayer.length > 0) {
+        return <SoundsPanel track={track} currentSelectedLayer={currentLayer}/>
+    }
+
+    /**
+     * If we adding a new layer, show the new screen
+     */
+    if (addingNewLayer) {
+        return <LayerPanel trackId={track.id}/>;
+    }
+    
+
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
             <div className="w-full dark:text-white">
                 <Title title={"Track Name: " + track.name}/>
             </div>
-            <SoundsPanel trackId={track.id} currentSelectedLayer={currentLayer} hidden={currentLayer.length === 0}/>
-            <LayerPanel trackId={track.id}/>
-            <LayerContainer hidden={currentLayer.length > 0 || addingNewLayer} track={track}/>
+            <LayerContainer track={track}/>
             <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
             <ControlPanel track={track}/>
         </div>

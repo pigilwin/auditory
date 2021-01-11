@@ -5,25 +5,19 @@ import { fetchSynthName } from "../../audio/synthGenerator";
 import { Button } from "../../components/Inputs";
 import { Accordion } from "../../components/Accordion";
 import { SynthSelector } from '../layers/SynthSelector';
-import { SelectedLayer } from "../../store/track/trackTypes";
+import { SavedTrack, SelectedLayer } from "../../store/track/trackTypes";
 import { NoteSelector } from "./NoteSelector";
 
 interface SoundsPanelProps {
-    hidden: boolean;
     currentSelectedLayer: SelectedLayer;
-    trackId: string;
+    track: SavedTrack;
 }
 
-export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanelProps): JSX.Element | null => {
+export const SoundsPanel = ({currentSelectedLayer, track}: SoundsPanelProps): JSX.Element => {
 
     const dispatch = useDispatch();
     const tracks = useSelector(tracksSelector);
-
-    if (hidden) {
-        return null;
-    }
-    
-    const synthKey = tracks[trackId].layers[currentSelectedLayer].synth;
+    const synthKey = tracks[track.id].layers[currentSelectedLayer].synth;
     const synthName = fetchSynthName(synthKey);
     
 
@@ -32,12 +26,12 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
     }
 
     const onSynthSelectedHandler = (v: string): void => {
-        dispatch(editSynthForLayerAsync(v, currentSelectedLayer, trackId));
+        dispatch(editSynthForLayerAsync(v, currentSelectedLayer, track.id));
     }
 
     return (
         <div className="w-full px-4 overflow-hidden min-h-screen">
-            <h1 className="text-xl p-2 dark:text-white">Editing Layer</h1>
+            <h1 className="text-xl p-2 dark:text-white">Editing Layer for {track.name}</h1>
             <Accordion title={"This layer is using a " + synthName + ". Click here to edit"}>
                 <SynthSelector
                     synthId={synthKey}
@@ -46,7 +40,7 @@ export const SoundsPanel = ({hidden, currentSelectedLayer, trackId}: SoundsPanel
             </Accordion>
             <Accordion title="Choose sounds too add to the layer then close the panel">
                 <NoteSelector
-                    trackId={trackId}
+                    trackId={track.id}
                     layerId={currentSelectedLayer}
                     synthKey={synthKey}
                 />

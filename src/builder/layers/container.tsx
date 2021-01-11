@@ -6,13 +6,11 @@ import { SavedTrack, Layer } from "../../store/track/trackTypes";
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { LayerPartComponent } from './part';
 
-interface PartContainerInterface {
+interface PartContainerProps {
     track: SavedTrack;
-    hidden: boolean;
-
 }
 
-export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Element | null => {
+export const LayerContainer = ({track}: PartContainerProps): JSX.Element => {
     
     const dispatch = useDispatch();
     const layers: JSX.Element[] = [];
@@ -23,10 +21,6 @@ export const LayerContainer = ({track, hidden}: PartContainerInterface): JSX.Ele
     const openAddNewLayerPanel = (): void => {
         dispatch(createLayer());
     };
-
-    if (hidden) {
-        return null;
-    }
 
     return (
         <div className="w-full min-h-screen">

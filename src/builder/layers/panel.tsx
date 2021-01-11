@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, ToggleSwitch} from "../../components/Inputs";
 import { addLayerAsync } from "../../store/track/trackEvent";
-import { closeCreateLayer, currentlyAddingLayerSelector } from "../../store/track/trackSlice";
+import { closeCreateLayer } from "../../store/track/trackSlice";
 import { SynthSelector } from "./SynthSelector";
 
 interface LayerPanelProps {
     trackId: string;
 }
-export const LayerPanel = ({trackId}: LayerPanelProps): JSX.Element | null => {
+export const LayerPanel = ({trackId}: LayerPanelProps): JSX.Element => {
     
     const dispatch = useDispatch();
-    const currentlyAddingLayer = useSelector(currentlyAddingLayerSelector);
     const [synthId, setSynthId] = useState('');
     const [looping, setLooping] = useState(false);
 
@@ -34,10 +33,6 @@ export const LayerPanel = ({trackId}: LayerPanelProps): JSX.Element | null => {
 
     const onSynthSelectedHandler = (synthId: string): void => {
         setSynthId(synthId);
-    }
-
-    if (!currentlyAddingLayer) {
-        return null;
     }
     
     return (
