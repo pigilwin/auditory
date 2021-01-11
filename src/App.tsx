@@ -16,6 +16,10 @@ export const App = (): JSX.Element => {
 
   const dispatch = useDispatch();
 
+  /**
+   * If the user would like dark mode we will apply it on application load
+   * Load the saved tracks from the database async
+   */
   useEffect(() => {
     if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
       dispatch(setTheme(true));
