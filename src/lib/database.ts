@@ -3,7 +3,7 @@ import { SavedTrack } from '../store/track/trackTypes';
 import { Configuration } from './configuration';
 
 export const openDatabase = async (): Promise<IDBPDatabase<TrackDatabase>> => {
-    return await openDB<TrackDatabase>('tracks', 1, {
+    return await openDB<TrackDatabase>('sounds', 1, {
         upgrade: (db) => {
             db.createObjectStore('tracks');
             db.createObjectStore('configuration');

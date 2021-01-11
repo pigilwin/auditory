@@ -8,7 +8,7 @@ import { NavBar } from './components/Nav/NavBar';
 import { Main } from './builder/Main';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadTracksAsync } from './store/track/trackEvent';
+import { loadTracksAsync } from './store/track/trackAsyncAction';
 import { Settings } from './settings/Settings';
 import { setTheme, themeStateSelector } from './store/theme/themeSlice';
 

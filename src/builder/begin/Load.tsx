@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, DeleteButton } from "../../components/Inputs";
-import { deleteTrackAsync } from "../../store/track/trackEvent";
+import { deleteTrackAsync } from "../../store/track/trackAsyncAction";
 import { loadTrack, tracksSelector } from "../../store/track/trackSlice";
 import { acceptWelcomeMessage } from "../../store/welcome/welcomeSlice";
 import { SavedTrack } from "../../store/track/trackTypes";

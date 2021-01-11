@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
-import { editSynthForLayerAsync } from "../../store/track/trackEvent";
+import { editSynthForLayerAsync } from "../../store/track/trackAsyncAction";
 import { fetchSynthName } from "../../audio/synthGenerator";
 import { Button } from "../../components/Inputs";
 import { Accordion } from "../../components/Accordion";

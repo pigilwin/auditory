@@ -2,7 +2,7 @@ import { RangeInput } from "../../components/Inputs";
 import { Play, Stop } from "../../components/Icon";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch, useSelector } from "react-redux";
-import { updateVolumeAsync, updatePannerAsync } from "../../store/track/trackEvent";
+import { updateVolumeAsync, updatePannerAsync } from "../../store/track/trackAsyncAction";
 import { Audio } from "../../audio/audio";
 import { currentlyPlayingSelector, pause, play } from "../../store/track/trackSlice";
 

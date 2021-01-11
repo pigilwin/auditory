@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, DeleteButton } from "../../components/Inputs";
 import { currentlySelectedNoteIndexSelector, unselectNote } from "../../store/track/trackSlice";
-import { deleteNoteAsync } from '../../store/track/trackEvent';
+import { deleteNoteAsync } from '../../store/track/trackAsyncAction';
 import { SavedTrack } from "../../store/track/trackTypes";
 import { getName } from "../../audio/sounds";
 

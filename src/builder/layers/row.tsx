@@ -1,7 +1,7 @@
 import { DeleteButton, Button } from '../../components/Inputs';
 import { getSoundsForDisplay, SoundForDisplay } from "../../audio/sounds";
 import { NotePart } from './part';
-import { deleteLayerAsync } from "../../store/track/trackEvent";
+import { deleteLayerAsync } from "../../store/track/trackAsyncAction";
 import { Layer } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
 import { selectLayer } from '../../store/track/trackSlice';
