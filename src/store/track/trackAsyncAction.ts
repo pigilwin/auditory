@@ -10,33 +10,6 @@ import {
 } from './trackSlice';
 import { TrackDatabase } from './trackDatabase';
 
-export const updateVolumeAsync = (
-    volume: number, 
-    trackId: string
-): AppThunk => async (
-    dispatch: AppDispatch, 
-    getState: RootStateHook
-) => {
-    const track = deepCopy(fetchTrack(getState, trackId));
-    track.control.volume = volume;
-    await TrackDatabase.updateTrack(track);
-    dispatch(updateTrack(track));
-};
-
-export const updatePannerAsync = (
-    panner: number, 
-    trackId: string
-): AppThunk => async (
-    dispatch: AppDispatch, 
-    getState: RootStateHook
-) => {
-    const track = deepCopy(fetchTrack(getState, trackId));
-    track.control.panner = panner;
-    await TrackDatabase.updateTrack(track);
-    dispatch(updateTrack(track));
-};
-
-
 export const addLayerAsync = (
     trackId: string, 
     synth: string, 
@@ -111,9 +84,3 @@ export const deleteNoteAsync = (
     dispatch(unselectNote());
     dispatch(updateTrack(track));
 };
-
-
-const fetchTrack = (getStateHook: RootStateHook, trackId: string): SavedTrack => {
-    const currentTracks = getStateHook().trackReducer.tracks;
-    return Object.assign({}, currentTracks[trackId]);
-}

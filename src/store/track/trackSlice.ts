@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState, RootStateHook } from '../rootReducer';
 import { 
+    SavedTrack,
     SavedTrackMap, 
     SelectedLayer, 
     SelectedNote, 
     TrackState 
 } from './trackTypes';
-import { RootState } from '../rootReducer';
+
 import { 
     loadTracksReducer,
     loadTrackReducer,
@@ -13,6 +15,11 @@ import {
     updateTrackReducer,
     deleteTrackReducer
 } from './actions/trackActions'; 
+
+import { 
+    pauseReducer, 
+    playReducer 
+} from './actions/controlActions';
 
 export const initialState: TrackState =  {
     tracks: {},
@@ -72,16 +79,8 @@ const trackSlice = createSlice({
             newState.current = initialState.current;
             return newState;
         },
-        play(state) {
-            const newState = state;
-            newState.isPlaying = true;
-            return newState;
-        },
-        pause(state) {
-            const newState = state;
-            newState.isPlaying = false;
-            return newState;
-        }
+        play: playReducer,
+        pause: pauseReducer,
     }
 });
 
@@ -102,6 +101,11 @@ export const {
     play,
     pause
 } = trackSlice.actions;
+
+export const fetchTrack = (getStateHook: RootStateHook, trackId: string): SavedTrack => {
+    const currentTracks = getStateHook().trackReducer.tracks;
+    return Object.assign({}, currentTracks[trackId]);
+}
 
 export const currentlyPlayingSelector = (state: RootState): boolean => state.trackReducer.isPlaying;
 export const currentlySelectedNoteIndexSelector = (state: RootState): SelectedNote => state.trackReducer.current.selectedNote;
