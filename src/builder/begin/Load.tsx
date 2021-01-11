@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, DeleteButton } from "../../components/Inputs";
-import { loadTrack, tracksSelector } from "../../store/track/trackSlice";
+import { loadTrack } from "../../store/track/trackSlice";
 import { acceptWelcomeMessage } from "../../store/welcome/welcomeSlice";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { deleteTrackAsync } from "../../store/track/asyncActions/asyncTrackActions";
+import { tracksSelector } from "../../store/track/trackSelectors";
 
 export const LoadPanel = (): JSX.Element | null => {
 

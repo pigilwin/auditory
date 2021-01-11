@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCurrentTrack, currentTrackIdSelector } from "../../store/track/trackSlice";
+import { currentTrackIdSelector } from "../../store/track/trackSelectors";
+import { clearCurrentTrack } from "../../store/track/trackSlice";
 import { welcomeSelector } from "../../store/welcome/welcomeSlice";
 
 export const GoBack = (): JSX.Element | null => {

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TextSingleLineInput, Button } from "../../components/Inputs";
 import { useValidation } from "../../lib/validation";
 import { createTrackAsync } from "../../store/track/asyncActions/asyncTrackActions";
-import { trackNameSelector } from "../../store/track/trackSlice";
+import { trackNameSelector } from "../../store/track/trackSelectors";
 
 export const CreateNew = (): JSX.Element => {
     const dispatch = useDispatch();

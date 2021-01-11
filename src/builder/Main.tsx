@@ -1,11 +1,4 @@
 import { useSelector } from "react-redux";
-import { 
-    tracksSelector,
-    currentTrackIdSelector,
-    currentlySelectedLayerSelector,
-    currentlySelectedNoteIndexSelector,
-    currentlyAddingLayerSelector
-} from "../store/track/trackSlice";
 import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
@@ -16,6 +9,7 @@ import { Title } from "../components/Title";
 import { ConfigureNotePanel } from './components/ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";
+import { currentlyAddingLayerSelector, currentlySelectedLayerSelector, currentlySelectedNoteIndexSelector, currentTrackIdSelector, tracksSelector } from "../store/track/trackSelectors";
 
 export const Main = (): JSX.Element => {
 

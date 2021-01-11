@@ -3,8 +3,9 @@ import { Play, Stop } from "../../components/Icon";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { Audio } from "../../audio/audio";
-import { currentlyPlayingSelector, pause, play } from "../../store/track/trackSlice";
+import { pause, play } from "../../store/track/trackSlice";
 import { updatePannerAsync, updateVolumeAsync } from "../../store/track/asyncActions/asyncControlActions";
+import { currentlyPlayingSelector } from "../../store/track/trackSelectors";
 
 interface ControlPanelProps {
     track: SavedTrack;

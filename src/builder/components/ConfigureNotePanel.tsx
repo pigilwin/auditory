@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, DeleteButton } from "../../components/Inputs";
-import { currentlySelectedNoteIndexSelector, unselectNote } from "../../store/track/trackSlice";
+import { unselectNote } from "../../store/track/trackSlice";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { getName } from "../../audio/sounds";
 import { deleteNoteAsync } from "../../store/track/asyncActions/asyncNoteActions";
+import { currentlySelectedNoteIndexSelector } from "../../store/track/trackSelectors";
 
 interface ConfigureNotePanelProps {
     track: SavedTrack;

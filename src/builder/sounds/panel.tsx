@@ -5,8 +5,9 @@ import { Accordion } from "../../components/Accordion";
 import { SynthSelector } from '../components/SynthSelector';
 import { SavedTrack, SelectedLayer } from "../../store/track/trackTypes";
 import { NoteSelector } from "../components/NoteSelector";
-import { deselectLayer, tracksSelector } from "../../store/track/trackSlice";
+import { deselectLayer } from "../../store/track/trackSlice";
 import { editSynthForLayerAsync } from "../../store/track/asyncActions/asyncLayerActions";
+import { tracksSelector } from "../../store/track/trackSelectors";
 
 interface SoundsPanelProps {
     currentSelectedLayer: SelectedLayer;
