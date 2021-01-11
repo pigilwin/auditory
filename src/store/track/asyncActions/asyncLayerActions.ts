@@ -3,7 +3,7 @@ import { deepCopy } from "../../../lib/deepClone";
 import { RootStateHook } from "../../rootReducer";
 import { AppDispatch, AppThunk } from "../../store";
 import { TrackDatabase } from "../trackDatabase";
-import { closeCreateLayer, fetchTrack, updateTrack } from "../trackSlice";
+import { closeCreateLayer, fetchTrack, unselectNote, updateTrack } from "../trackSlice";
 
 export const addLayerAsync = (
     trackId: string, 
@@ -46,5 +46,20 @@ export const deleteLayerAsync = (
     const track = deepCopy(fetchTrack(getState, trackId));
     delete track.layers[layerId];
     await TrackDatabase.updateTrack(track);
+    dispatch(unselectNote());
     dispatch(updateTrack(track));
-};
+}
+
+export const toggleMuteLayerAsync = (
+    layerId: string,
+    trackId: string,
+    muted: boolean
+): AppThunk => async (
+    dispatch: AppDispatch,
+    getState: RootStateHook
+) => {
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.layers[layerId].muted = muted;
+    await TrackDatabase.updateTrack(track);
+    dispatch(updateTrack(track));
+}

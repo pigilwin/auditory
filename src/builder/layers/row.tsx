@@ -4,8 +4,8 @@ import { NotePart } from './part';
 import { Layer } from "../../store/track/trackTypes";
 import { useDispatch } from "react-redux";
 import { selectLayer } from '../../store/track/trackSlice';
-import { FullVolume } from '../../components/Icon';
-import { deleteLayerAsync } from '../../store/track/asyncActions/asyncLayerActions';
+import { FullVolume, Mute } from '../../components/Icon';
+import { deleteLayerAsync, toggleMuteLayerAsync } from '../../store/track/asyncActions/asyncLayerActions';
 
 interface LayerRowInterface {
     layer: Layer;
@@ -29,10 +29,13 @@ export const LayerRow = ({layer, layerId, trackId, currentLayerCount}: LayerRowI
     };
 
     const toggleMuteLayer = (): void => {
-
+        dispatch(toggleMuteLayerAsync(layerId, trackId, !layer.muted));
     }
 
     let muteIcon: JSX.Element = <FullVolume/>;
+    if (layer.muted) {
+        muteIcon = <Mute/>;
+    }
 
     let i: number = 0;
     for (const key in layer.sounds) {
