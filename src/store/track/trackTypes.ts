@@ -21,7 +21,7 @@ export interface Layer {
     loop: boolean;
     muted: boolean;
 }
-interface Sound {
+export interface Sound {
     id: string;
     duration: number;
 

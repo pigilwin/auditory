@@ -53,9 +53,9 @@ export const ToggleSwitch = ({title, onChange, value}: ToggleSwitchProps): JSX.E
 
 
 interface TextSingleLineInputProps extends InputProps {
-    onKeyUp: React.KeyboardEventHandler<HTMLInputElement>;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-export const TextSingleLineInput = ({error, onKeyUp, title}: TextSingleLineInputProps): JSX.Element => {
+export const TextSingleLineInput = ({error, onChange, title}: TextSingleLineInputProps): JSX.Element => {
     
     const classNames = (): string => {
         const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded"];
@@ -68,7 +68,29 @@ export const TextSingleLineInput = ({error, onKeyUp, title}: TextSingleLineInput
     return (
         <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest dark:text-white">{title}</label>
-            <input onKeyUp={onKeyUp} className={classNames()} type="text"/>
+            <input onChange={onChange} className={classNames()} type="text"/>
+            <BasicTextErrorMessage message={error}/>
+        </div>
+    );
+}
+
+interface NumberSingleLineInputProps extends InputProps {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    value: number;
+}
+export const NumberSingleLineInput = ({title, error, onChange, value}: NumberSingleLineInputProps): JSX.Element => {
+    const classNames = (): string => {
+        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded"];
+        if (error.length > 0) {
+            classes.push('border-red-400', 'bg-red-200');
+        }
+        return classes.join(" ");
+    };
+    
+    return (
+        <div className="flex flex-col mb-4">
+            <label className="mb-2 font-bold text-lg text-grey-darkest dark:text-white">{title}</label>
+            <input onChange={onChange} className={classNames()} type="number" value={value}/>
             <BasicTextErrorMessage message={error}/>
         </div>
     );

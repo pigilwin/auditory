@@ -1,41 +1,49 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Button, DeleteButton } from "../../components/Inputs";
-import { unselectNote } from "../../store/track/trackSlice";
-import { SavedTrack } from "../../store/track/trackTypes";
+import { useDispatch } from "react-redux";
+import { Button, DeleteButton, NumberSingleLineInput } from "../../components/Inputs";
+import { Sound } from "../../store/track/trackTypes";
 import { getName } from "../../audio/sounds";
-import { deleteNoteAsync } from "../../store/track/asyncActions/asyncNoteActions";
-import { currentlySelectedNoteIndexSelector } from "../../store/track/trackSelectors";
+import { deleteNoteAsync, updateNoteAsync } from "../../store/track/asyncActions/asyncNoteActions";
+import { useState } from "react";
 
 interface ConfigureNotePanelProps {
-    track: SavedTrack;
+    sound: Sound;
+    layerId: string;
+    index: number;
+    trackId: string;
 }
 
-export const ConfigureNotePanel = ({track}: ConfigureNotePanelProps): JSX.Element | null => {
+export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNotePanelProps): JSX.Element => {
     
     const dispatch = useDispatch();
-    const note = useSelector(currentlySelectedNoteIndexSelector);
-
-    if (note.layerId.length === 0 || note.index === -1) {
-        return null;
-    }
-
-    const sound = track.layers[note.layerId].sounds[note.index];
+    const [duration, setDuration] = useState(sound.duration);
 
     const soundName = getName(sound.id);
 
+    const onDurationChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const { currentTarget } = e;
+        const { value } = currentTarget;
+        const float = Number.parseFloat(value);
+        setDuration(float);
+    }
+
     const deleteNoteClickHandler = (): void => {
-        dispatch(deleteNoteAsync(note.index, note.layerId, track.id));
+        dispatch(deleteNoteAsync(index, layerId, trackId));
     };
 
     const doneNoteClickHandler = (): void => {
-        dispatch(unselectNote());
+        dispatch(updateNoteAsync(index, layerId, trackId, duration));
     };
 
     return (
         <div className="w-1/2 shadow-md rounded-md bg-gray-200 dark:bg-gray-600 mx-auto m-4">
             <h1 className="text-center p-2 text-2xl dark:text-white">Note Configuration for {soundName}</h1>
-            <div className="w-full">
-
+            <div className="w-full p-2">
+                <NumberSingleLineInput
+                    title="Duration (in seconds)"
+                    value={duration}
+                    error=""
+                    onChange={onDurationChange}
+                />
             </div>
             <div className="grid grid-cols-2 gap-4 p-2">
                 <DeleteButton disabled={false} title="Delete Note" onClick={deleteNoteClickHandler}/>

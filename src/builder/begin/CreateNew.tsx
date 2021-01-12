@@ -31,7 +31,7 @@ export const CreateNew = (): JSX.Element => {
         dispatch(createTrackAsync(state.trackName));
     };
 
-    const saveTrackNameHandler = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    const saveTrackNameHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const {currentTarget} = event;
         const {value} = currentTarget;
         setFormState({
@@ -46,7 +46,7 @@ export const CreateNew = (): JSX.Element => {
             <TextSingleLineInput 
                 error={errors.trackName}
                 title="Track Name"
-                onKeyUp={saveTrackNameHandler}
+                onChange={saveTrackNameHandler}
             />
             <Button
                 disabled={false} 
