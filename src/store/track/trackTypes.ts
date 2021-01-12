@@ -16,13 +16,15 @@ interface LayerMap {
     [id: string]: Layer;
 }
 export interface Layer {
-    sounds: LayerPart[];
+    sounds: Sound[];
     synth: string;
     loop: boolean;
     muted: boolean;
 }
-export interface LayerPart {
+interface Sound {
     id: string;
+    duration: number;
+
 }
 
 export interface TrackState {

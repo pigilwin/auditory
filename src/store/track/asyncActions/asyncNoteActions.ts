@@ -7,14 +7,16 @@ import { fetchTrack, unselectNote, updateTrack } from "../trackSlice";
 export const addNoteAsync = (
     soundId: string, 
     layerId: string, 
-    trackId: string
+    trackId: string,
+    duration: number
 ): AppThunk => async (
     dispatch: AppDispatch, 
     getState: RootStateHook
 ) => {
     const track = deepCopy(fetchTrack(getState, trackId));
     track.layers[layerId].sounds.push({
-        id: soundId
+        id: soundId,
+        duration: duration
     });
     await TrackDatabase.updateTrack(track);
     dispatch(updateTrack(track));

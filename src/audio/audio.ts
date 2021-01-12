@@ -1,4 +1,4 @@
-import { start, context, Transport, Part, Pattern, PolySynth, SynthOptions, Synth } from 'tone';
+import { start, context, Transport, Part, Pattern, PolySynth, SynthOptions, Synth, Time as TimeUtil } from 'tone';
 import { getToneCode } from './sounds';
 import { SavedTrack } from '../store/track/trackTypes';
 import { fetchSynthObject } from './synthGenerator';
@@ -79,7 +79,7 @@ export class Audio {
                 if (toneCode !== null) {
                     notes.push({
                         note: toneCode,
-                        duration: '8n',
+                        duration: TimeUtil(sound.duration, 's').toNotation(),
                         velocity: 0.9,
                         time: "0:" + i
                     });

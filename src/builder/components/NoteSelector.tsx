@@ -36,7 +36,7 @@ const buildSoundButtons = (
           
         const onClickHandler = async (): Promise<void> => {
             await Audio.playNoteFromSynth(key, synth);
-            dispatch(addNoteAsync(key, currentSelectedLayer, trackId));
+            dispatch(addNoteAsync(key, currentSelectedLayer, trackId, 1));
         };
         
         elements.push(<Button key={key} title={sounds[key]} disabled={false} onClick={onClickHandler}/>);
