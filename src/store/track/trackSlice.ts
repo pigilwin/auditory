@@ -12,7 +12,7 @@ export const initialState: TrackState =  {
         trackId: '',
         selectedLayer: '',
         selectedNote: {
-            index: 0,
+            index: -1,
             layerId: ''
         },
         addingLayer: false

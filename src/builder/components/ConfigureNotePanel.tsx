@@ -8,19 +8,20 @@ import { currentlySelectedNoteIndexSelector } from "../../store/track/trackSelec
 
 interface ConfigureNotePanelProps {
     track: SavedTrack;
-    hidden: boolean;
 }
 
-export const ConfigureNotePanel = ({track, hidden}: ConfigureNotePanelProps): JSX.Element => {
+export const ConfigureNotePanel = ({track}: ConfigureNotePanelProps): JSX.Element | null => {
     
     const dispatch = useDispatch();
     const note = useSelector(currentlySelectedNoteIndexSelector);
 
     if (note.layerId.length === 0 || note.index === -1) {
-        return (<div/>);
+        return null;
     }
 
-    const sound = getName(track.layers[note.layerId].sounds[note.index].id);
+    const sound = track.layers[note.layerId].sounds[note.index];
+
+    const soundName = getName(sound.id);
 
     const deleteNoteClickHandler = (): void => {
         dispatch(deleteNoteAsync(note.index, note.layerId, track.id));
@@ -30,15 +31,12 @@ export const ConfigureNotePanel = ({track, hidden}: ConfigureNotePanelProps): JS
         dispatch(unselectNote());
     };
 
-    const classNames = ['w-1/3','shadow-md','bg-gray-200'];
-    
-    if (hidden) {
-        classNames.push('hidden');
-    }
-    
     return (
-        <div className={classNames.join(' ')}>
-            <h1 className="text-center p-2 text-2xl">Note Configuration for {sound}</h1>
+        <div className="w-1/2 shadow-md rounded-md bg-gray-200 dark:bg-gray-600 mx-auto m-4">
+            <h1 className="text-center p-2 text-2xl dark:text-white">Note Configuration for {soundName}</h1>
+            <div className="w-full">
+
+            </div>
             <div className="grid grid-cols-2 gap-4 p-2">
                 <DeleteButton disabled={false} title="Delete Note" onClick={deleteNoteClickHandler}/>
                 <Button disabled={false} title="Close" onClick={doneNoteClickHandler}/>

@@ -3,6 +3,7 @@ import { Button } from "../../components/Inputs";
 import { createLayer } from "../../store/track/trackSlice";
 import { SavedTrack } from "../../store/track/trackTypes";
 import { LayerRow } from "./row";
+import { ConfigureNotePanel } from '../components/ConfigureNotePanel';
 
 interface PartContainerProps {
     track: SavedTrack;
@@ -25,6 +26,7 @@ export const LayerContainer = ({track}: PartContainerProps): JSX.Element => {
             <div className="grid grid-cols-1">
                 {layers}
             </div>
+            <ConfigureNotePanel track={track}/>
             <div className="text-center mt-2">
                 <Button title="Add Layer" onClick={openAddNewLayerPanel} disabled={false}/>
             </div>

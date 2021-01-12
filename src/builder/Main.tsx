@@ -6,10 +6,14 @@ import { LayerPanel } from './layers/panel';
 import { Welcome } from './Welcome';
 import { Begin } from './begin/Begin';
 import { Title } from "../components/Title";
-import { ConfigureNotePanel } from './components/ConfigureNotePanel';
 import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";
-import { currentlyAddingLayerSelector, currentlySelectedLayerSelector, currentlySelectedNoteIndexSelector, currentTrackIdSelector, tracksSelector } from "../store/track/trackSelectors";
+import { 
+    currentlyAddingLayerSelector, 
+    currentlySelectedLayerSelector, 
+    currentTrackIdSelector, 
+    tracksSelector 
+} from "../store/track/trackSelectors";
 
 export const Main = (): JSX.Element => {
 
@@ -17,7 +21,6 @@ export const Main = (): JSX.Element => {
     const tracks = useSelector(tracksSelector);
     const currentTrackId = useSelector(currentTrackIdSelector);
     const currentLayer = useSelector(currentlySelectedLayerSelector);
-    const currentNote = useSelector(currentlySelectedNoteIndexSelector);
     const addingNewLayer = useSelector(currentlyAddingLayerSelector);
 
     /**
@@ -63,7 +66,6 @@ export const Main = (): JSX.Element => {
     if (addingNewLayer) {
         return <LayerPanel trackId={track.id}/>;
     }
-    
 
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
@@ -71,7 +73,6 @@ export const Main = (): JSX.Element => {
                 <Title title={"Track Name: " + track.name}/>
             </div>
             <LayerContainer track={track}/>
-            <ConfigureNotePanel hidden={currentNote.index === -1 || currentNote.layerId.length === 0} track={track}/>
             <ControlPanel track={track}/>
         </div>
     );
