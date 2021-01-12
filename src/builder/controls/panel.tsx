@@ -34,7 +34,6 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
     };
 
     const isTrackRunning = useSelector(currentlyPlayingSelector);
-    console.log(isTrackRunning);
 
     return (
         <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 shadow">
