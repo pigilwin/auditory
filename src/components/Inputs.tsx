@@ -76,7 +76,7 @@ export const TextSingleLineInput = ({error, onChange, title}: TextSingleLineInpu
 
 interface NumberSingleLineInputProps extends InputProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    value: number;
+    value: string;
 }
 export const NumberSingleLineInput = ({title, error, onChange, value}: NumberSingleLineInputProps): JSX.Element => {
     const classNames = (): string => {

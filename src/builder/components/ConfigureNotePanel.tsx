@@ -3,7 +3,7 @@ import { Button, DeleteButton, NumberSingleLineInput } from "../../components/In
 import { Sound } from "../../store/track/trackTypes";
 import { getName } from "../../audio/sounds";
 import { deleteNoteAsync, updateNoteAsync } from "../../store/track/asyncActions/asyncNoteActions";
-import { useState } from "react";
+import { useValidation } from "../../lib/validation";
 
 interface ConfigureNotePanelProps {
     sound: Sound;
@@ -14,15 +14,26 @@ interface ConfigureNotePanelProps {
 
 export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNotePanelProps): JSX.Element => {
     
-    const dispatch = useDispatch();
-    const [duration, setDuration] = useState(sound.duration);
     const soundName = getName(sound.id);
+    const dispatch = useDispatch();
+    const [state, setFormState, validate, errors] = useValidation<string>({
+        duration: {
+            value: sound.duration.toString(),
+            validator: (v: string) => {
+                if (v.length === 0) {
+                    return 'No Value Found';
+                }
+                return null;
+            }
+        }
+    });
 
     const onDurationChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { currentTarget } = e;
         const { value } = currentTarget;
-        const float = Number.parseFloat(value);
-        setDuration(float);
+        const values = Object.assign({}, state);
+        values.duration = value;
+        setFormState(values);
     }
 
     const deleteNoteClickHandler = (): void => {
@@ -30,7 +41,10 @@ export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNo
     };
 
     const doneNoteClickHandler = (): void => {
-        dispatch(updateNoteAsync(index, layerId, trackId, duration));
+        if (!validate()) {
+            return;
+        }
+        dispatch(updateNoteAsync(index, layerId, trackId, Number.parseInt(state.duration)));
     };
 
     return (
@@ -40,8 +54,8 @@ export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNo
                 <div className="w-full p-2">
                     <NumberSingleLineInput
                         title="Duration (in seconds)"
-                        value={duration}
-                        error=""
+                        value={state.duration}
+                        error={errors.duration}
                         onChange={onDurationChange}
                     />
                 </div>
