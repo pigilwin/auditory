@@ -16,7 +16,6 @@ export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNo
     
     const dispatch = useDispatch();
     const [duration, setDuration] = useState(sound.duration);
-
     const soundName = getName(sound.id);
 
     const onDurationChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -35,19 +34,21 @@ export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNo
     };
 
     return (
-        <div className="w-1/2 shadow-md rounded-md bg-gray-200 dark:bg-gray-600 mx-auto m-4">
-            <h1 className="text-center p-2 text-2xl dark:text-white">Note Configuration for {soundName}</h1>
-            <div className="w-full p-2">
-                <NumberSingleLineInput
-                    title="Duration (in seconds)"
-                    value={duration}
-                    error=""
-                    onChange={onDurationChange}
-                />
-            </div>
-            <div className="grid grid-cols-2 gap-4 p-2">
-                <DeleteButton disabled={false} title="Delete Note" onClick={deleteNoteClickHandler}/>
-                <Button disabled={false} title="Close" onClick={doneNoteClickHandler}/>
+        <div className="min-h-screen">
+            <div className="w-1/2 shadow-md rounded-md mx-auto">
+                <h1 className="text-center p-2 text-2xl dark:text-white">Note Configuration for {soundName}</h1>
+                <div className="w-full p-2">
+                    <NumberSingleLineInput
+                        title="Duration (in seconds)"
+                        value={duration}
+                        error=""
+                        onChange={onDurationChange}
+                    />
+                </div>
+                <div className="grid grid-cols-2 gap-4 p-2">
+                    <DeleteButton disabled={false} title="Delete Note" onClick={deleteNoteClickHandler}/>
+                    <Button disabled={false} title="Close" onClick={doneNoteClickHandler}/>
+                </div>
             </div>
         </div>
     );

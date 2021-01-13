@@ -3,6 +3,7 @@ import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
 import { LayerPanel } from './layers/panel';
+import { ConfigureNotePanel } from './components/ConfigureNotePanel';
 import { Welcome } from './Welcome';
 import { Begin } from './begin/Begin';
 import { Title } from "../components/Title";
@@ -11,6 +12,7 @@ import { SavedTrack } from "../store/track/trackTypes";
 import { 
     currentlyAddingLayerSelector, 
     currentlySelectedLayerSelector, 
+    currentlySelectedNoteIndexSelector, 
     currentTrackIdSelector, 
     tracksSelector 
 } from "../store/track/trackSelectors";
@@ -22,6 +24,7 @@ export const Main = (): JSX.Element => {
     const currentTrackId = useSelector(currentTrackIdSelector);
     const currentLayer = useSelector(currentlySelectedLayerSelector);
     const addingNewLayer = useSelector(currentlyAddingLayerSelector);
+    const currentlySelectedNote = useSelector(currentlySelectedNoteIndexSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -66,6 +69,16 @@ export const Main = (): JSX.Element => {
     if (addingNewLayer) {
         return <LayerPanel trackId={track.id}/>;
     }
+
+    if (currentlySelectedNote.index !== -1 && currentlySelectedNote.layerId.length > 0) {
+        const sound = track.layers[currentlySelectedNote.layerId].sounds[currentlySelectedNote.index];
+        return <ConfigureNotePanel 
+            sound={sound} 
+            layerId={currentlySelectedNote.layerId}
+            index={currentlySelectedNote.index}
+            trackId={track.id}
+        />;
+    };
 
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
