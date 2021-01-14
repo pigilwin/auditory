@@ -10,6 +10,7 @@ export interface SavedTrack {
     control: {
         panner: number;
         volume: number;
+        bpm: string;
     }
 }
 interface LayerMap {

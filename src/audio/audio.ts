@@ -95,6 +95,14 @@ export class Audio {
             }
         }
 
+        /**
+         * Change the BPM of the current value
+         */
+        Transport.bpm.value = Number.parseInt(track.control.bpm);
+
+        /**
+         * Add the panner to the current transport
+         */
         Transport.swing = track.control.panner;
 
         /**

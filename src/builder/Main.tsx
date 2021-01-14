@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
 import { LayerPanel } from './layers/panel';
-import { TextSingleLineInput } from '../components/Inputs';
+import { BpmPanel } from './components/BpmPanel';
 import { ConfigureNotePanel } from './components/ConfigureNotePanel';
 import { Welcome } from './Welcome';
 import { Begin } from './begin/Begin';
@@ -17,11 +17,9 @@ import {
     currentTrackIdSelector, 
     tracksSelector 
 } from "../store/track/trackSelectors";
-import { updateBPMAsync } from "../store/track/asyncActions/asyncControlActions";
 
 export const Main = (): JSX.Element => {
 
-    const dispatch = useDispatch();
     const hasUsedWelcomeMessage = useSelector(welcomeSelector);
     const tracks = useSelector(tracksSelector);
     const currentTrackId = useSelector(currentTrackIdSelector);
@@ -86,26 +84,12 @@ export const Main = (): JSX.Element => {
         />;
     };
 
-
-    const bpmChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const { currentTarget } = event;
-        const { value } = currentTarget;
-        dispatch(updateBPMAsync(Number.parseInt(value), track.id));
-    }
-
     return (
         <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
             <div className="w-full">
                 <Title title={"Track Name: " + track.name}/>
             </div>
-            <div className="w-1/2 mx-auto">
-                <TextSingleLineInput
-                    title="BPM"
-                    error=""
-                    value={track.control.bpm.toString()}
-                    onChange={bpmChange}
-                />
-            </div>
+            <BpmPanel bpm={track.control.bpm} trackId={track.id}/>
             <LayerContainer track={track}/>
             <ControlPanel track={track}/>
         </div>

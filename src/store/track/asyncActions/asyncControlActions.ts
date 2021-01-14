@@ -29,3 +29,16 @@ export const updatePannerAsync = (
     await TrackDatabase.updateTrack(track);
     dispatch(updateTrack(track));
 };
+
+export const updateBPMAsync = (
+    bpm: string,
+    trackId: string
+): AppThunk => async (
+    dispatch: AppDispatch,
+    getState: RootStateHook
+) => {
+    const track = deepCopy(fetchTrack(getState, trackId));
+    track.control.bpm = bpm;
+    await TrackDatabase.updateTrack(track);
+    dispatch(updateTrack(track));
+}

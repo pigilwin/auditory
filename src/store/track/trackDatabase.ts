@@ -15,7 +15,8 @@ export class TrackDatabase {
             layers: {},
             control: {
                 panner: 0,
-                volume: 10
+                volume: 10,
+                bpm: "120"
             }
         };
         await store.put(track, track.id);
