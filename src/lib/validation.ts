@@ -12,6 +12,13 @@ export const useValidation = <T>(config: FieldValidationConfiguration<T>): [
     const [errors, setErrors] = useState<ErrorState>(initialErrorState);
     const validate: validator = (): boolean => {
         let sucessful = true;
+        
+        const errors: {[id: string]: string} = {};
+        for (const key in state) {
+            errors[key] = '';
+        }
+        setErrors(errors);
+
         for (const key in state) {
             const validator = config[key].validator;
             const errorMessage = validator(state[key]);
