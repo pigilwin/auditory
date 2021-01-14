@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux';
-import { TextSingleLineInput, Button } from '../../components/Inputs';
-import { useValidation } from '../../lib/validation';
-import { updateBPMAsync } from '../../store/track/asyncActions/asyncControlActions';
+import { TextSingleLineInput } from '../../../components/Inputs';
+import { useValidation } from '../../../lib/validation';
+import { updateBPMAsync } from '../../../store/track/asyncActions/asyncControlActions';
 
-interface BpmPanelProps {
+interface BpmProps {
     bpm: string;
     trackId: string;
 }
-export const BpmPanel = ({bpm, trackId}: BpmPanelProps): JSX.Element => {
+export const Bpm = ({bpm, trackId}: BpmProps): JSX.Element => {
     
     const dispatch = useDispatch();
     const [state, setState, validate, errors] = useValidation({
@@ -29,9 +29,6 @@ export const BpmPanel = ({bpm, trackId}: BpmPanelProps): JSX.Element => {
         setState({
             bpmValue: value
         });
-    }
-
-    const onSaveBpmClickHandler = (): void => {
         if (!validate()) {
             return;
         }
@@ -45,11 +42,6 @@ export const BpmPanel = ({bpm, trackId}: BpmPanelProps): JSX.Element => {
                 error={errors.bpmValue}
                 value={state.bpmValue}
                 onChange={bpmChange}
-            />
-            <Button
-                title="Save"
-                disabled={false}
-                onClick={onSaveBpmClickHandler}
             />
         </div>
     );

@@ -3,7 +3,6 @@ import { welcomeSelector } from "../store/welcome/welcomeSlice";
 import { ControlPanel } from "./controls/panel";
 import { SoundsPanel } from "./sounds/panel";
 import { LayerPanel } from './layers/panel';
-import { BpmPanel } from './components/BpmPanel';
 import { ConfigureNotePanel } from './components/ConfigureNotePanel';
 import { Welcome } from './Welcome';
 import { Begin } from './begin/Begin';
@@ -85,11 +84,10 @@ export const Main = (): JSX.Element => {
     };
 
     return (
-        <div id="main-panel" className="container mx-auto flex flex-wrap overflow-hidden">
+        <div id="main-panel" className="mx-auto flex flex-wrap overflow-hidden">
             <div className="w-full">
                 <Title title={"Track Name: " + track.name}/>
             </div>
-            <BpmPanel bpm={track.control.bpm} trackId={track.id}/>
             <LayerContainer track={track}/>
             <ControlPanel track={track}/>
         </div>

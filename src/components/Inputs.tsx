@@ -37,7 +37,7 @@ interface ToggleSwitchProps extends InputProps {
 export const ToggleSwitch = ({title, onChange, value}: ToggleSwitchProps): JSX.Element => {
     return (
         <div className="flex flex-col">  
-            <div className="ml-3 text-gray-700 text-xl">{title}</div>
+            <div className="ml-3 text-xl">{title}</div>
             <div className="toggle-switch flex flex-col p-4">
                 <label className="flex items-center cursor-pointer">
                     <div className="relative mx-auto">

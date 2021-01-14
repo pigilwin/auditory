@@ -1,11 +1,12 @@
-import { RangeInput } from "../../components/Inputs";
+import { useDispatch, useSelector } from "react-redux";
 import { Play, Stop } from "../../components/Icon";
 import { SavedTrack } from "../../store/track/trackTypes";
-import { useDispatch, useSelector } from "react-redux";
 import { Audio } from "../../audio/audio";
 import { pause, play } from "../../store/track/trackSlice";
-import { updatePannerAsync, updateVolumeAsync } from "../../store/track/asyncActions/asyncControlActions";
 import { currentlyPlayingSelector } from "../../store/track/trackSelectors";
+import { Volume } from "./components/volume";
+import { Bpm } from "./components/bpm";
+import { Panner } from "./components/panner";
 
 interface ControlPanelProps {
     track: SavedTrack;
@@ -14,14 +15,6 @@ interface ControlPanelProps {
 export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
 
     const dispatch = useDispatch();
-
-    const volumeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatch(updateVolumeAsync(event.currentTarget.valueAsNumber, track.id));
-    };
-
-    const panner = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatch(updatePannerAsync(event.currentTarget.valueAsNumber, track.id));
-    };
 
     const startTrack = async (): Promise<void> => {
         dispatch(play());
@@ -36,42 +29,23 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
     const isTrackRunning = useSelector(currentlyPlayingSelector);
 
     return (
-        <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 shadow">
-            <div id="tabs" className="flex justify-between">
-                <div className="w-full text-center">
-                    <RangeInput
-                        min={-10}
-                        max={0}
-                        value={track.control.volume}
-                        step={1}
-                        title="Volume"
-                        onChange={volumeChange}
-                        error=""
-                    />
-                </div>
+        <section className="block fixed inset-x-0 bottom-0 z-10 shadow">
+            <div className="flex justify-between">
+                <Volume volume={track.control.volume} trackId={track.id}/>
                 <div className="w-full justify-center inline-block text-center cursor-pointer pt-2 pb-1">
                     <button className="disabled:opacity-25" disabled={isTrackRunning} onClick={startTrack}>
                         <Play/>
                         <span className="tab tab-kategori block text-xs">Play</span>
                     </button>
                 </div>
+                <Bpm bpm={track.control.bpm} trackId={track.id}/>
                 <div className="w-full justify-center inline-block text-center cursor-pointer pt-2 pb-1">
                     <button className="disabled:opacity-25" disabled={!isTrackRunning} onClick={stopTrack}>
                         <Stop/>
                         <span className="tab tab-whishlist block text-xs">Stop</span>
                     </button>
                 </div>
-                <div className="w-full justify-center inline-block text-center">
-                    <RangeInput
-                        min={-1}
-                        max={1}
-                        value={track.control.panner}
-                        step={1}
-                        title="Left & Right"
-                        onChange={panner}
-                        error=""
-                    />
-                </div>
+                <Panner panner={track.control.panner} trackId={track.id}/>
             </div>
 	    </section>
     );
