@@ -36,7 +36,8 @@ export const App = (): JSX.Element => {
       "leading-normal",
       "tracking-wider",
       "bg-gray-100",
-      "dark:bg-gray-700"
+      "dark:bg-gray-700",
+      "dark:text-white"
   ];
 
   if (usingDarkMode) {

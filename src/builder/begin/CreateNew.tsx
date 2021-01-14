@@ -42,8 +42,9 @@ export const CreateNew = (): JSX.Element => {
     
     return (
         <div className="container p-5">
-            <h1 className="text-2xl w-full text-center dark:text-white">Create New</h1>
+            <h1 className="text-2xl w-full text-center">Create New</h1>
             <TextSingleLineInput 
+                value={state.trackName}
                 error={errors.trackName}
                 title="Track Name"
                 onChange={saveTrackNameHandler}
