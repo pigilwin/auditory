@@ -35,7 +35,7 @@ export const BpmPanel = ({bpm, trackId}: BpmPanelProps): JSX.Element => {
         if (!validate()) {
             return;
         }
-        dispatch(updateBPMAsync(state.bpm, trackId));
+        dispatch(updateBPMAsync(state.bpmValue, trackId));
     }
     
     return (
