@@ -37,8 +37,8 @@ export const LayerPanel = ({trackId}: LayerPanelProps): JSX.Element => {
     
     return (
         <div className="w-full px-4 overflow-hidden min-h-screen">
-            <h1 className="text-xl p-2 dark:text-white">New Layer</h1>
-            <p className="p-2 dark:text-white">Choose a synth too create a new layer</p>
+            <h1 className="text-xl p-2">New Layer</h1>
+            <p className="p-2">Choose a synth too create a new layer</p>
             <SynthSelector
                 synthId={synthId}
                 onSynthSelected={onSynthSelectedHandler}

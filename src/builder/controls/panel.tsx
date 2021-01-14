@@ -52,13 +52,13 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
                 <div className="w-full justify-center inline-block text-center cursor-pointer pt-2 pb-1">
                     <button className="disabled:opacity-25" disabled={isTrackRunning} onClick={startTrack}>
                         <Play/>
-                        <span className="tab tab-kategori block text-xs dark:text-white">Play</span>
+                        <span className="tab tab-kategori block text-xs">Play</span>
                     </button>
                 </div>
                 <div className="w-full justify-center inline-block text-center cursor-pointer pt-2 pb-1">
                     <button className="disabled:opacity-25" disabled={!isTrackRunning} onClick={stopTrack}>
                         <Stop/>
-                        <span className="tab tab-whishlist block text-xs dark:text-white">Stop</span>
+                        <span className="tab tab-whishlist block text-xs">Stop</span>
                     </button>
                 </div>
                 <div className="w-full justify-center inline-block text-center">

@@ -50,7 +50,7 @@ export const ConfigureNotePanel = ({sound, layerId, index, trackId}: ConfigureNo
     return (
         <div className="min-h-screen">
             <div className="w-1/2 shadow-md rounded-md mx-auto">
-                <h1 className="text-center p-2 text-2xl dark:text-white">Note Configuration for {soundName}</h1>
+                <h1 className="text-center p-2 text-2xl">Note Configuration for {soundName}</h1>
                 <div className="w-full p-2">
                     <NumberSingleLineInput
                         title="Duration (in seconds)"

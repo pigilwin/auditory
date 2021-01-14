@@ -15,11 +15,11 @@ interface RangeInputProps extends InputProps {
 export const RangeInput = ({title, error, min, max, step, value, onChange}: RangeInputProps): JSX.Element => {
     return (
         <div className="range-slider flex flex-col">
-            <label className="text-xl mb-2 dark:text-white">{title}</label>
+            <label className="text-xl mb-2">{title}</label>
             <input 
                 onChange={onChange} 
                 type="range" 
-                className="cursor-pointer" 
+                className="cursor-pointer dark:text-black" 
                 min={min} 
                 max={max} 
                 value={value} 
@@ -37,7 +37,7 @@ interface ToggleSwitchProps extends InputProps {
 export const ToggleSwitch = ({title, onChange, value}: ToggleSwitchProps): JSX.Element => {
     return (
         <div className="flex flex-col">  
-            <div className="ml-3 text-gray-700 text-xl dark:text-white">{title}</div>
+            <div className="ml-3 text-gray-700 text-xl">{title}</div>
             <div className="toggle-switch flex flex-col p-4">
                 <label className="flex items-center cursor-pointer">
                     <div className="relative mx-auto">
@@ -54,11 +54,12 @@ export const ToggleSwitch = ({title, onChange, value}: ToggleSwitchProps): JSX.E
 
 interface TextSingleLineInputProps extends InputProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    value: string;
 }
-export const TextSingleLineInput = ({error, onChange, title}: TextSingleLineInputProps): JSX.Element => {
+export const TextSingleLineInput = ({error, onChange, title, value}: TextSingleLineInputProps): JSX.Element => {
     
     const classNames = (): string => {
-        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded"];
+        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded", "dark:text-black"];
         if (error.length > 0) {
             classes.push('border-red-400', 'bg-red-200');
         }
@@ -67,8 +68,8 @@ export const TextSingleLineInput = ({error, onChange, title}: TextSingleLineInpu
     
     return (
         <div className="flex flex-col mb-4">
-            <label className="mb-2 font-bold text-lg text-grey-darkest dark:text-white">{title}</label>
-            <input onChange={onChange} className={classNames()} type="text"/>
+            <label className="mb-2 font-bold text-lg text-grey-darkest">{title}</label>
+            <input onChange={onChange} className={classNames()} value={value} type="text"/>
             <BasicTextErrorMessage message={error}/>
         </div>
     );
@@ -80,7 +81,7 @@ interface NumberSingleLineInputProps extends InputProps {
 }
 export const NumberSingleLineInput = ({title, error, onChange, value}: NumberSingleLineInputProps): JSX.Element => {
     const classNames = (): string => {
-        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded"];
+        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded", "dark:text-black"];
         if (error.length > 0) {
             classes.push('border-red-400', 'bg-red-200');
         }
@@ -89,7 +90,7 @@ export const NumberSingleLineInput = ({title, error, onChange, value}: NumberSin
     
     return (
         <div className="flex flex-col mb-4">
-            <label className="mb-2 font-bold text-lg text-grey-darkest dark:text-white">{title}</label>
+            <label className="mb-2 font-bold text-lg text-grey-darkest">{title}</label>
             <input onChange={onChange} className={classNames()} type="number" value={value}/>
             <BasicTextErrorMessage message={error}/>
         </div>
