@@ -14,7 +14,7 @@ export const NavBar = (): JSX.Element => {
                     <NavButton to="/" id="home-button" title="Home"/>
                     <NavButton to="/settings" id="settings-button" title="Settings"/>
                     <NavButton to="/about" id="about-button" title="About"/>
-                    <div className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-100 mr-4 text-lg">
+                    <div className="block mt-4 lg:inline-block lg:mt-0 cursor-pointer hover:text-blue-100 mr-4 text-lg">
                         <Theme/>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ interface NavButtonProps {
 
 const NavButton = ({id, title, to}: NavButtonProps): JSX.Element => {
     return (
-        <Link to={to} id={id} className="block mt-4 lg:inline-block lg:mt-0 text-black cursor-pointer hover:text-blue-400 dark:hover:text-blue-400 mr-4 text-lg">
+        <Link to={to} id={id} className="block mt-4 lg:inline-block lg:mt-0 cursor-pointer hover:text-blue-400 dark:hover:text-blue-400 mr-4 text-lg">
             {title}
         </Link>
     );
