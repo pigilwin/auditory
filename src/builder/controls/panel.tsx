@@ -5,7 +5,6 @@ import { Audio } from "../../audio/audio";
 import { pause, play } from "../../store/track/trackSlice";
 import { currentlyPlayingSelector } from "../../store/track/trackSelectors";
 import { Volume } from "./components/volume";
-import { Bpm } from "./components/bpm";
 import { Panner } from "./components/panner";
 
 interface ControlPanelProps {
@@ -38,7 +37,6 @@ export const ControlPanel = ({track}: ControlPanelProps): JSX.Element => {
                         <span className="tab tab-kategori block text-xs">Play</span>
                     </button>
                 </div>
-                <Bpm bpm={track.control.bpm} trackId={track.id}/>
                 <div className="w-full justify-center inline-block text-center cursor-pointer pt-2 pb-1">
                     <button className="disabled:opacity-25" disabled={!isTrackRunning} onClick={stopTrack}>
                         <Stop/>

@@ -49,11 +49,13 @@ export const CreateNew = (): JSX.Element => {
                 title="Track Name"
                 onChange={saveTrackNameHandler}
             />
-            <Button
-                disabled={false} 
-                title="Create New Track" 
-                onClick={createNewTrackClickHandler}
-            />
+            <div className="mt-2">
+                <Button
+                    disabled={false} 
+                    title="Create New Track" 
+                    onClick={createNewTrackClickHandler}
+                />
+            </div>
         </div>
     );
 }

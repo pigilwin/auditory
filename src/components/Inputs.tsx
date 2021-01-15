@@ -59,18 +59,17 @@ interface TextSingleLineInputProps extends InputProps {
 export const TextSingleLineInput = ({error, onChange, title, value}: TextSingleLineInputProps): JSX.Element => {
     
     const classNames = (): string => {
-        const classes: string[] = ["border","py-2","px-3","text-grey-darkest", "rounded", "dark:text-black"];
+        const classes: string[] = ["border-2", "p-2", "w-full", "rounded", "dark:text-black"];
         if (error.length > 0) {
             classes.push('border-red-400', 'bg-red-200');
         }
         return classes.join(" ");
     };
-    
+
     return (
-        <div className="flex flex-col mb-4">
-            <label className="mb-2 font-bold text-lg text-grey-darkest">{title}</label>
-            <input onChange={onChange} className={classNames()} value={value} type="text"/>
-            <BasicTextErrorMessage message={error}/>
+        <div className="flex">
+            <span className="text-sm p-2 text-center whitespace-no-wrap mr-1">{title}</span>
+            <input className={classNames()} type="text" onChange={onChange} value={value}/>
         </div>
     );
 }

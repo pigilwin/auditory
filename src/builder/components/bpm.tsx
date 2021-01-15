@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { TextSingleLineInput } from '../../../components/Inputs';
-import { useValidation } from '../../../lib/validation';
-import { updateBPMAsync } from '../../../store/track/asyncActions/asyncControlActions';
+import { Button, TextSingleLineInput } from '../../components/Inputs';
+import { useValidation } from '../../lib/validation';
+import { updateBPMAsync } from '../../store/track/asyncActions/asyncControlActions';
 
 interface BpmProps {
     bpm: string;
@@ -29,6 +29,9 @@ export const Bpm = ({bpm, trackId}: BpmProps): JSX.Element => {
         setState({
             bpmValue: value
         });
+    }
+
+    const onClickHandler = (): void => {
         if (!validate()) {
             return;
         }
@@ -36,12 +39,17 @@ export const Bpm = ({bpm, trackId}: BpmProps): JSX.Element => {
     }
     
     return (
-        <div className="w-1/2 mx-auto">
+        <div className="w-full grid grid-cols-2 gap-2">
             <TextSingleLineInput
                 title="BPM"
                 error={errors.bpmValue}
                 value={state.bpmValue}
                 onChange={bpmChange}
+            />
+            <Button
+                title="Save"
+                onClick={onClickHandler}
+                disabled={false}
             />
         </div>
     );
