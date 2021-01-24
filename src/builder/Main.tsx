@@ -11,11 +11,13 @@ import { LayerContainer } from './layers/container';
 import { SavedTrack } from "../store/track/trackTypes";
 import { 
     currentlyAddingLayerSelector, 
+    currentlyEdittingSettingsSelector, 
     currentlySelectedLayerSelector, 
     currentlySelectedNoteIndexSelector, 
     currentTrackIdSelector, 
     tracksSelector 
 } from "../store/track/trackSelectors";
+import { Settings } from "./settings/Settings";
 
 export const Main = (): JSX.Element => {
 
@@ -25,6 +27,7 @@ export const Main = (): JSX.Element => {
     const currentLayer = useSelector(currentlySelectedLayerSelector);
     const addingNewLayer = useSelector(currentlyAddingLayerSelector);
     const currentlySelectedNote = useSelector(currentlySelectedNoteIndexSelector);
+    const currentlyEdittingSettings = useSelector(currentlyEdittingSettingsSelector);
 
     /**
      * If the user has never accessed the system, 
@@ -54,6 +57,13 @@ export const Main = (): JSX.Element => {
      */
     if (track === null) {
         return (<Begin/>);
+    }
+
+    /**
+     * If we are currently editting settings
+     */
+    if (currentlyEdittingSettings) {
+        return <Settings/>;
     }
 
     /**
