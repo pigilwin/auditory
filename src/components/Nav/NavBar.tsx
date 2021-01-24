@@ -12,7 +12,6 @@ export const NavBar = (): JSX.Element => {
                 <GoBack/>
                 <div className="text-sm lg:flex-grow text-center lg:text-right">
                     <NavButton to="/" id="home-button" title="Home"/>
-                    <NavButton to="/settings" id="settings-button" title="Settings"/>
                     <NavButton to="/about" id="about-button" title="About"/>
                     <div className="block mt-4 lg:inline-block lg:mt-0 cursor-pointer hover:text-blue-100 mr-4 text-lg">
                         <Theme/>
