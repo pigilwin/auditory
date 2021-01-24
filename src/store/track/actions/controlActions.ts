@@ -18,3 +18,9 @@ export const pauseReducer = (state: TrackState) => {
     newState.isPlaying = false;
     return newState;
 }
+
+export const configureSettingsReducer = (state: TrackState) => {
+    const newState = state;
+    newState.edittingSettings = true;
+    return newState;
+}

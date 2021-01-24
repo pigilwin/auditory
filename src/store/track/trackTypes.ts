@@ -40,6 +40,7 @@ export interface TrackState {
         addingLayer: boolean;
     }
     isPlaying: boolean;
+    edittingSettings: boolean;
 }
 
 export type Current = TrackState['current'];

@@ -21,7 +21,7 @@ export const updatePannerAsync = (
     panner: number, 
     trackId: string
 ): AppThunk => async (
-    dispatch: AppDispatch, 
+    dispatch: AppDispatch,
     getState: RootStateHook
 ) => {
     const track = deepCopy(fetchTrack(getState, trackId));

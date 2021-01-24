@@ -81,7 +81,7 @@ export const Main = (): JSX.Element => {
             index={currentlySelectedNote.index}
             trackId={track.id}
         />;
-    };
+    }
 
     return (
         <div id="main-panel" className="mx-auto flex flex-wrap overflow-hidden">

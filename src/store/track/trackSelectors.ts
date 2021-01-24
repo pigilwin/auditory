@@ -14,3 +14,4 @@ export const trackNameSelector = (state: RootState): string[] =>  {
     }
     return names;
 }
+export const currentlyEdittingSettingsSelector = (state: RootState): boolean => state.trackReducer.edittingSettings;
