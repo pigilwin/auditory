@@ -3,7 +3,8 @@ import { Title } from '../../components/Title';
 import { Button, TextSingleLineInput, RangeInput } from '../../components/Inputs';
 import { useValidation } from '../../lib/validation';
 import { SavedTrack } from '../../store/track/trackTypes';
-import { finishedConfiguringSettings, updateSettings } from '../../store/track/trackSlice';
+import { finishedConfiguringSettings } from '../../store/track/trackSlice';
+import { updateSettingsAsync } from '../../store/track/asyncActions/asyncControlActions';
 
 interface SettingsProps {
     trackId: string;
@@ -71,7 +72,7 @@ export const Settings = ({track, trackId}: SettingsProps): JSX.Element => {
         if (!validate()) {
             return;
         }
-        dispatch(updateSettings({
+        dispatch(updateSettingsAsync({
             trackId: trackId,
             data: {
                 bpm: state.bpmValue,
