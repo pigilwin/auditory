@@ -63,7 +63,7 @@ export const Main = (): JSX.Element => {
      * If we are currently editting settings
      */
     if (currentlyEdittingSettings) {
-        return <Settings/>;
+        return <Settings track={track} trackId={currentTrackId}/>;
     }
 
     /**

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootStateHook } from '../rootReducer';
 import { SavedTrack, TrackState } from './trackTypes';
 import { loadTracksReducer, loadTrackReducer, createTrackReducer, updateTrackReducer, deleteTrackReducer } from './actions/trackActions'; 
-import { clearCurrentTrackReducer, pauseReducer, playReducer, configureSettingsReducer } from './actions/controlActions';
+import { clearCurrentTrackReducer, pauseReducer, playReducer, configureSettingsReducer, finishedConfiguringSettingsReducer, updateSettingsReducer } from './actions/controlActions';
 import { closeCreateLayerReducer, createLayerReducer, deselectLayerReducer, selectLayerReducer } from './actions/layerActions';
 import { editNoteForLayerReducer, unselectNoteReducer } from './actions/noteActions';
 
@@ -39,7 +39,9 @@ const trackSlice = createSlice({
         clearCurrentTrack: clearCurrentTrackReducer,
         play: playReducer,
         pause: pauseReducer,
-        configureSettings: configureSettingsReducer
+        configureSettings: configureSettingsReducer,
+        finishedConfiguringSettings: finishedConfiguringSettingsReducer,
+        updateSettings: updateSettingsReducer
     }
 });
 
@@ -59,7 +61,9 @@ export const {
     clearCurrentTrack,
     play,
     pause,
-    configureSettings
+    configureSettings,
+    finishedConfiguringSettings,
+    updateSettings
 } = trackSlice.actions;
 
 export const fetchTrack = (getStateHook: RootStateHook, trackId: string): SavedTrack => {

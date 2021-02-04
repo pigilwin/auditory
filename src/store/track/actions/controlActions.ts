@@ -1,5 +1,6 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "../trackSlice";
-import { TrackState } from "../trackTypes";
+import { Control, TrackState, WithTrackId } from "../trackTypes";
 
 export const clearCurrentTrackReducer = (state: TrackState) => {
     const newState = state;
@@ -22,5 +23,17 @@ export const pauseReducer = (state: TrackState) => {
 export const configureSettingsReducer = (state: TrackState) => {
     const newState = state;
     newState.edittingSettings = true;
+    return newState;
+}
+
+export const finishedConfiguringSettingsReducer = (state: TrackState) => {
+    const newState = state;
+    newState.edittingSettings = false;
+    return newState;
+}
+
+export const updateSettingsReducer = (state: TrackState, action: PayloadAction<WithTrackId<Control>>) => {
+    const newState = state;
+    newState.tracks[action.payload.trackId].control = action.payload.data;
     return newState;
 }

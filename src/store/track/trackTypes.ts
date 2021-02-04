@@ -46,3 +46,9 @@ export interface TrackState {
 export type Current = TrackState['current'];
 export type SelectedNote = Current['selectedNote'];
 export type SelectedLayer = Current['selectedLayer'];
+export type Control = SavedTrack['control'];
+
+export type WithTrackId<T> = {
+    trackId: string;
+    data: T;
+};
